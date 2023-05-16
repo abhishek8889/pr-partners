@@ -18,6 +18,13 @@ use App\Http\Controllers\admin\AdminDashboardController;
 
 Route::get('/',[AuthenticationController::class,'index']);
 Route::get('/admin-login',[AuthenticationController::class,'adminLogin']);
+Route::post('/admin-loginproc',[AuthenticationController::class,'adminLoginProc'])->name('admin-login');
+Route::get('/logout',[AuthenticationController::class,'logout']);
 Route::get('/user-dashboard',[UserDashboard::class,'index']);
-Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
+
+
+//Admin routes
+Route::group(['middleware' =>['is_admin']],function(){
+    Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
+});
 
