@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\AdminDashboardController;
 */
 
 Route::get('/',[AuthenticationController::class,'index']);
+Route::get('/admin-login',[AuthenticationController::class,'adminLogin']);
 Route::get('/user-dashboard',[UserDashboard::class,'index']);
 Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
 
