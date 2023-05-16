@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authentication\AuthenticationController;
 use App\Http\Controllers\users\UserDashboard;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::get('/',[AuthenticationController::class,'index']);
 Route::get('/admin-login',[AuthenticationController::class,'adminLogin']);
 Route::get('/user-dashboard',[UserDashboard::class,'index']);
 Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
+Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
 
