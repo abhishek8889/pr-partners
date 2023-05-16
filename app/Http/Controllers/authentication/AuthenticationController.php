@@ -10,4 +10,7 @@ class AuthenticationController extends Controller
     public function index(){
         return view('authentication.login');
     }
+    public function adminLogin(){
+        return view('authentication.admin_login');
+    }
 }
