@@ -1,0 +1,132 @@
+@extends('admin_layout/master')
+@section('content')
+<div class="nk-content ">
+    <div class="nk-block nk-block-lg">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <h4 class="title nk-block-title">Article Type Upload</h4>
+                    <div class="nk-block-des">
+                        <!-- <p>You can alow display form in column as example below.</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="card card-bordered">
+                <div class="card-inner">
+                    <form action="#" id="article_form">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="genre_name">Article Type</label>
+                                    <div class="form-control-wrap">
+                                        @csrf
+                                        <input type="text" class="form-control" name="type" id="type">
+                                    </div>
+                                    <div class="text-danger" id="error_wrap"></div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-lg btn-primary">Save article</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="card card-bordered card-preview">
+                <table class="table table-orders" id="table">
+                    <thead class="tb-odr-head">
+                        <tr class="tb-odr-item">
+                            <th class="tb-odr-info">
+                                <span class="tb-odr-id">#</span>
+                                <span class="tb-odr-date d-none d-md-inline-block">Date</span>
+                            </th>
+                            <th class="tb-odr-amount">
+                                <span class="tb-odr-total">Article Type</span>
+                            </th>
+                            <th class="tb-odr-action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tb-odr-body">
+                        <?php $count = 0; ?>
+                        @foreach($article_data as $ad)
+                        <?php $count = $count+1 ?>
+                        <tr class="tb-odr-item" id="tr{{$ad->id}}">
+                            <td class="tb-odr-info">
+                                <span class="tb-odr-id">#{{ $count }}</span>
+                                <span class="tb-odr-date">{{ $ad->created_at ?? '' }}</span>
+                            </td>
+                            <td class="tb-odr-amount">
+                                <span class="tb-odr-total">
+                                    <span class="name">{{ $ad->type ?? '' }}</span>
+                                </span>
+                            </td>
+                            <td class="tb-odr-action">
+                                <div class="dropdown">
+                                    <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                        <ul class="link-list-plain">
+                                            <li><a data-id="{{ $ad->id  }}" id="edit" class="text-primary">Edit</a></li>
+                                            <li><a data-id="{{ $ad->id }}" id="remove" class="text-danger">Remove</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+        </div>
+
+<script>
+    $(document).ready(function(){
+            $('#article_form').on('submit',function(e){
+                e.preventDefault();
+                formdata = new FormData(this);
+                $.ajax({
+                method: 'post',
+                url: '{{route('article-add')}}',
+                data: formdata,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(response)
+                {
+                    $('#type').val('');
+                    $('#error_wrap').html('');
+                    NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
+                    $("#table").load(location.href + " #table");
+                    console.log(response);
+                },
+                error: function (error) {
+                  $('#error_wrap').html(error.responseJSON.message);
+                }
+            });
+    });
+    $('#edit').click(function(e){
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        console.log(id);
+    });
+    $('#remove').click(function(e){
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        console.log(id);
+        $.ajax({
+                method: 'post',
+                url: '{{route('article-action')}}',
+                data: { editid:id, _token:'{{ csrf_token() }}' },
+                dataType: 'json',
+                success: function(response)
+                {
+                    NioApp.Toast(response, 'info', {position: 'top-right'});
+                    $("#table").load(location.href + " #table");
+                }
+            });
+
+    })
+});
+</script>
+@endsection
