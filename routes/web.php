@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\authentication\AuthenticationController;
 use App\Http\Controllers\users\UserDashboard;
 use App\Http\Controllers\admin\AdminDashboardController;
+use App\Http\Controllers\admin\PublicationController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,5 @@ Route::get('/user-dashboard',[UserDashboard::class,'index']);
 Route::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
 });
+Route::get('/publications',[PublicationController::class,'index']);
 
