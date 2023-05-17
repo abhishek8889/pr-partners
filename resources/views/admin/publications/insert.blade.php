@@ -14,18 +14,18 @@
             <div class="card-head">
                 <h5 class="card-title">Publication Form</h5>
             </div>
-            <form action="#" class="gy-3">
+            <form action="#" id="publication_form" class="gy-3">
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label" for="site-name">Site Name</label>
-                            <span class="form-note">Specify the name of your website.</span>
+                            <label class="form-label" for="site-name">Title</label>
+                            <span class="form-note">Specify the title of your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="site-name" value="DashLite Admin Template">
+                                <input type="text" class="form-control" id="title" name="title" value="" placeholder="Enter title here"/>
                             </div>
                         </div>
                     </div>
@@ -33,14 +33,14 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label">Site Email</label>
-                            <span class="form-note">Specify the email address of your website.</span>
+                            <label class="form-label">Url</label>
+                            <span class="form-note">Specify the url of your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="site-email" value="info@softnio.com">
+                                <input type="text" class="form-control" id="url" name="url" value="" placeholder="Enter url here"/>
                             </div>
                         </div>
                     </div>
@@ -48,14 +48,14 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label">Site Copyright</label>
-                            <span class="form-note">Copyright information of your website.</span>
+                            <label class="form-label">Price</label>
+                            <span class="form-note">Specify the price of your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="site-copyright" value="&copy; 2022, DashLite. All Rights Reserved.">
+                                <input type="text" class="form-control" id="price" name="price" value="" placeholder="Enter price here">
                             </div>
                         </div>
                     </div>
@@ -63,44 +63,14 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label">Allow Registration</label>
-                            <span class="form-note">Enable or disable registration from site.</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <ul class="custom-control-group g-3 align-center flex-wrap">
-                            <li>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" checked name="reg-public" id="reg-enable">
-                                    <label class="custom-control-label" for="reg-enable">Enable</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="reg-public" id="reg-disable">
-                                    <label class="custom-control-label" for="reg-disable">Disable</label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="reg-public" id="reg-request">
-                                    <label class="custom-control-label" for="reg-request">On Request</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row g-3 align-center">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <label class="form-label">Main Website</label>
-                            <span class="form-note">Specify the URL if your main website is external.</span>
+                            <label class="form-label">Domain Authority</label>
+                            <span class="form-note">Specify the domain authority of your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" name="site-url" value="https://www.softnio.com">
+                                <input type="number" class="form-control" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
                             </div>
                         </div>
                     </div>
@@ -108,23 +78,107 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label" for="site-off">Maintanance Mode</label>
-                            <span class="form-note">Enable to make website make offline.</span>
+                            <label class="form-label">TAT (Turn Around Time)<span> (in weeks)</span></label>
+                            <span class="form-note">Specify the turn around time of your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
                         <div class="form-group">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" name="reg-public" id="site-off">
-                                <label class="custom-control-label" for="site-off">Offline</label>
+                            <div class="form-control-wrap">
+                                <input type="number" class="form-control" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr>
+                <div class="row g-3 align-center">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Genres</label>
+                            <span class="form-note">Please select the genre for your publication.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-group">
+                        <ul class="custom-control-group g-3 align-center">
+                            @if($genre_list != '')
+                                @foreach($genre_list as $genre)
+                               
+                                <li>
+                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="article_type[]" value="{{ $genre['name'] }}">
+                                        <label class="custom-control-label" for="{{ $genre['name'] }}">{{ $genre['name'] }}</label>
+                                    </div>
+                                </li>
+                               
+                                @endforeach
+                                @endif
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row g-3 align-center">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Article Type</label>
+                            <span class="form-note">Please select the article type for your publication.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-group">
+                            <ul class="custom-control-group g-3 align-center">
+                            @if($article_types != '')
+                                @foreach($article_types as $article)
+                               
+                                <li>
+                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}">
+                                        <label class="custom-control-label" for="{{ $article['type'] }}">{{ $article['type'] }}</label>
+                                    </div>
+                                </li>
+                               
+                                @endforeach
+                                @endif
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row g-3 align-center">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Country/Region</label>
+                            <span class="form-note">Please select the countryor region for your publication.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-group">
+                        <ul class="custom-control-group g-3 align-center">
+                            @if($region_list != '')
+                                @foreach($region_list as $region)
+                               
+                                <li>
+                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="article_type" value="{{ $region['id'] }}">
+                                        <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
+                                    </div>
+                                </li>
+                               
+                                @endforeach
+                                @endif
+                              
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr>
                 <div class="row g-3">
                     <div class="col-lg-7 offset-lg-5">
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Add Publication</button>
                         </div>
                     </div>
                 </div>
@@ -132,4 +186,24 @@
         </div>
     </div><!-- card -->
 </div><!-- .nk-block -->
+<script>
+    $(document).ready(function(){
+        $('#publication_form').on('submit',function(e){
+            e.preventDefault();
+            formdata = new FormData(this);
+                $.ajax({
+                method: 'post',
+                url: '{{route('article-add')}}',
+                data: formdata,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(response)
+                {
+                    console.log(response);
+                }
+            });
+        });
+    });
+</script>
 @endsection
