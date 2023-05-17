@@ -124,7 +124,7 @@
                 data: { editid:id,type:type, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
                 success: function(response)
-                {
+                {   $(this).val(type);
                      $("input#input"+id).prop('disabled', true);
                     NioApp.Toast('Successfully updated article type!', 'info', {position: 'top-right'});
                 },
@@ -154,7 +154,7 @@
                 }
             });
 
-    })
+    });
 });
 </script>
 @endsection

@@ -32,10 +32,9 @@ class ArticleController extends Controller
         return response()->json($remove);
         }elseif($req->editid){
             $req->validate([
-                'type' => 'required|unique:article_types,type,'.$req->type
+                'type' => 'required'
             ],[
-                'type.required' => 'This article type field is required',
-                'type.unique' => 'This article type must be unique'
+                'type.required' => 'This article type field is required'
             ]);
             $article = ArticleType::find($req->editid);
             $article->type = $req->type;
