@@ -22,7 +22,8 @@ class ArticleController extends Controller
         $article->type = $req->type;
         $article->save();
         $total_type = ArticleType::get();
-        $response = array('total'=> count($total_type),'article'=>$article);
+        $created_at = Date("Y-m-d H:i:s", strtotime("0 minutes", strtotime($article->created_at)));
+        $response = array('total'=> count($total_type),'article'=>$article,'created_at' => $created_at);
         return response()->json($response);
     }
     public function action(Request  $req){
