@@ -4,7 +4,7 @@
     <div class="nk-block nk-block-lg">
             <div class="nk-block-head">
                 <div class="nk-block-head-content">
-                    <h4 class="title nk-block-title">Article Type Upload</h4>
+                    <h4 class="title nk-block-title">Article Type Add</h4>
                     <div class="nk-block-des">
                         <!-- <p>You can alow display form in column as example below.</p> -->
                     </div>
@@ -99,11 +99,11 @@
                     $('#type').val('');
                     $('#error_wrap').html('');
                     NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
-                    let first_td = '<span class="tb-odr-id">#'+response.total+'</span> <span class="tb-odr-date">'+response.article.created_at+'</span>';
+                    let first_td = '<span class="tb-odr-id">#'+response.total+'</span> <span class="tb-odr-date">'+response.created_at+'</span>';
                     let second_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
                     let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
                     let ul_buttons = '<li><a data-id="'+response.article.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.article.id+'" id="remove" class="text-danger">Remove</a></li>';
-                $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
                 },
                 error: function (error) {
                   $('#error_wrap').html(error.responseJSON.message);
@@ -117,7 +117,7 @@
         $("input#input"+id).removeAttr('disabled');
         $("input#input"+id).on('change',function(){
             let type = $(this).val();
-
+            
             $.ajax({
                 method: 'post',
                 url: '{{route('article-action')}}',
