@@ -11,7 +11,6 @@
     <!-- add coustam css file here -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/coustam.css')}}" >
     <!-- StyleSheets  -->
-    
     <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -47,7 +46,7 @@
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Dashboard</h6>
                                 </li>
-                                <li class="nk-menu-item has-sub">
+                                <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
                                         <span class="nk-menu-text">Projects</span>
@@ -60,8 +59,8 @@
                                             <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li class="nk-menu-item has-sub">
+                                </li> -->
+                                <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
                                         <span class="nk-menu-text">User Manage</span>
@@ -72,7 +71,7 @@
                                         </li>
 
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
@@ -92,7 +91,7 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="{{url('/admin-dashboard/article-list')}}" class="nk-menu-link"><span class="nk-menu-text">Article List</span></a>
+                                            <a href="{{url('/admin-dashboard/article')}}" class="nk-menu-link"><span class="nk-menu-text">Article List</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -103,7 +102,10 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="{{url('/admin-dashboard/publications')}}" class="nk-menu-link"><span class="nk-menu-text">publication List</span></a>
+                                            <a href="{{url('/admin-dashboard/publications')}}" class="nk-menu-link"><span class="nk-menu-text">Publication List</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ url('/admin-dashboard/insert-publications') }}" class="nk-menu-link"><span class="nk-menu-text">Insert Publication</span></a>
                                         </li>
                                     </ul>
                                 </li>
@@ -286,6 +288,7 @@
     <script src="{{ asset('admin-theme/assets/js/scripts.js?ver=3.1.2') }}"></script>
     <script src="{{ asset('admin-theme/assets/js/charts/gd-default.js?ver=3.1.2') }}"></script>
     <script src="{{ asset('admin-theme/assets/js/example-toastr.js?ver=3.1.2') }}"></script>
+    <script src="{{ asset('admin-theme/assets/js/libs/datatable-btns.js?ver=3.1.2') }}"></script>
     @if(Session::get('error'))
 <script>
     toastr.clear();

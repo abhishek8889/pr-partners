@@ -30,6 +30,7 @@ Route::get('/user-dashboard',[UserDashboard::class,'index']);
 Route::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
     Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
+    Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
     Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
     Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
     Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
