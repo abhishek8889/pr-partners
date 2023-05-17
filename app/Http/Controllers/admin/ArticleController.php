@@ -21,10 +21,25 @@ class ArticleController extends Controller
         $article = new ArticleType;
         $article->type = $req->type;
         $article->save();
-        return response()->json($article);
+        $total_type = ArticleType::get();
+        $response = array('total'=> count($total_type),'article'=>$article);
+        return response()->json($response);
     }
     public function action(Request  $req){
-        $remove = ArticleType::find($req->editid)->delete();
-        return response()->json('successfully deleted article type');
+        if($req->deleteid){
+        $remove = ArticleType::find($req->deleteid)->delete();
+        return response()->json($remove);
+        }elseif($req->editid){
+            $req->validate([
+                'type' => 'required|unique:article_types,type,'.$req->type
+            ],[
+                'type.required' => 'This article type field is required',
+                'type.unique' => 'This article type must be unique'
+            ]);
+            $article = ArticleType::find($req->editid);
+            $article->type = $req->type;
+            $article->update();
+            return response()->json($article);
+        }
     }
 }

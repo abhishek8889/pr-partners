@@ -60,7 +60,7 @@
                             </td>
                             <td class="tb-odr-amount">
                                 <span class="tb-odr-total">
-                                    <span class="name">{{ $ad->type ?? '' }}</span>
+                                  <input type="text" id="input{{ $ad->id }}" class="form-control" value="{{ $ad->type ?? '' }}" disabled> 
                                 </span>
                             </td>
                             <td class="tb-odr-action">
@@ -84,6 +84,7 @@
     $(document).ready(function(){
             $('#article_form').on('submit',function(e){
                 e.preventDefault();
+               
                 formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
@@ -94,35 +95,62 @@
                 processData: false,
                 success: function(response)
                 {
+                    
                     $('#type').val('');
                     $('#error_wrap').html('');
                     NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
-                    $("#table").load(location.href + " #table");
-                    console.log(response);
+                    let first_td = '<span class="tb-odr-id">#'+response.total+'</span> <span class="tb-odr-date">'+response.article.created_at+'</span>';
+                    let second_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
+                    let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
+                    let ul_buttons = '<li><a data-id="'+response.article.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.article.id+'" id="remove" class="text-danger">Remove</a></li>';
+                $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
                 },
                 error: function (error) {
                   $('#error_wrap').html(error.responseJSON.message);
                 }
             });
     });
-    $('#edit').click(function(e){
+    $("body").delegate("#edit","click",function(e){
         e.preventDefault();
+        
         var id = $(this).attr('data-id');
-        console.log(id);
-    });
-    $('#remove').click(function(e){
-        e.preventDefault();
-        var id = $(this).attr('data-id');
-        console.log(id);
-        $.ajax({
+        $("input#input"+id).removeAttr('disabled');
+        $("input#input"+id).on('change',function(){
+            let type = $(this).val();
+
+            $.ajax({
                 method: 'post',
                 url: '{{route('article-action')}}',
-                data: { editid:id, _token:'{{ csrf_token() }}' },
+                data: { editid:id,type:type, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
                 success: function(response)
                 {
-                    NioApp.Toast(response, 'info', {position: 'top-right'});
-                    $("#table").load(location.href + " #table");
+                     $("input#input"+id).prop('disabled', true);
+                    NioApp.Toast('Successfully updated article type!', 'info', {position: 'top-right'});
+                },
+                error: function (error) {
+                    // $("input#input"+id).val(type);
+                  NioApp.Toast(error.responseJSON.message, 'error', {position: 'top-right'});
+                }
+            });
+        });
+
+    });
+    $("body").delegate("#remove","click",function(e){
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+          ele = $(this).parent().parent().parent().parent().parent().parent();
+        
+        $.ajax({
+                method: 'post',
+                url: '{{route('article-action')}}',
+                data: { deleteid:id, _token:'{{ csrf_token() }}' },
+                dataType: 'json',
+                success: function(response)
+                {
+                    ele.hide();
+                    NioApp.Toast('Successfully deleted article type!', 'info', {position: 'top-right'});
+                   
                 }
             });
 
