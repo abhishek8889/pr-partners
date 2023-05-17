@@ -6,6 +6,8 @@ use App\Http\Controllers\users\UserDashboard;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\PublicationController; 
 use App\Http\Controllers\admin\GenreController;
+use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\TryController\trycontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +28,20 @@ Route::get('/user-dashboard',[UserDashboard::class,'index']);
 
 
 //Admin routes
-Route::group(['middleware' =>['is_admin']],function(){
+Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
     Route::get('//admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
     Route::any('/genre-add',[GenreController::class,'genreAdd']);
+    Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
+    Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
+    Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
+    Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
+    Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
+    Route::post('/admin-dashboard/article/action',[ArticleController::class,'action'])->name('article-action');
 });
 
 
+
+Route::get('/trycode',[trycontroller::class,'index']);
+Route::any('/trycodes',[trycontroller::class,'adddata']);

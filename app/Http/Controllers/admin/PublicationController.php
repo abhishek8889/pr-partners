@@ -11,4 +11,7 @@ class PublicationController extends Controller
     public function index(){
         return view('admin.publications.index');
     }
+    public function publicationInsert(){
+        return view('admin.publications.insert');
+    }
 }
