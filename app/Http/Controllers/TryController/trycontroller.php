@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TryController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Genre;
+use App\Models\TryTable;
 
 class trycontroller extends Controller
 {
@@ -19,29 +20,27 @@ class trycontroller extends Controller
          // dd($data);
          $data = json_decode($jsonData, true);
  
-         echo '<pre>';
-         print_r($data);
-         echo '</pre>';
-         
-        //  $genredata = [];
-        //  $genre = Genre::all();
-        //  for($i = 0; $i < count($data); $i++){
-        //     print_r($data[$i]['genre']);
-        //     echo '<br>';
-        //     $genredata[] = explode('/',$data[$i]['genre']);
-        //     die();
-
-        //  }
-        //  foreach($genre as $g){
-        //     echo $g->name;
-        //     echo $g->id;
-        //     echo '<br>';
-        //  }
-        //  echo '<hr><br>';
         //  echo '<pre>';
-
-        //  print_r($genredata);
+        //  print_r($data);
         //  echo '</pre>';
+
+         for($i = 0; $i < count($data); $i++){
+            // print_r($data[$i]['publication']);
+            // print_r($data[$i]['countryRegion']);
+            $try = new TryTable;
+            $try->title = $data[$i]['publication'];
+            $try->url = $data[$i]['url'];
+            $try->price = $data[$i]['price'];
+            $try->domain_authority = $data[$i]['domainAuthority'];
+            $try->tat = $data[$i]['tat'];
+            $try->genre = json_encode($data[$i]['elements']);
+            $try->article_type = $data[$i]['articleType'];
+            $try->region = $data[$i]['countryRegionId'];
+            $try->save();
+
+         }
+        
+        //  echo 'done';
 
      }
     // public function adddata(Request $request)

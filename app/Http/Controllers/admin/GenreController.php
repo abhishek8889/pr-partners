@@ -8,19 +8,21 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Genre;
 use Carbon\Carbon;
 use DB;
+
 class GenreController extends Controller
 {
     //
     public function index(){
-        $genre = Genre::all();
-        return view('admin.Genre.index',compact('genre'));
+        // $genre = Genre::all();
+        $genres = Genre::orderBy('created_at','desc')->paginate(10);
+        return view('admin.Genre.index',compact('genres'));
     }
     public function genreAdd(Request $request)
         {
             // return response()->json($request->all());
             if ($request->has('edit_id')) {
                 $request->validate([
-                    'name' => 'required|unique:genres'
+                    'name' => 'required|unique:genres,name,'.$request->edit_id,
                 ]);
                 Genre::where('id', $request->edit_id)
                     ->update([

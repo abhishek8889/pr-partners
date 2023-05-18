@@ -534,7 +534,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Entertainment / Movie &amp; TV / Sports / Tech / Health / Science / Lifestyle / Travel / Fashion</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R31" style="height: 20px;" class="row-headers-background">
@@ -547,7 +547,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Entertainment / Sports / Tech / Health / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R32" style="height: 20px;" class="row-headers-background">
@@ -560,7 +560,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health / Music / Fashion</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R33" style="height: 20px;" class="row-headers-background">
@@ -573,7 +573,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Business / Lifestyle / Travel</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R34" style="height: 20px;" class="row-headers-background">
@@ -586,7 +586,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Music / Fashion / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R35" style="height: 20px;" class="row-headers-background">
@@ -599,7 +599,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Tech / Business / Science / Health</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R36" style="height: 20px;" class="row-headers-background">
@@ -612,7 +612,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Music / Entertainment / Business / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R37" style="height: 20px;" class="row-headers-background">
@@ -894,7 +894,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">59</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="http://www.ustimesnow.com/">US Times Now</a></td>
+                <td class="s0"><a target="_blank" href="http://www.ustimesnow.com/">USTimes Now</a></td>
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">49</td>
                 <td class="s3">1 Week</td>
@@ -942,7 +942,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Entertainment</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">US </td>
+                <td class="s3">US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R62" style="height: 20px;" class="row-headers-background">
@@ -1607,7 +1607,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">113</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="https://famoustimes.com/">Famous Times</a></td>
+                <td class="s0"><a target="_blank" href="https://famoustimes.com/">FamoUSTimes</a></td>
                 <td class="s1">$250</td>
                 <td class="s2">57</td>
                 <td class="s3">1 Week</td>
@@ -2385,7 +2385,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Business / Entertainment / Lifestyle / Sports</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Thailand </td>
+                <td class="s3">Thailand</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R172" style="height: 20px;" class="row-headers-background">
@@ -2708,7 +2708,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">197</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="https://usreporter.com/">US Reporter</a></td>
+                <td class="s0"><a target="_blank" href="https://usreporter.com/">USReporter</a></td>
                 <td class="s1">$500</td>
                 <td class="s2">56</td>
                 <td class="s3">1 Week</td>
@@ -2734,7 +2734,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">199</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="https://usinsider.com/">US Insider</a></td>
+                <td class="s0"><a target="_blank" href="https://usinsider.com/">USInsider</a></td>
                 <td class="s1">$500</td>
                 <td class="s2">60</td>
                 <td class="s3">1 Week</td>
@@ -3250,7 +3250,7 @@
                 <td class="s2">90</td>
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Movies &amp; TV </td>
-                <td class="s3" dir="ltr">Feature </td>
+                <td class="s3" dir="ltr">Feature</td>
                 <td class="s3">India</td>
             </tr>
             <tr style="height: 20px">
@@ -3435,7 +3435,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Sports / Health / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R252" style="height: 20px;" class="row-headers-background">
@@ -3683,7 +3683,7 @@
                 <td class="s3">2 Weeks</td>
                 <td class="s3" dir="ltr">News / Business / Sports</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R271" style="height: 20px;" class="row-headers-background">
@@ -3696,7 +3696,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R272" style="height: 20px;" class="row-headers-background">
@@ -3855,7 +3855,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Entertainment / Lifestyle </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R284" style="height: 20px;" class="row-headers-background">
@@ -4091,7 +4091,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Sports</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R302" style="height: 20px;" class="row-headers-background">
@@ -4221,7 +4221,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Sports / Entertainment / Tech / Health</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R312" style="height: 20px;" class="row-headers-background">
@@ -4287,7 +4287,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Lifestyle / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Thailand </td>
+                <td class="s3">Thailand</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R317" style="height: 20px;" class="row-headers-background">
@@ -4405,7 +4405,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / News / Lifestyle / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R326" style="height: 20px;" class="row-headers-background">
@@ -4431,7 +4431,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Movies &amp; TV / Business / Sports / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R328" style="height: 20px;" class="row-headers-background">
@@ -4444,7 +4444,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Sports / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R329" style="height: 20px;" class="row-headers-background">
@@ -4470,7 +4470,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R331" style="height: 20px;" class="row-headers-background">
@@ -4483,7 +4483,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R332" style="height: 20px;" class="row-headers-background">
@@ -4496,7 +4496,7 @@
                 <td class="s3">2 Weeks</td>
                 <td class="s3" dir="ltr">News / Business / Sports </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R333" style="height: 20px;" class="row-headers-background">
@@ -4955,7 +4955,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Sports </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R368" style="height: 20px;" class="row-headers-background">
@@ -4981,7 +4981,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R370" style="height: 20px;" class="row-headers-background">
@@ -4994,7 +4994,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports / Business </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R371" style="height: 20px;" class="row-headers-background">
@@ -5007,7 +5007,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R372" style="height: 20px;" class="row-headers-background">
@@ -5020,7 +5020,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R373" style="height: 20px;" class="row-headers-background">
@@ -5033,7 +5033,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Science &amp; Tech </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R374" style="height: 20px;" class="row-headers-background">
@@ -5046,7 +5046,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R375" style="height: 20px;" class="row-headers-background">
@@ -5059,7 +5059,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Media</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R376" style="height: 20px;" class="row-headers-background">
@@ -5073,7 +5073,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Media &amp; News / Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R377" style="height: 20px;" class="row-headers-background">
@@ -5086,7 +5086,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R378" style="height: 20px;" class="row-headers-background">
@@ -5099,7 +5099,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R379" style="height: 20px;" class="row-headers-background">
@@ -5112,7 +5112,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R380" style="height: 20px;" class="row-headers-background">
@@ -5125,7 +5125,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R381" style="height: 20px;" class="row-headers-background">
@@ -5138,7 +5138,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr"> Lifestyle / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R382" style="height: 20px;" class="row-headers-background">
@@ -5151,7 +5151,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R383" style="height: 20px;" class="row-headers-background">
@@ -5164,7 +5164,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Business / News </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R384" style="height: 20px;" class="row-headers-background">
@@ -5178,7 +5178,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R385" style="height: 20px;" class="row-headers-background">
@@ -5191,7 +5191,7 @@
                 <td class="s3">1 week</td>
                 <td class="s3" dir="ltr">News / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R386" style="height: 20px;" class="row-headers-background">
@@ -5205,7 +5205,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R387" style="height: 20px;" class="row-headers-background">
@@ -5219,7 +5219,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R388" style="height: 20px;" class="row-headers-background">
@@ -5233,7 +5233,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R389" style="height: 20px;" class="row-headers-background">
@@ -5246,7 +5246,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R390" style="height: 20px;" class="row-headers-background">
@@ -5260,7 +5260,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R391" style="height: 20px;" class="row-headers-background">
@@ -5274,7 +5274,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R392" style="height: 20px;" class="row-headers-background">
@@ -5288,7 +5288,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R393" style="height: 20px;" class="row-headers-background">
@@ -5301,7 +5301,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R394" style="height: 20px;" class="row-headers-background">
@@ -5315,7 +5315,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R395" style="height: 20px;" class="row-headers-background">
@@ -5329,7 +5329,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 21px">
                 <th id="0R396" style="height: 21px;" class="row-headers-background">
@@ -5343,7 +5343,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R397" style="height: 20px;" class="row-headers-background">
@@ -5357,7 +5357,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R398" style="height: 20px;" class="row-headers-background">
@@ -5371,7 +5371,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R399" style="height: 20px;" class="row-headers-background">
@@ -5385,7 +5385,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R400" style="height: 20px;" class="row-headers-background">
@@ -5398,7 +5398,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R401" style="height: 20px;" class="row-headers-background">
@@ -5412,7 +5412,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Business </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R402" style="height: 20px;" class="row-headers-background">
@@ -5425,7 +5425,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">Sports </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R403" style="height: 20px;" class="row-headers-background">
@@ -5438,7 +5438,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Lifestyle / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R404" style="height: 20px;" class="row-headers-background">
@@ -5452,7 +5452,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R405" style="height: 20px;" class="row-headers-background">
@@ -5465,7 +5465,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Health</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R406" style="height: 20px;" class="row-headers-background">
@@ -5478,7 +5478,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R407" style="height: 20px;" class="row-headers-background">
@@ -5491,7 +5491,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Movies &amp; TV </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R408" style="height: 20px;" class="row-headers-background">
@@ -5805,7 +5805,7 @@
                 <td class="s3">2 Weeks</td>
                 <td class="s3" dir="ltr">News</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R432" style="height: 20px;" class="row-headers-background">
@@ -5896,7 +5896,7 @@
                 <td class="s3">3 Weeks</td>
                 <td class="s3" dir="ltr">News / Movies &amp; TV </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">Mexico </td>
+                <td class="s3">Mexico</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R439" style="height: 20px;" class="row-headers-background">
@@ -5909,7 +5909,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports / Business / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3">Middle East </td>
+                <td class="s3">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R440" style="height: 20px;" class="row-headers-background">
@@ -6197,7 +6197,7 @@
                 <td class="s3">2 Weeks</td>
                 <td class="s3" dir="ltr">News / Sports</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3">US </td>
+                <td class="s3">US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R462" style="height: 20px;" class="row-headers-background">
@@ -6483,7 +6483,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Tech / Science / Sports / Entertainment / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3">UK </td>
+                <td class="s3">UK</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R484" style="height: 20px;" class="row-headers-background">
@@ -6811,7 +6811,7 @@
                 <td class="s3">2 Weeks</td>
                 <td class="s3" dir="ltr">News / Business / Sports / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3">US </td>
+                <td class="s3">US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R509" style="height: 20px;" class="row-headers-background">
@@ -6824,7 +6824,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Sports / Business / Entertainment </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3">US </td>
+                <td class="s3">US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R510" style="height: 20px;" class="row-headers-background">
@@ -6876,7 +6876,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Tech / Lifestyle / Business</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3" dir="ltr">Middle east</td>
+                <td class="s3" dir="ltr">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R514" style="height: 20px;" class="row-headers-background">
@@ -6890,7 +6890,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Asia pacific</td>
+                <td class="s3" dir="ltr">Asia Pacific</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R515" style="height: 20px;" class="row-headers-background">
@@ -6930,7 +6930,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Health / Tech / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3" dir="ltr">Middle East </td>
+                <td class="s3" dir="ltr">Middle East</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R518" style="height: 20px;" class="row-headers-background">
@@ -6984,7 +6984,7 @@
                 <td class="s3">3 Weeks</td>
                 <td class="s3" dir="ltr">Music / News</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R522" style="height: 20px;" class="row-headers-background">
@@ -7000,7 +7000,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">News / Business / Crypto / Tech / CBD</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R523" style="height: 20px;" class="row-headers-background">
@@ -7013,7 +7013,7 @@
                 <td class="s3">3 Weeks</td>
                 <td class="s3" dir="ltr">News / Science</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R524" style="height: 20px;" class="row-headers-background">
@@ -7040,7 +7040,7 @@
                 <td class="s3">4 Weeks</td>
                 <td class="s3" dir="ltr">Music / Movies &amp; TV </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R526" style="height: 20px;" class="row-headers-background">
@@ -7053,7 +7053,7 @@
                 <td class="s3">1 Week</td>
                 <td class="s3" dir="ltr">CBD </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
-                <td class="s3" dir="ltr">Global </td>
+                <td class="s3" dir="ltr">Global</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R527" style="height: 20px;" class="row-headers-background">
@@ -7180,7 +7180,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">537</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="https://www.usatoday.com/">USA Today Full Feature </a></td>
+                <td class="s0"><a target="_blank" href="https://www.usatoday.com/">USA Today Full Feature</a></td>
                 <td class="s1">$5,500</td>
                 <td class="s2">94</td>
                 <td class="s3">2 Weeks</td>
@@ -7403,7 +7403,7 @@
                     <div class="row-header-wrapper" style="line-height: 20px">554</div>
                 </th>
                 <td class="s0"></td>
-                <td class="s0"><a target="_blank" href="https://www.usmagazine.com/">US Weekly</a></td>
+                <td class="s0"><a target="_blank" href="https://www.usmagazine.com/">USWeekly</a></td>
                 <td class="s1">$12,500</td>
                 <td class="s2">89</td>
                 <td class="s3">8 Weeks</td>
@@ -7542,7 +7542,7 @@
                 <td class="s3">4 Weeks</td>
                 <td class="s3" dir="ltr">Fashion / Entertainment / Lifestyle / Luxury</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3" dir="ltr">Global / US</td>
+                <td class="s3" dir="ltr">Global/ US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R564" style="height: 20px;" class="row-headers-background">
@@ -7555,7 +7555,7 @@
                 <td class="s3">4 Weeks</td>
                 <td class="s3" dir="ltr">Fashion / Entertainment / Lifestyle / Luxury</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
-                <td class="s3" dir="ltr">Global / US</td>
+                <td class="s3" dir="ltr">Global/ US</td>
             </tr>
             <tr style="height: 20px">
                 <th id="0R565" style="height: 20px;" class="row-headers-background">
@@ -7860,7 +7860,8 @@ trElements.forEach((tr) => {
   const publication = tdElements[1].querySelector('a').textContent;
   const price = tdElements[2].textContent;
   const domainAuthority = tdElements[3].textContent;
-  const tat = tdElements[4].textContent;
+  const tats = tdElements[4].textContent;
+  const tat = tats.replace(/\D/g, "");
   var array = [
     {id: 1, name: 'Entertainment'},
     {id: 2, name: 'Movies & TV'},
@@ -7950,41 +7951,51 @@ trElements.forEach((tr) => {
         console.warn(articleType);
 
 // if(art)
-var reginArray = [
-    {id: 1, name: 'Global'},
-    {id: 2, name: 'India'},
-    {id: 3, name: 'Nigeria'},
-    {id: 4, name: 'US'},
-    {id: 5, name: 'West Africa'},
-    {id: 6, name: 'UK'},
-    {id: 7, name: 'Ghana'},
-    {id: 8, name: 'Spain'},
-    {id: 9, name: 'Singapore'},
-    {id: 10, name: 'Thailand'},
-    {id: 11, name: 'Australia'},
-    {id: 12, name: 'Bolivia'},
-    {id: 13, name: 'Mexico'},
-    {id: 14, name: 'Canada'},
-    {id: 15, name: 'Venezuela'},
-    {id: 16, name: 'Argentina'},
-    {id: 17, name: 'Middle East'},
-    {id: 18, name: 'South Africa'},
-    {id: 19, name: 'Colombia'},
-    {id: 20, name: 'Israel'},
-    {id: 21, name: 'Africa'},
-    {id: 22, name: 'Philippines'},
-    {id: 23, name: 'International'},
-    {id: 24, name: 'Netherlands'},
-    {id: 25, name: 'Ireland'},
-    {id: 26, name: 'Asia pacific'},
-    {id: 27, name: 'Global / US'},
-    {id: 28, name: 'Brunei'},
-    {id: 29, name: 'France'},
-    {id: 30, name: 'Italy'},
+var regionArray = [
+  {id: 1, name: 'Global'},
+  {id: 2, name: 'India'},
+  {id: 3, name: 'Nigeria'},
+  {id: 4, name: 'US'},
+  {id: 5, name: 'West Africa'},
+  {id: 6, name: 'UK'},
+  {id: 7, name: 'Ghana'},
+  {id: 8, name: 'Spain'},
+  {id: 9, name: 'Singapore'},
+  {id: 10, name: 'Thailand'},
+  {id: 11, name: 'Australia'},
+  {id: 12, name: 'Bolivia'},
+  {id: 13, name: 'Mexico'},
+  {id: 14, name: 'Canada'},
+  {id: 15, name: 'Venezuela'},
+  {id: 16, name: 'Argentina'},
+  {id: 17, name: 'Middle East'},
+  {id: 18, name: 'South Africa'},
+  {id: 19, name: 'Colombia'},
+  {id: 20, name: 'Israel'},
+  {id: 21, name: 'Africa'},
+  {id: 22, name: 'Philippines'},
+  {id: 23, name: 'International'},
+  {id: 24, name: 'Netherlands'},
+  {id: 25, name: 'Ireland'},
+  {id: 26, name: 'Asia Pacific'},
+  {id: 27, name: 'Global/ US'},
+  {id: 28, name: 'Brunei'},
+  {id: 29, name: 'France'},
+  {id: 30, name: 'Italy'}
 ];
-//   const countryRegion = tdElements[7].textContent;
-  const countryRegion = reginArray.find(regin => regin.name === tdElements[7].textContent)?.id.toString();
-  console.warn(countryRegion);
+
+const countryRegion = tdElements[7].textContent;
+let countryRegionId = null;
+
+for (var i = 0; i < regionArray.length; i++) {
+  if (countryRegion === regionArray[i].name) {
+    countryRegionId = regionArray[i].id.toString();
+    break; // Exit the loop once a match is found
+  }
+}
+
+console.warn(countryRegionId);
+
   // Create an object with the extracted values and add it to the data array
   data.push({
     url,
@@ -7994,7 +8005,7 @@ var reginArray = [
     tat,
     elements,
     articleType,
-    countryRegion
+    countryRegionId
   });
 });
 

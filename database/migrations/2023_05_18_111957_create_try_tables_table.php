@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publications', function (Blueprint $table) {
+        Schema::create('try_tables', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('img_url')->nullable();
@@ -26,11 +26,12 @@ return new class extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('publications');
+        Schema::dropIfExists('try_tables');
     }
 };
