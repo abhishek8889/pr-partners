@@ -178,7 +178,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">53</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / / Business / / Lifestyle / Sports / Magazine</td>
+                <td class="s3" dir="ltr">News / Business / Lifestyle / Sports / Magazine</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -256,7 +256,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">36</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / / Tech</td>
+                <td class="s3" dir="ltr">News / Business / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -309,7 +309,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">55</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">Entertainment / Fashion / Lifestyle / / News / Magazine / Science</td>
+                <td class="s3" dir="ltr">Entertainment / Fashion / Lifestyle / News / Magazine / Science</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -322,7 +322,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">65</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Sports / Health / Travle / Lifestyle / Entertainment / Business / Tech
+                <td class="s3" dir="ltr">News / Sports / Health / Travel / Lifestyle / Entertainment / Business / Tech
                 </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
@@ -349,7 +349,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">52</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / / Business / Entertainment / Health / </td>
+                <td class="s3" dir="ltr">News / Business / Entertainment / Health / </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -389,7 +389,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">53</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / Entertainment / Health / Science / Tech/ Lifestyle </td>
+                <td class="s3" dir="ltr">News / Business / Entertainment / Health / Science / Tech / Lifestyle </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -441,7 +441,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">54</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Sports / Entertaiment / Lifestyle / Tech</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment / Lifestyle / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -454,7 +454,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">55</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Sports / / Business</td>
+                <td class="s3" dir="ltr">News / Sports / Business</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -532,8 +532,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">50</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / Entertainment / Movie &amp; TV / Sports / Tech / Health /
-                    Science / Lifestyle / Travel / Fashion</td>
+                <td class="s3" dir="ltr">News / Business / Entertainment / Movie &amp; TV / Sports / Tech / Health / Science / Lifestyle / Travel / Fashion</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3" dir="ltr">Global </td>
             </tr>
@@ -663,8 +662,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">60</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Entertainment / Business / / Sports / Tech / Lifestyle / Fashion /
-                    Health </td>
+                <td class="s3" dir="ltr">News / Entertainment / Business / Sports / Tech / Lifestyle / Fashion / Health </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">India</td>
             </tr>
@@ -677,7 +675,7 @@
                 <td class="s1">$150</td>
                 <td class="s2" dir="ltr">28</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Health / Travel / / Sports / Film News</td>
+                <td class="s3" dir="ltr">News / Health / Travel / Sports / Film News</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">India</td>
             </tr>
@@ -808,7 +806,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">60</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / / Sports / Magazine</td>
+                <td class="s3" dir="ltr">News / Business / Sports / Magazine</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Nigeria</td>
             </tr>
@@ -821,7 +819,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">73</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / / Business / Sports / Health / Entertainment</td>
+                <td class="s3" dir="ltr">News / Business / Sports / Health / Entertainment</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Nigeria</td>
             </tr>
@@ -834,7 +832,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">78</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / / Entertainment / TV</td>
+                <td class="s3" dir="ltr">News / Business / Entertainment / TV</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Nigeria</td>
             </tr>
@@ -860,7 +858,7 @@
                 <td class="s1">$150</td>
                 <td class="s2">83</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / Health / Lifesytle / Sports </td>
+                <td class="s3" dir="ltr">News / Business / Health / Lifestyle / Sports </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Nigeria</td>
             </tr>
@@ -968,7 +966,7 @@
                 <td class="s1">$160</td>
                 <td class="s2" dir="ltr">40</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">Lifestlye / Business / Health / Music / Entertainment / Real State / </td>
+                <td class="s3" dir="ltr"> Lifestyle / Business / Health / Music / Entertainment / Real State  </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -994,7 +992,7 @@
                 <td class="s1">$160</td>
                 <td class="s2">63</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">Lifestlye / Music / Entertainment </td>
+                <td class="s3" dir="ltr"> Lifestyle / Music / Entertainment </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -1007,7 +1005,7 @@
                 <td class="s1">$160</td>
                 <td class="s2">64</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">Lifestlye / News / Movies &amp; TV </td>
+                <td class="s3" dir="ltr"> Lifestyle / News / Movies &amp; TV </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -1087,7 +1085,7 @@
                 <td class="s1">$180</td>
                 <td class="s2">38</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / / Entertainment / Tech / Sports </td>
+                <td class="s3" dir="ltr">News / Business / Entertainment / Tech / Sports </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Ghana</td>
             </tr>
@@ -1139,7 +1137,7 @@
                 <td class="s1">$180</td>
                 <td class="s2">81</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Entertainment / Lifesytle / Sports / Business </td>
+                <td class="s3" dir="ltr">News / Entertainment / Lifestyle / Sports / Business </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Ghana</td>
             </tr>
@@ -1205,7 +1203,7 @@
                 <td class="s1">$180</td>
                 <td class="s2">83</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Health / Lifesytle / Entertainment </td>
+                <td class="s3" dir="ltr">News / Health / Lifestyle / Entertainment </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -4000,7 +3998,7 @@
                 <td class="s1">$1,050</td>
                 <td class="s2">28</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Luxury/ Lifestyle</td>
+                <td class="s3" dir="ltr">News / Luxury / Lifestyle</td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -4444,7 +4442,7 @@
                 <td class="s1">$1,260</td>
                 <td class="s2">87</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Health / / Sports / Tech</td>
+                <td class="s3" dir="ltr">News / Health / Sports / Tech</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Middle East </td>
             </tr>
@@ -4562,7 +4560,7 @@
                 <td class="s1">$1,350</td>
                 <td class="s2">77</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / / Entertainment / Sports</td>
+                <td class="s3" dir="ltr">News / Entertainment / Sports</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Spain</td>
             </tr>
@@ -4602,7 +4600,7 @@
                 <td class="s1">$1,500</td>
                 <td class="s2">88</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Tech / Science / Entertainment / Businesss</td>
+                <td class="s3" dir="ltr">News / Tech / Science / Entertainment / Business</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Canada</td>
             </tr>
@@ -4667,7 +4665,7 @@
                 <td class="s1">$1,500</td>
                 <td class="s2">85</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / Cypto / Tech / CBD</td>
+                <td class="s3" dir="ltr">News / Business / Crypto / Tech / CBD</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -5138,7 +5136,7 @@
                 <td class="s1">$1,620</td>
                 <td class="s2">68</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">Lifestlye / Health / Business</td>
+                <td class="s3" dir="ltr"> Lifestyle / Health / Business</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
                 <td class="s3">UK </td>
             </tr>
@@ -5883,7 +5881,7 @@
                 <td class="s1">$2,500</td>
                 <td class="s2">56</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Lifestyle / Fashion/ Entertainment</td>
+                <td class="s3" dir="ltr">News / Lifestyle / Fashion / Entertainment</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Mexico</td>
             </tr>
@@ -6444,7 +6442,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">80</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / / Real Estate</td>
+                <td class="s3" dir="ltr">News / Business / Real Estate</td>
                 <td class="s3" dir="ltr">Sponsored article</td>
                 <td class="s3">Global</td>
             </tr>
@@ -6550,7 +6548,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">80</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Soprts / Business / Entertainment </td>
+                <td class="s3" dir="ltr">News / Sports / Business / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6564,7 +6562,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">82</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Entertainment</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6577,7 +6575,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">85</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Entertainmant</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6590,7 +6588,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">85</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Entertainmant</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6603,7 +6601,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">86</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Entertainmant</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6616,7 +6614,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">86</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Entertainmant</td>
+                <td class="s3" dir="ltr">News / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">US</td>
             </tr>
@@ -6746,7 +6744,7 @@
                 <td class="s1">$3,000</td>
                 <td class="s2">88</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Real Estate / Sports / Entertainmemnt</td>
+                <td class="s3" dir="ltr">News / Real Estate / Sports / Entertainment </td>
                 <td class="s3" dir="ltr">Sponsored article</td>
                 <td class="s3">US</td>
             </tr>
@@ -7000,7 +6998,7 @@
                 <td class="s1">$5,000</td>
                 <td class="s2">87</td>
                 <td class="s3">1 Week</td>
-                <td class="s3" dir="ltr">News / Business / Cypto / Tech / CBD</td>
+                <td class="s3" dir="ltr">News / Business / Crypto / Tech / CBD</td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3" dir="ltr">Global </td>
             </tr>
@@ -7305,7 +7303,7 @@
                 <td class="s1">$12,000</td>
                 <td class="s2">77</td>
                 <td class="s3">3 Weeks</td>
-                <td class="s3" dir="ltr">Fashion / Luxury / Lifestyle /Luxury</td>
+                <td class="s3" dir="ltr">Fashion / Luxury / Lifestyle </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3" dir="ltr">Global</td>
             </tr>
@@ -7318,7 +7316,7 @@
                 <td class="s1">$12,000</td>
                 <td class="s2">86</td>
                 <td class="s3">3 Weeks</td>
-                <td class="s3" dir="ltr">Fashion / Luxury / Lifestyle / Health /Luxury</td>
+                <td class="s3" dir="ltr">Fashion / Luxury / Lifestyle / Health / Luxury </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3" dir="ltr">Global</td>
             </tr>
@@ -7344,7 +7342,7 @@
                 <td class="s1">$12,500</td>
                 <td class="s2">78</td>
                 <td class="s3">1-2 Weeks</td>
-                <td class="s3" dir="ltr">Fashion / Music / Entertainment / Luxury</td>
+                <td class="s3" dir="ltr">Fashion / Music / Entertainment / Luxury </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3" dir="ltr">Global</td>
             </tr>
@@ -7357,8 +7355,7 @@
                 <td class="s1">$12,500</td>
                 <td class="s2">87</td>
                 <td class="s3">2 Weeks</td>
-                <td class="s3" dir="ltr">News / Sports / Fashion / Lifestyle / Business / Tech / Music / Entertainment /
-                    Luxury</td>
+                <td class="s3" dir="ltr">News / Sports / Fashion / Lifestyle / Business / Tech / Music / Entertainment / Luxury </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3" dir="ltr">Global</td>
             </tr>
@@ -7371,7 +7368,7 @@
                 <td class="s1">$12,500</td>
                 <td class="s2" dir="ltr">87</td>
                 <td class="s3" dir="ltr">3 Weeks</td>
-                <td class="s3" dir="ltr">Travel / Entertainment / Lifestyle / Luxury</td>
+                <td class="s3" dir="ltr">Travel / Entertainment / Lifestyle / Luxury </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3" dir="ltr">Global</td>
             </tr>
@@ -7384,7 +7381,7 @@
                 <td class="s1">$12,500</td>
                 <td class="s2" dir="ltr">91</td>
                 <td class="s3" dir="ltr">3 Weeks</td>
-                <td class="s3" dir="ltr">Fashion / Entertainment / Lifestyle / Movies &amp; TV / Luxury</td>
+                <td class="s3" dir="ltr">Fashion / Entertainment / Lifestyle / Movies &amp; TV / Luxury </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3">Global</td>
             </tr>
@@ -7410,7 +7407,7 @@
                 <td class="s1">$12,500</td>
                 <td class="s2">89</td>
                 <td class="s3">8 Weeks</td>
-                <td class="s3" dir="ltr">Lifestyle / Entertainment / Luxury</td>
+                <td class="s3" dir="ltr">Lifestyle / Entertainment / Luxury </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3" dir="ltr">US</td>
             </tr>
@@ -7423,7 +7420,7 @@
                 <td class="s1">$15,000</td>
                 <td class="s2">89</td>
                 <td class="s3">8 Weeks</td>
-                <td class="s3" dir="ltr">Fashion / Lifestyle / Luxury</td>
+                <td class="s3" dir="ltr">Fashion / Lifestyle / Luxury </td>
                 <td class="s3" dir="ltr">Organic Placement</td>
                 <td class="s3">Global</td>
             </tr>
@@ -7450,7 +7447,7 @@
                 <td class="s1">$15,000</td>
                 <td class="s2">92</td>
                 <td class="s3">1-2 Weeks</td>
-                <td class="s3" dir="ltr">News / Movies &amp; TV / Lifestyle / Business / Luxury</td>
+                <td class="s3" dir="ltr">News / Movies &amp; TV / Lifestyle / Business / Luxury </td>
                 <td class="s3" dir="ltr">Organic with small disclaimer</td>
                 <td class="s3" dir="ltr">US</td>
             </tr>
@@ -7864,10 +7861,130 @@ trElements.forEach((tr) => {
   const price = tdElements[2].textContent;
   const domainAuthority = tdElements[3].textContent;
   const tat = tdElements[4].textContent;
-  const genre = tdElements[5].textContent;
-  const articleType = tdElements[6].textContent;
-  const countryRegion = tdElements[7].textContent;
+  var array = [
+    {id: 1, name: 'Entertainment'},
+    {id: 2, name: 'Movies & TV'},
+    {id: 3, name: 'Lifestyle'},
+    {id: 4, name: 'Music'},
+    {id: 5, name: 'Business'},
+    {id: 6, name: 'News'},
+    {id: 7, name: 'Sports'},
+    {id: 8, name: 'Tech'},
+    {id: 9, name: 'Health'},
+    {id: 10, name: 'Science'},
+    {id: 11, name: 'Magazine'},
+    {id: 12, name: 'Real Estate'},
+    {id: 13, name: 'Stock Market'},
+    {id: 14, name: 'Enterpreneurs'},
+    {id: 15, name: 'Economy'},
+    {id: 16, name: 'E-Commerce'},
+    {id: 17, name: 'Fashion'},
+    {id: 18, name: 'Travel'},
+    {id: 19, name: 'Crypto'},
+    {id: 20, name: 'Entertainment'},
+    {id: 21, name: 'Movie & TV'},
+    {id: 22, name: 'Travel'},
+    {id: 23, name: 'TV'},
+    {id: 24, name: 'Lifestyle'},
+    {id: 25, name: 'Lifestyle'},
+    {id: 26, name: 'Real State'},
+    {id: 27, name: 'New'},
+    {id: 28, name: 'Luxury'},
+    {id: 29, name: 'CBD'},
+    {id: 30, name: 'Culture'},
+    {id: 31, name: 'Crypto'},
+    {id: 32, name: 'Science & Tech'},
+    {id: 33, name: 'Media'},
+    {id: 34, name: 'News Tech'},
+    {id: 35, name: 'Sports News'},
+    {id: 36, name: 'Sports'},
+    {id: 37, name: 'Entertainment'},
+    {id: 38, name: 'Entertainment'},
+    {id: 39, name: 'Magazines'},
+    {id: 40, name: 'Film News'},
+    {id: 41, name: 'Media & News'},
+];
 
+        const genre = tdElements[5].textContent;
+        // console.log(typeof genre);
+        if (genre != '') {
+            var elements = genre.split(" / ")
+                .map(function(element) {
+                    return element.trim(); // Remove leading/trailing spaces
+                })
+                .filter(function(element) {
+                    return element !== "" && element !== "/" && element !== " /" && element !== "/ " && element !== " /  ";
+                });
+
+
+        for (var i = 0; i < elements.length; i++) {
+            // console.log(elements[i]);
+            for (var j = 0; j < array.length; j++) {
+            if (elements[i] == array[j].name) {
+                elements[i] = array[j].id.toString();
+                // console.warn(elements[i]);
+                // break; // Exit the inner loop once a match is found
+            }
+            }
+        }
+        }
+        // console.warn(elements);
+        // console.info(genre);
+//   const articleType = tdElements[6].textContent;
+  var articleArray = [
+    {id: 1, name: 'Organic Placement'},
+    {id: 2, name: 'Sponsored article'},
+    {id: 3, name: 'Organic with small disclaimer'},
+    {id: 4, name: 'Sponsored'},
+    {id: 5, name: 'Feature'},
+];
+// console.warn(articleType);
+// for (var t = 0; t < articleArray.length; t++) {
+//             if (articleType == articleArray[t].name) {
+//                 articleType = articleArray[t].id.toString();
+//                 console.warn(articleType);
+//                 // break; // Exit the inner loop once a match is found
+//             }
+//         }
+        const articleType = articleArray.find(article => article.name === tdElements[6].textContent)?.id.toString();
+        console.warn(articleType);
+
+// if(art)
+var reginArray = [
+    {id: 1, name: 'Global'},
+    {id: 2, name: 'India'},
+    {id: 3, name: 'Nigeria'},
+    {id: 4, name: 'US'},
+    {id: 5, name: 'West Africa'},
+    {id: 6, name: 'UK'},
+    {id: 7, name: 'Ghana'},
+    {id: 8, name: 'Spain'},
+    {id: 9, name: 'Singapore'},
+    {id: 10, name: 'Thailand'},
+    {id: 11, name: 'Australia'},
+    {id: 12, name: 'Bolivia'},
+    {id: 13, name: 'Mexico'},
+    {id: 14, name: 'Canada'},
+    {id: 15, name: 'Venezuela'},
+    {id: 16, name: 'Argentina'},
+    {id: 17, name: 'Middle East'},
+    {id: 18, name: 'South Africa'},
+    {id: 19, name: 'Colombia'},
+    {id: 20, name: 'Israel'},
+    {id: 21, name: 'Africa'},
+    {id: 22, name: 'Philippines'},
+    {id: 23, name: 'International'},
+    {id: 24, name: 'Netherlands'},
+    {id: 25, name: 'Ireland'},
+    {id: 26, name: 'Asia pacific'},
+    {id: 27, name: 'Global / US'},
+    {id: 28, name: 'Brunei'},
+    {id: 29, name: 'France'},
+    {id: 30, name: 'Italy'},
+];
+//   const countryRegion = tdElements[7].textContent;
+  const countryRegion = reginArray.find(regin => regin.name === tdElements[7].textContent)?.id.toString();
+  console.warn(countryRegion);
   // Create an object with the extracted values and add it to the data array
   data.push({
     url,
@@ -7875,7 +7992,7 @@ trElements.forEach((tr) => {
     price,
     domainAuthority,
     tat,
-    genre,
+    elements,
     articleType,
     countryRegion
   });
