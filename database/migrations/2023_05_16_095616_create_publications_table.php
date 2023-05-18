@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
             $table->string('url');
             $table->float('price');
             $table->integer('domain_authority');
