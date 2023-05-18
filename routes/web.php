@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\PublicationController; 
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\admin\RegionController;
 use App\Http\Controllers\TryController\trycontroller;
 
 /*
@@ -39,6 +40,12 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
     Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
     Route::post('/admin-dashboard/article/action',[ArticleController::class,'action'])->name('article-action');
+
+    //regioncontroller
+    Route::get('/admin-dashboard/regions',[RegionController::class,'index']);
+    Route::post('/admin-dashboard/regions/add',[RegionController::class,'addProc'])->name('region-add');
+    Route::post('/admin-dashboard/regions/action',[RegionController::class,'action'])->name('region-action');
+
 });
 
 
