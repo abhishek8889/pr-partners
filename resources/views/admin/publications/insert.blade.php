@@ -14,7 +14,8 @@
             <div class="card-head">
                 <h5 class="card-title">Publication Form</h5>
             </div>
-            <form action="#" id="publication_form" class="gy-3">
+            <form action="" id="publication_form" methos="post"class="gy-3">
+                @csrf
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
@@ -106,7 +107,7 @@
                                
                                 <li>
                                     <div class="custom-control custom-control-sm custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="article_type[]" value="{{ $genre['name'] }}">
+                                        <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="genre_list[]" value="{{ $genre['id'] }}">
                                         <label class="custom-control-label" for="{{ $genre['name'] }}">{{ $genre['name'] }}</label>
                                     </div>
                                 </li>
@@ -162,7 +163,7 @@
                                
                                 <li>
                                     <div class="custom-control custom-control-sm custom-checkbox">
-                                        <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="article_type" value="{{ $region['id'] }}">
+                                        <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}">
                                         <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
                                     </div>
                                 </li>
@@ -193,14 +194,26 @@
             formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
-                url: '{{route('article-add')}}',
+                url: 'addPublication',
                 data: formdata,
                 dataType: 'json',
                 contentType: false,
                 processData: false,
-                success: function(response)
-                {
-                    console.log(response);
+                success: function (data) {
+                    console.warn(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var errors = jqXHR.responseJSON.errors;
+                    for (var fieldName in errors) {
+                        if (errors.hasOwnProperty(fieldName)) {
+                            var errorMessages = errors[fieldName];
+
+                            errorMessages.forEach(function (errorMessage) {
+                                console.log(errorMessage);
+                                NioApp.Toast(errorMessage, 'error', { position: 'top-right' });
+                            });
+                        }
+                    }
                 }
             });
         });
