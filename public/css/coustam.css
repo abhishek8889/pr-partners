@@ -1,1 +1,9 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css");
+
+.tablecard{
+    margin-left: -19rem !important;
+    width: 74rem !important;
+    height: -2rem !important;
+    height: 35rem !important;
+    overflow: scroll !important;
+}

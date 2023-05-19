@@ -7858,7 +7858,8 @@ trElements.forEach((tr) => {
   // Extract the values from <td> elements
   const url = tdElements[1].querySelector('a').href;
   const publication = tdElements[1].querySelector('a').textContent;
-  const price = tdElements[2].textContent;
+  const prices = tdElements[2].textContent;
+  const  price = prices.replace("$","");
   const domainAuthority = tdElements[3].textContent;
   const tats = tdElements[4].textContent;
   const tat = tats.replace(/\D/g, "");

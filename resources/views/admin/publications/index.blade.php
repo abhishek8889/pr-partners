@@ -75,9 +75,9 @@
                                    @for ($x = 0; $x < count($genreNames); $x++)
                                        {{ $genreNames[$x] ?? ''}} /
                                       <!-- <br> -->
-                                      @if($x == '1')
+                                      @if($x % 2 == 0)
                                         <br>
-                                       @endif
+                                      @endif
                                    @endfor
                                 </span></li>
                             </ul>

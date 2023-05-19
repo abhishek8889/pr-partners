@@ -200,7 +200,7 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    console.warn(data);
+                    // console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
