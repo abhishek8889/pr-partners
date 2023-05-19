@@ -10,4 +10,8 @@ class Genre extends Model
     use HasFactory;
     protected $table = 'genres';
 
+    public function publications()
+    {
+        return $this->belongsToMany(Publication::class);
+    }
 }

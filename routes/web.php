@@ -49,6 +49,7 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::post('/admin-dashboard/regions/add',[RegionController::class,'addProc'])->name('region-add');
     Route::post('/admin-dashboard/regions/action',[RegionController::class,'action'])->name('region-action');
 
+
 });
 
 

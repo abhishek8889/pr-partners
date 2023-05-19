@@ -17,6 +17,17 @@ class PublicationController extends Controller
     public function index(){
         // $publications = Publication::all();
         $publications = Publication::with('article_type','region')->get()->toArray();
+        // echo '<pre>';
+        // // // print_r(json_decode($publications[0]['genre']));
+        // // // $publication = Publication::all();
+        // // // $genreNames = $publication->genres->pluck('name');
+        // $genreIds = ["2", "10", "14", "15"];
+        // $genreNames = Genre::whereIn('id', $genreIds)->pluck('name')->toArray();
+        // var_dump($genreIds);
+        // // $genreNames = App\Models\Genre::whereIn('id', $genreIds)->pluck('name')->toArray();
+        // print_r($genreNames);
+        // echo '</pre>';
+        // die();
         return view('admin.publications.index',compact('publications'));
     }
     public function publicationInsert(){
@@ -34,7 +45,7 @@ class PublicationController extends Controller
             'url' => 'required',
             'price' => 'required',
             'domain_authority' => 'required',
-            'tat' => 'required',
+            'turn_around_time' => 'required',
         ]);
         $publication = new Publication;
         $publication->title = $req->title;

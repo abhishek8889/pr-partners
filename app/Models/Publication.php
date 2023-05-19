@@ -15,4 +15,9 @@ class Publication extends Model
     public function region(){
         return $this->hasOne(Region::class, 'id','region');
     }
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
 }
+

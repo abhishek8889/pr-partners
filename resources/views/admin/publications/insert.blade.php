@@ -71,7 +71,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" class="form-control" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
+                                <input type="number" min="1" class="form-control" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" class="form-control" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
+                                <input type="number"  min="1" class="form-control" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                 @foreach($genre_list as $genre)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                    <div class="custom-control custom-control-sm custom-checkboxs">
                                         <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="genre_list[]" value="{{ $genre['id'] }}">
                                         <label class="custom-control-label" for="{{ $genre['name'] }}">{{ $genre['name'] }}</label>
                                     </div>
@@ -134,7 +134,7 @@
                                 @foreach($article_types as $article)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                    <div class="custom-control custom-control-sm custom-checkboxs">
                                         <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}">
                                         <label class="custom-control-label" for="{{ $article['type'] }}">{{ $article['type'] }}</label>
                                     </div>
@@ -162,7 +162,7 @@
                                 @foreach($region_list as $region)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                    <div class="custom-control custom-control-sm custom-checkboxs">
                                         <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}">
                                         <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
                                     </div>
@@ -201,6 +201,7 @@
                 processData: false,
                 success: function (data) {
                     console.warn(data);
+                    NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     var errors = jqXHR.responseJSON.errors;
