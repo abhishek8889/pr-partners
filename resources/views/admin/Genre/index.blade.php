@@ -142,6 +142,8 @@ $(document).ready(function() {
                         $('.spinner-container').hide();
                     }, 1000);
                 // console.warn(data);
+                $(':input').val(null);
+
                 NioApp.Toast(data, 'success', {
                     position: 'top-right'
                 });

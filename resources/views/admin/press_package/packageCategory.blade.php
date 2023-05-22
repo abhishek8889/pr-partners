@@ -104,7 +104,8 @@
                 setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    console.warn(data);
+                    $(':input').val(null);
+                    // console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                     $("#table").load(location.href + " #table");
                 },

@@ -275,6 +275,8 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
+                    $(':input').prop('checked', false).val('');
+                    // $(':input').val(null);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },

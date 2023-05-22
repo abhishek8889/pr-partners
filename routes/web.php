@@ -82,7 +82,8 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::post('/update-release',[PressReleaseController::class, 'updatePressRelease']);
     Route::post('/remove-release',[PressReleaseController::class, 'remove']);
     
-
+    //User password
+    // Route::get()
 });
 
 

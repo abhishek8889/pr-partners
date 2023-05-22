@@ -181,6 +181,7 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
+                    $(':input').val(null);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },

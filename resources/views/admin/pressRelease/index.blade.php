@@ -139,8 +139,11 @@
                 success: function (data) {
                         setTimeout(function() {
                         $('.spinner-container').hide();
-                    }, 1000);                    
+                    }, 1000);               
                     console.warn(data);
+                    // $('.title').val('');
+                    // $('.price').val('');
+                    $(':input').val(null);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                     $("#table").load(location.href + " #table");
                 },
