@@ -14,12 +14,14 @@ class PressPackageController extends Controller
         $publications = Publication::with('article_type','region')->get()->toArray();
         return view('admin.press_package.index',compact('packageCategorys','publications'));
     }
+    
     public function addPackageBundle(Request $request){
         $request->validate([
             'packageCategory' => 'required',
             'price' => 'required',
             'retail_price' => 'required',
             'title' => 'required',
+            'publication_id' => 'required',
         ]);
         $packageBundel = new PackageBundle;
         $packageBundel->press_package_category_id = $request->packageCategory;
@@ -28,9 +30,31 @@ class PressPackageController extends Controller
         $packageBundel->retail_price = $request->retail_price;
         $packageBundel->publication_id = json_encode($request->publication_id);
         $packageBundel->save();
-        return response()->json(json_encode($request->all()));
+        return response()->json(json_encode('Your package has been added to the press package'));
     }
-
+    public function updatepressPackage(Request $request,$id){
+        $pressBundel = PackageBundle::where('id',$id)->first();
+        $packageCategorys = PressPackageCategory::all();
+        $publications = Publication::with('article_type','region')->get()->toArray();
+        return view('admin.press_package.update',compact('packageCategorys','publications','pressBundel'));
+    }
+    public function updatePackageBundle(Request $request){
+        $request->validate([
+            'packageCategory' => 'required',
+            'price' => 'required',
+            'retail_price' => 'required',
+            'title' => 'required',
+            'publication_id' => 'required',
+        ]);
+        $packageBundel = PackageBundle::find($request->id);
+        $packageBundel->press_package_category_id = $request->packageCategory;
+        $packageBundel->title = $request->title;
+        $packageBundel->bundle_price = $request->price;
+        $packageBundel->retail_price = $request->retail_price;
+        $packageBundel->publication_id = json_encode($request->publication_id);
+        $packageBundel->update();
+        return response()->json('Your package has been Updated successfully');
+    }
     public function packageCategory(){
         $packageCategorys = PressPackageCategory::all();
         return view('admin.press_package.packageCategory',compact('packageCategorys'));
@@ -66,8 +90,11 @@ class PressPackageController extends Controller
 
     public function packageList(Request $request){
         $packageBundles = PackageBundle::with('category')->get()->toArray();
-        // print_r($packageBundles[0]['category']['name']);
-        // die();
         return view('admin.press_package.packageList',compact('packageBundles'));
+    }
+
+    public function remove(Request $request){
+        PackageBundle::where('id', $request->remove_id)->delete();
+        return response()->json('Your Package Bundel deleted successfully');
     }
 }

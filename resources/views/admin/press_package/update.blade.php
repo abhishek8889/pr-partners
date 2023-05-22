@@ -3,19 +3,20 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="title nk-block-title">Insert Publications</h4>
+            <h4 class="title nk-block-title">Update Package Bundel</h4>
             <div class="nk-block-des">
-                <p>You can insert your publications here.</p>
+                <p>You can update your Package Bundel here.</p>
             </div>
         </div>
     </div>
     <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">Package Bundel</h5>
+                <h5 class="card-title">Update-Package Bundel</h5>
             </div>
             <form action="" id="publication_form" methos="post"class="gy-3">
                 @csrf
+                <input type="hidden" value="{{ $pressBundel->id ?? ''}}" name="id"/>
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
@@ -26,7 +27,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="title" name="title" value="" placeholder="Enter title here"/>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ $pressBundel->title ?? ''}}" placeholder="Enter title here"/>
                             </div>
                         </div>
                     </div>
@@ -41,7 +42,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="price" name="price" value="" placeholder="Enter price here">
+                                <input type="number" min="1" class="form-control" id="price" name="price" value="{{ $pressBundel->bundle_price ?? '' }}" placeholder="Enter price here">
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="retail_price" name="retail_price" value="" placeholder="Enter Your Retail Price">
+                                <input type="number" min="1" class="form-control" id="retail_price" name="retail_price" value="{{ $pressBundel->retail_price ?? '' }}" placeholder="Enter Your Retail Price">
                             </div>
                         </div>
                     </div>
@@ -77,8 +78,12 @@
                                 @foreach($packageCategorys as $packageCategory)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-radio">
-                                        <input type="radio" class="custom-control-input" id="{{ $packageCategory['name'] }}" name="packageCategory" value="{{ $packageCategory['id'] }}">
+                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="radio" class="custom-control-input" id="{{ $packageCategory['name'] }}" name="packageCategory" value="{{ $packageCategory['id'] }}" 
+                                        @if ( $packageCategory['id'] == $pressBundel->id)
+                                          checked  
+                                        @endif
+                                        />
                                         <label class="custom-control-label" for="{{ $packageCategory['name'] }}">{{ $packageCategory['name'] }}</label>
                                     </div>
                                 </li>
@@ -147,7 +152,14 @@
                                                                     <td class="nk-tb-col nk-tb-col-check">
                                                                         <div class="custom-control custom-control-sm custom-checkbox notext ">
                                                                             <!--onclick="test()" <input type="checkbox" name="publication_id[]" class="custom-control-input" id="checkbox{{ $publications[$i]['id'] ?? ''}}" value="{{ $publications[$i]['id'] ?? ''}}"> -->
-                                                                            <input  type="checkbox" class="custom-control-input publication_id" id="{{ $publications[$i]['id'] ?? ''}}" name="publication_id[]" value="{{ $publications[$i]['id'] ?? ''}}">
+                                                                            <input  type="checkbox" class="custom-control-input publication_id" id="{{ $publications[$i]['id'] ?? ''}}" name="publication_id[]" value="{{ $publications[$i]['id'] ?? ''}}"
+                                                                            <?php $publicationData = json_decode($pressBundel->publication_id); ?>
+                                                                            @for($p = 0; $p < count($publicationData); $p++ )
+                                                                                @if ($publications[$i]['id'] == $publicationData[$p])
+                                                                                    checked
+                                                                                @endif
+                                                                            @endfor
+                                                                            />
                                                                             <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
                                                                         </div>
                                                                     </td>
@@ -233,37 +245,14 @@
     </div><!-- card -->
 </div><!-- .nk-block -->
 <script>
-    // function test() {
-    //     var values = $('input:checkbox:checked.publication_id').map(function () {
-    //         return this.value;
-    //     }).get();
-    //     console.log(values);
-    // }
-    // $(document).ready(function (){
-    //     let stories = document.querySelectorAll("[type='checkbox']");
-    //     // console.log(stories);
-    //     let favorites = [];
-    //     function createFavorites() {
-    //     favorites = [];
-    //     let checked = document.querySelectorAll("[type='checkbox']:checked");
-    //     checked.forEach(function(el) {
-    //         favorites.push(el.value);
-    //     });
-    //     console.log(favorites);
-    //     }
-    //     stories.forEach(function(el) {
-    //     el.addEventListener("change", function() {
-    //         createFavorites();
-    //     });
-    //     });
-    // });
+
     $(document).ready(function(){
         $('#publication_form').on('submit',function(e){
             e.preventDefault();            
             formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
-                url: 'addPackageBundle',
+                url: '/updatePackageBundle',
                 data: formdata,
                 dataType: 'json',
                 contentType: false,

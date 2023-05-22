@@ -217,11 +217,20 @@
                 dataType: 'json',
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function (data) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     var errors = jqXHR.responseJSON.errors;
                     for (var fieldName in errors) {
                         if (errors.hasOwnProperty(fieldName)) {

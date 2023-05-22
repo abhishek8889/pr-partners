@@ -102,8 +102,14 @@
                 dataType: 'json',
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     $('#country_codee').val('');
                     $('#country_namee').val('');
                     NioApp.Toast('Successfully saved regions', 'info', {position: 'top-right'});
@@ -114,6 +120,9 @@
                     $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                         var errors = jqXHR.responseJSON.errors;
                         for (var fieldName in errors) {
                             if (errors.hasOwnProperty(fieldName)) {
@@ -138,9 +147,14 @@
                 url: '{{route('region-action')}}',
                 data: { deleteid:id, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
-                    
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     ele.hide();
                     NioApp.Toast('Successfully deleted article type!', 'info', {position: 'top-right'});
                    
@@ -164,8 +178,14 @@
                 url: '{{route('region-action')}}',
                 data: { editid:id,country_name:country_name,country_code:country_code, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     $("input#country_name"+id).prop('disabled', true);
                     $("input#country_code"+id).prop('disabled', true);
                     NioApp.Toast('Successfully updated country name!', 'info', {position: 'top-right'});
@@ -180,8 +200,14 @@
                 url: '{{route('region-action')}}',
                 data: { editid:id,country_name:country_name,country_code:country_code, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     $("input#country_name"+id).prop('disabled', true);
                     $("input#country_code"+id).prop('disabled', true);
                     NioApp.Toast('Successfully updated country name!', 'info', {position: 'top-right'});

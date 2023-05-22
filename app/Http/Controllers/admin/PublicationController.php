@@ -4,10 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ArticleType;
-use App\Models\Genre;
-use App\Models\Region;
-use App\Models\Publication;
+use App\Models\{Genre,Region,Publication,ArticleType};
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DB;

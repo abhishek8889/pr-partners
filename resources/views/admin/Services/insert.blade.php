@@ -3,24 +3,24 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="title nk-block-title">Insert Publications</h4>
+            <h4 class="title nk-block-title">Other Services</h4>
             <div class="nk-block-des">
-                <p>You can insert your publications here.</p>
+                <p>You can insert your Services here.</p>
             </div>
         </div>
     </div>
     <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">Package Bundel</h5>
+                <h5 class="card-title">Other Services</h5>
             </div>
-            <form action="" id="publication_form" methos="post"class="gy-3">
+            <form action="" id="service_form" methos="post"class="gy-3">
                 @csrf
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
                             <label class="form-label" for="site-name">Title</label>
-                            <span class="form-note">Specify the title of your publication.</span>
+                            <span class="form-note">Specify the title of your Other Services.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -31,71 +31,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row g-3 align-center">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <label class="form-label">Price</label>
-                            <span class="form-note">Specify the price of your publication.</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="form-group">
-                            <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="price" name="price" value="" placeholder="Enter price here">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-3 align-center">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <label class="form-label">Retail Price</label>
-                            <span class="form-note">Specify the Retail price of your Package Bundel.</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="form-group">
-                            <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="retail_price" name="retail_price" value="" placeholder="Enter Your Retail Price">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <hr>
-                <div class="row g-3 align-center">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <label class="form-label">Category</label>
-                            <span class="form-note">Please select the Category for your Package Bundel.</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="form-group">
-                        <ul class="custom-control-group g-3 align-center">
-                            @if($packageCategorys != '')
-                                @foreach($packageCategorys as $packageCategory)
-                               
-                                <li>
-                                    <div class="custom-control custom-control-sm custom-radio">
-                                        <input type="radio" class="custom-control-input" id="{{ $packageCategory['name'] }}" name="packageCategory" value="{{ $packageCategory['id'] }}">
-                                        <label class="custom-control-label" for="{{ $packageCategory['name'] }}">{{ $packageCategory['name'] }}</label>
-                                    </div>
-                                </li>
-                               
-                                @endforeach
-                                @endif
-                              
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <hr>
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
                             <label class="form-label">Publication</label>
-                            <span class="form-note">Please select the Publications for your Package Bundel.</span>
+                            <span class="form-note">Please select the Publications for your Other Services.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -195,18 +136,7 @@
                                                                     <td class="nk-tb-col tb-col-md">
                                                                         <span class="tb-status text-successs">{{ $publications[$i]['region']['country_name'] ?? ''}}</span>
                                                                     </td>
-                                                                    <!-- <td class="tb-odr-action">
-                                                                        <div class="dropdown">
-                                                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"
-                                                                                data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
-                                                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                                                                <ul class="link-list-plain">
-                                                                                    <li><a class="text-primary edit" data-id="{{ $publications[$i]['id'] ?? '' }}">Edit</a></li>
-                                                                                    <li><a class="text-danger remove" data-id="{{ $publications[$i]['id'] ?? '' }}">Remove</a></li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td> -->
+                                                                   
                                                                 </tr><!-- .nk-tb-item  --> 
                                                                 @endfor
                                                             </tbody>
@@ -224,7 +154,7 @@
                 <div class="row g-3">
                     <div class="col-lg-7 offset-lg-5">
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-lg btn-primary">Add Package Bundel</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Add Service</button>
                         </div>
                     </div>
                 </div>
@@ -233,37 +163,13 @@
     </div><!-- card -->
 </div><!-- .nk-block -->
 <script>
-    // function test() {
-    //     var values = $('input:checkbox:checked.publication_id').map(function () {
-    //         return this.value;
-    //     }).get();
-    //     console.log(values);
-    // }
-    // $(document).ready(function (){
-    //     let stories = document.querySelectorAll("[type='checkbox']");
-    //     // console.log(stories);
-    //     let favorites = [];
-    //     function createFavorites() {
-    //     favorites = [];
-    //     let checked = document.querySelectorAll("[type='checkbox']:checked");
-    //     checked.forEach(function(el) {
-    //         favorites.push(el.value);
-    //     });
-    //     console.log(favorites);
-    //     }
-    //     stories.forEach(function(el) {
-    //     el.addEventListener("change", function() {
-    //         createFavorites();
-    //     });
-    //     });
-    // });
     $(document).ready(function(){
-        $('#publication_form').on('submit',function(e){
+        $('#service_form').on('submit',function(e){
             e.preventDefault();            
             formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
-                url: 'addPackageBundle',
+                url: 'addService',
                 data: formdata,
                 dataType: 'json',
                 contentType: false,

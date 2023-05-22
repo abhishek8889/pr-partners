@@ -3,7 +3,7 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Package Bundel List</h4>
+            <h4 class="nk-block-title">Other Services List</h4>
             <div class="nk-block-des">
                 <p><code class="code-class"></code> </p>
             </div>
@@ -22,9 +22,6 @@
                             </div>
                         </th>
                         <th class="nk-tb-col"><span class="sub-text">Title</span></th>
-                        <th class="nk-tb-col tb-col-mb"><span class="sub-text">Bundel Price</span></th>
-                        <th class="nk-tb-col tb-col-md"><span class="sub-text">Retail Price</span></th>
-                        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Category</span></th>
                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Publication</span></th>
                         <th class="nk-tb-col nk-tb-col-tools text-end">
                             Action
@@ -33,8 +30,8 @@
                 </thead>
                 <tbody>
              
-                @for ($i = 0; $i < count($packageBundles); $i++)
-                      
+                @foreach ($services as  $service)
+                 
                     <tr class="nk-tb-item">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
@@ -45,30 +42,17 @@
                         <td class="nk-tb-col">
                             <div class="user-card">
                                 <div class="user-info">
-                                  <span class="tb-lead">{{ $packageBundles[$i]['title'] ?? ''}}<span class="dot dot-success d-md-none ms-1"></span></span>
+                                  <span class="tb-lead">{{ $service->title ?? ''}}<span class="dot dot-success d-md-none ms-1"></span></span>
                                 </div>
                             </div>
-                        </td>
-
-                        <td class="nk-tb-col tb-col-mb" data-order="35040.34">
-                            <span class="tb-amount">{{ $packageBundles[$i]['bundle_price'] ?? ''}}<span class="currency"><b> $</b></span></span>
-                        </td>
-                        <td class="nk-tb-col tb-col-md">
-                            <span class="tb-amount">{{ $packageBundles[$i]['retail_price'] ?? ''}}<span class="currency"><b> $</b></span></span>
-                        </td>
-                        <td class="nk-tb-col tb-col-md">
-                            <span class="tb-lead">{{ $packageBundles[$i]['category']['name'] ?? ''}}</span>
                         </td>
                         <td class="nk-tb-col tb-col-lg">
                             <ul class="list-status">
                                 <?php
-                                $genreIds = explode(',', $packageBundles[$i]['publication_id']);
+                                $genreIds = explode(',', $service->publication_id);
                                 $items = str_replace(['[', '"', ']'], '', $genreIds);
                                 $publications = App\Models\Publication::with('article_type','region')->whereIn('id', $items)->get()->toArray();
-                                // echo '<pre>';
-                                // print_r($genreNames);
-                                // echo '</pre>';
-                                // die();
+                               
                                 ?>
                         <!-- Modal Trigger Code -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault">View Publications</button>
@@ -178,14 +162,15 @@
                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                         <ul class="link-list-plain">
-                                            <li><a href="{{ url('admin-dashboard/press-package-update') }}/{{ $packageBundles[$i]['id'] ?? '' }}" data-id="{{ $packageBundles[$i]['id'] ?? '' }}" id="edit" class="text-primary">Edit</a></li>
-                                            <li><a data-id="{{ $packageBundles[$i]['id'] ?? '' }}" id="remove" class="text-danger remove">Remove</a></li>
+                                            <li><a href="{{ url('admin-dashboard/services-update') }}/{{ $service->id ?? '' }}" data-id="{{ $service->id ?? '' }}" id="edit" class="text-primary">Edit</a></li>
+                                            <li><a data-id="{{ $service->id ?? '' }}" id="remove" class="text-danger remove">Remove</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </td>
                     </tr><!-- .nk-tb-item  --> 
-                    @endfor
+                       
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -200,7 +185,7 @@ $(document).ready(function() {
         e.preventDefault();
         var remove_id = $(this).attr('data-id');
         $.ajax({
-            url: 'remove-PackageBundle',
+            url: 'remove-service',
             type: 'POST',
             data: {
                 "_token": "{{ csrf_token() }}",
@@ -221,6 +206,9 @@ $(document).ready(function() {
                 $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
+                setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
                     if (errors.hasOwnProperty(fieldName)) {
@@ -242,6 +230,5 @@ $(document).ready(function() {
 
     });
 });
-
 </script>
 @endsection

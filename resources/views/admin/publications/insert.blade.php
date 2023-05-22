@@ -106,7 +106,7 @@
                                 @foreach($genre_list as $genre)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkboxs">
+                                    <div class="custom-control custom-control-sm custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="genre_list[]" value="{{ $genre['id'] }}">
                                         <label class="custom-control-label" for="{{ $genre['name'] }}">{{ $genre['name'] }}</label>
                                     </div>
@@ -134,7 +134,7 @@
                                 @foreach($article_types as $article)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkboxs">
+                                    <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}">
                                         <label class="custom-control-label" for="{{ $article['type'] }}">{{ $article['type'] }}</label>
                                     </div>
@@ -162,7 +162,7 @@
                                 @foreach($region_list as $region)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkboxs">
+                                    <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}">
                                         <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
                                     </div>
@@ -199,11 +199,20 @@
                 dataType: 'json',
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function (data) {
                     // console.warn(data);
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     var errors = jqXHR.responseJSON.errors;
                     for (var fieldName in errors) {
                         if (errors.hasOwnProperty(fieldName)) {

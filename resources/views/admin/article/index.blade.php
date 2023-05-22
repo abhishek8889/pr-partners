@@ -93,9 +93,14 @@
                 dataType: 'json',
                 contentType: false,
                 processData: false,
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
-                    
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     $('#type').val('');
                     $('#error_wrap').html('');
                     NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
@@ -123,12 +128,22 @@
                 url: '{{route('article-action')}}',
                 data: { editid:id,type:type, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
-                {   $(this).val(type);
+                {  
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
+                     $(this).val(type);
                      $("input#input"+id).prop('disabled', true);
                     NioApp.Toast('Successfully updated article type!', 'info', {position: 'top-right'});
                 },
                 error: function (error) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     // $("input#input"+id).val(type);
                   NioApp.Toast(error.responseJSON.message, 'error', {position: 'top-right'});
                 }
@@ -146,8 +161,14 @@
                 url: '{{route('article-action')}}',
                 data: { deleteid:id, _token:'{{ csrf_token() }}' },
                 dataType: 'json',
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function(response)
                 {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     ele.hide();
                     NioApp.Toast('Successfully deleted article type!', 'info', {position: 'top-right'});
                    

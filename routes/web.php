@@ -9,6 +9,10 @@ use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\admin\RegionController;
 use App\Http\Controllers\admin\PressPackageController;
+use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\admin\PressReleaseController;
+
+
 use App\Http\Controllers\TryController\trycontroller;
 
 /*
@@ -60,7 +64,25 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::post('/packagecategory-add',[PressPackageController::class,'addPackageCategory']);
 
     Route::get('/admin-dashboard/package-list',[PressPackageController::class,'packageList']);
+    Route::get('/admin-dashboard/press-package-update/{id}',[PressPackageController::class,'updatepressPackage']);
+    Route::post('/updatePackageBundle',[PressPackageController::class,'updatePackageBundle']);
+    Route::post('/remove-PackageBundle',[PressPackageController::class,'remove']);
+
+    // Other Services
+    Route::get('/admin-dashboard/services-list',[ServiceController::class,'index']);
+    Route::get('/admin-dashboard/services-insert/',[ServiceController::class,'insertService']);
+    Route::post('/addService',[ServiceController::class,'addService']);
+    Route::get('/admin-dashboard/services-update/{id}',[ServiceController::class,'updateService']);
+    Route::post('/updateService',[ServiceController::class,'ServiceUpdate']);
+    Route::post('/remove-service',[ServiceController::class,'remove']);
+
+    //Press_release
+    Route::get('/admin-dashboard/press-release',[PressReleaseController::class, 'index']);
+    Route::post('/addPressRelease',[PressReleaseController::class ,'addPressRelease']);
+    Route::post('/update-release',[PressReleaseController::class, 'updatePressRelease']);
+    Route::post('/remove-release',[PressReleaseController::class, 'remove']);
     
+
 });
 
 

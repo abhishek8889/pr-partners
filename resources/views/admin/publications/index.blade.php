@@ -130,13 +130,22 @@
                     "_token": "{{ csrf_token() }}",
                     'remove_id': remove_id,
                 },
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
                 success: function (data) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                     // $('.tr'+remove_id).addClass('d-none').remove();
                     $("#table").load(location.href + " #table");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                     var errors = jqXHR.responseJSON.errors;
                     for (var fieldName in errors) {
                         if (errors.hasOwnProperty(fieldName)) {
