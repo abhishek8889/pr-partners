@@ -15,19 +15,7 @@ class PublicationController extends Controller
 {
     //
     public function index(){
-        // $publications = Publication::all();
         $publications = Publication::with('article_type','region')->get()->toArray();
-        // echo '<pre>';
-        // // // print_r(json_decode($publications[0]['genre']));
-        // // // $publication = Publication::all();
-        // // // $genreNames = $publication->genres->pluck('name');
-        // $genreIds = ["2", "10", "14", "15"];
-        // $genreNames = Genre::whereIn('id', $genreIds)->pluck('name')->toArray();
-        // var_dump($genreIds);
-        // // $genreNames = App\Models\Genre::whereIn('id', $genreIds)->pluck('name')->toArray();
-        // print_r($genreNames);
-        // echo '</pre>';
-        // die();
         return view('admin.publications.index',compact('publications'));
     }
     public function publicationInsert(){
@@ -36,6 +24,7 @@ class PublicationController extends Controller
         $region_list = Region::all();
         return view('admin.publications.insert',compact('article_types','genre_list','region_list'));
     }
+
     public function addPublication(Request $req){
         $req->validate([
             'country_name' => 'required',
@@ -59,7 +48,41 @@ class PublicationController extends Controller
         $publication->save();
         return response()->json('Publication has been added');
     }
-    public function addProc(Request $request){
-        return response()->json($request->all());
+
+    public function updatePublication(Request $req,$id){
+        $publication = Publication::with('article_type','region')->where('id',$id)->first()->toArray();
+        $article_types = ArticleType::all();
+        $genre_list = Genre::all();
+        $region_list = Region::all();
+        return view('admin.publications.update',compact('article_types','genre_list','region_list','publication'));
+    }
+
+    public function publicationUpdate(Request $req){
+        $req->validate([
+            'country_name' => 'required',
+            'article_type' => 'required',
+            'genre_list' => 'required',
+            'title' => 'required',
+            'url' => 'required',
+            'price' => 'required',
+            'domain_authority' => 'required',
+            'turn_around_time' => 'required',
+        ]);
+        $publication = Publication::find($req->id);
+        $publication->title = $req->title;
+        $publication->url = $req->url;
+        $publication->price = $req->price;
+        $publication->domain_authority = $req->domain_authority;
+        $publication->tat = $req->turn_around_time;
+        $publication->genre = json_encode($req->genre_list);
+        $publication->article_type = $req->article_type;
+        $publication->region = $req->country_name;
+        $publication->update();
+        return response()->json('Publication data updated successfully');
+    }
+
+    public function removePublication(Request $req){
+        Publication::where('id', $req->remove_id)->delete();
+        return response()->json('Publication deleted successfully');
     }
 }

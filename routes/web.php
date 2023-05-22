@@ -32,12 +32,15 @@ Route::get('/user-dashboard',[UserDashboard::class,'index']);
 //Admin routes
 Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
-    Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
     Route::any('/genre-add',[GenreController::class,'genreAdd']);
+
     Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
+    Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
+    Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
     Route::post('/addPublication',[PublicationController::class,'addPublication']);
+    Route::post('/publication-remove',[PublicationController::class,'removePublication']);
 
 
     Route::get('/admin-dashboard/article',[ArticleController::class,'index']);

@@ -66,6 +66,8 @@ class PressPackageController extends Controller
 
     public function packageList(Request $request){
         $packageBundles = PackageBundle::with('category')->get()->toArray();
+        // print_r($packageBundles[0]['category']['name']);
+        // die();
         return view('admin.press_package.packageList',compact('packageBundles'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin_layout/master')
 @section('content')
-<div class="nk-block nk-block-lg">
+<div class="nk-block nk-block-lg" id="maindiv">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
             <h4 class="nk-block-title">Publication Table</h4>
@@ -11,7 +11,7 @@
     </div>
     <div class="card card-bordered card-preview">
         <div class="card-inner">
-            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false">
+            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
                 <thead>
                    
                     <tr class="nk-tb-item nk-tb-head">
@@ -90,34 +90,19 @@
                         </td>
                         <td class="nk-tb-col nk-tb-col-tools">
                             <ul class="nk-tb-actions gx-1">
-                                <!-- <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Wallet">
-                                        <em class="icon ni ni-wallet-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Email">
-                                        <em class="icon ni ni-mail-fill"></em>
-                                    </a>
-                                </li>
-                                <li class="nk-tb-action-hidden">
-                                    <a href="#" class="btn btn-trigger btn-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Suspend">
-                                        <em class="icon ni ni-user-cross-fill"></em>
-                                    </a>
-                                </li> -->
                                 <li>
                                     <div class="drodown">
                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>
-                                                <!-- <li><a href="#"><em class="icon ni ni-eye"></em><span>View Details</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-repeat"></em><span>Transaction</span></a></li>
+                                                 <!-- <li><a href="#"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>  -->
+                                                 <li><a href="{{ url('admin-dashboard/update-publications')}}/{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-eye"></em><span>Edit</span></a></li>
+                                                <!-- <li><a href="#"><em class="icon ni ni-repeat"></em><span>Transaction</span></a></li>
                                                 <li><a href="#"><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Pass</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-shield-off"></em><span>Reset 2FA</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-na"></em><span>Suspend User</span></a></li> -->
+                                                <li><a href="#"><em class="icon ni ni-shield-off"></em><span>Reset 2FA</span></a></li> -->
+                                                <li><a href="#" class="remove" data-id="{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-na"></em><span>Remove</span></a></li> 
                                             </ul>
                                         </div>
                                     </div>
@@ -130,5 +115,47 @@
             </table>
         </div>
     </div><!-- .card-preview -->
-</div> <!-- nk-block -->
+</div> <!-- nk-block -->publication-remove
+<script>
+    //  Remove function 
+    $(document).ready(function () {
+        $("body").delegate(".remove", "click", function (e) {
+            // $('.remove').click( function (e){
+            e.preventDefault();
+            var remove_id = $(this).attr('data-id');
+            $.ajax({
+                url: 'publication-remove',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'remove_id': remove_id,
+                },
+                success: function (data) {
+                    console.warn(data);
+                    NioApp.Toast(data, 'success', { position: 'top-right' });
+                    // $('.tr'+remove_id).addClass('d-none').remove();
+                    $("#table").load(location.href + " #table");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var errors = jqXHR.responseJSON.errors;
+                    for (var fieldName in errors) {
+                        if (errors.hasOwnProperty(fieldName)) {
+                            var errorMessages = errors[fieldName];
+
+                            errorMessages.forEach(function (errorMessage) {
+                                console.log(errorMessage);
+                                NioApp.Toast(errorMessage, 'error', { position: 'top-right' });
+                            });
+                        }
+                    }
+                }
+
+
+
+            });
+
+        });
+    });
+
+</script>
 @endsection
