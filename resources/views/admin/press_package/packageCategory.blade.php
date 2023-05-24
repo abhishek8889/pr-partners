@@ -53,7 +53,7 @@
                 @foreach($packageCategorys as $packageCategory)
                 <tr class="tb-odr-item tr{{ $packageCategory->id ?? '' }}">
                     <td class="nk-tb-col">
-                        <span class="tb-odr-id">#{{ $x++ ?? ''}}</span>
+                        <span class="tb-odr-id">{{ $x++ ?? ''}}</span>
                         <span class="tb-odr-date">{{ $packageCategory->updated_at->format('j F, Y') ?? ''}}</span>
                     </td>
                     <td class="nk-tb-col">
@@ -161,6 +161,11 @@
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                     $('.tr'+remove_id).addClass('d-none').remove();
+                    var rowCount = 1;
+                    $('tbody tr.tb-odr-item:visible').each(function() {
+                        $(this).find('.tb-odr-id').text(rowCount);
+                        rowCount++;
+                    });
                     // $("#table").load(location.href + " #table");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

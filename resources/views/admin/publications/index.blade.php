@@ -11,6 +11,7 @@
     </div>
     <div class="card card-bordered card-preview">
         <div class="card-inner">
+            <button class="btn btn-danger my-1 delbtn d-none">delete</button>
             <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
                 <thead>
                    
@@ -46,7 +47,7 @@
                     <tr class="nk-tb-item tr{{ $publications[$i]['id'] ?? ''}}">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="{{ $publications[$i]['id'] ?? ''}}">
+                                <input type="checkbox" class="custom-control-input checkbox" id="{{ $publications[$i]['id'] ?? ''}}" data-id="{{ $publications[$i]['id'] ?? ''}}">
                                 <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
                             </div>
                         </td>
@@ -129,74 +130,6 @@
     </div><!-- .card-preview -->
 </div> <!-- nk-block -->
 <script>
-// $(document).ready(function() {
-//     $('.checkall').change(function() {
-//         const checkbox = $(this);
-
-//         if (checkbox.is(':checked')) {
-//             $('input[type="checkbox"]').prop('checked', true);
-//         } else {
-//             $('input[type="checkbox"]').prop('checked', false);
-//         }
-//     });
-// });
-
-// $(document).ready(function() {
-    // $('.paginate_button page-item').on('click', function() {
-    //     // const pageId = $(this).data('dt-idx');
-    //     // console.log('Page ID:', pageId);
-    //     console.log('cliked page');
-    // });
-
-    // Rest of your code...
-    // $(document).on('click', '.page-link', function(){
-
-    //    const pageId = $(this).data('dt-idx');
-    //     console.log('Page ID:', pageId);
-    //     $("#maincheck").find('checkall').attr('id',pageId);
-    
-    // }); 
-
-//     $(document).ready(function() {
-//     $(document).on('click', '.pagination .page-link', function() {
-//         const pageId = $(this).data('dt-idx');
-//         console.log('Clicked Page ID:', pageId);
-//         // Perform any necessary operations for the clicked page here
-//     });
-
-//     $(document).on('change', '#maincheck input.checkall', function() {
-//         const isAllChecked = $(this).is(':checked');
-//         const currentPage = $(this).closest('.pagination').find('.paginate_button.active');
-//         const checkboxes = currentPage.find('input[type="checkbox"]');
-        
-//         checkboxes.prop('checked', isAllChecked);
-//     });
-
-//     // Rest of your code...
-// });
-// $(document).ready(function() {
-//     $(document).on('click', '.pagination .page-link', function() {
-//         const pageId = $(this).data('dt-idx');
-//         console.log('Clicked Page ID:', pageId);
-        
-//         $('.checkall').attr('data-page', pageId); // Set the 'data-page' attribute to the page ID
-        
-//         console.log($('.checkall').attr('data-page'));
-//     });
-    
-//     $(document).on('click', '.checkall', function(event) {
-//         event.preventDefault();
-//         const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
-//         console.log('Clicked Page ID:', pageId);
-//         const targetIdx = pageId; // Replace with the desired data-dt-idx value
-        
-//         // Find the <a> tag with the matching data-dt-idx value and trigger the click event
-//         $('a[data-dt-idx="' + targetIdx + '"]').click();
-        
-//         // Uncheck the checkboxes
-//         $('input[type="checkbox"]').prop('checked', false);
-//     });
-// });
 $(document).ready(function() {
     $(document).on('click', '.pagination .page-link', function() {
         const pageId = $(this).data('dt-idx');
@@ -206,102 +139,84 @@ $(document).ready(function() {
         
         console.log($('.checkall').attr('data-page'));
     });
-    
-    $(document).on('click', '.checkall', function(event) {
-        event.preventDefault();
-        const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
-        console.log('Clicked Page ID:', pageId);
-        const targetIdx = pageId; // Replace with the desired data-dt-idx value
-        
-        // Find the <a> tag with the matching data-dt-idx value and trigger the click event
+    $(document).on('click', '.checkall', function() {
+        const pageId = $(this).attr('data-page');
+        const targetIdx = pageId;
         $('a[data-dt-idx="' + targetIdx + '"]').click();
-        
-        // Toggle the checkboxes
+
+        var isChecked = $(this).prop('checked');
         $('input[type="checkbox"]').each(function() {
-            $(this).prop('checked', !$(this).prop('checked'));
+            $(this).prop('checked', isChecked);
         });
+        
+        if (isChecked) {
+            $('.delbtn').removeClass('d-none');
+            console.log('Checked all');
+        } else {
+            $('.delbtn').addClass('d-none');
+            console.log('Unchecked all');
+        }
+    });
+    // JavaScript
+    $('.checkbox').change(function() {
+        var checkedCheckboxes = $('.checkbox:checked');
+        if (checkedCheckboxes.length > 0) {
+            $('.delbtn').removeClass('d-none');
+        } else {
+            $('.delbtn').addClass('d-none');
+        }
+    });
+
+    $(document).on('click', '.delbtn', function() {
+        var remove_data = [];
+        $('input[type="checkbox"]:checked').each(function() {
+        var value = $(this).attr('data-id');
+        remove_data.push(value);
+        });
+
+        $.ajax({
+                url: 'publication-remove',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'remove_data': remove_data,
+                },
+                beforeSend: function() {
+                $('.spinner-container').show();
+                },
+                success: function (data) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                        NioApp.Toast(data, 'success', { position: 'top-right' });
+                        location.reload();
+                    }, 2000);
+                    // console.warn(data);
+                    // NioApp.Toast(data, 'success', { position: 'top-right' });
+                    // $('.tr'+remove_id).addClass('d-none').remove();
+                    // $("#table").load(location.href + " #table");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
+                    var errors = jqXHR.responseJSON.errors;
+                    for (var fieldName in errors) {
+                        if (errors.hasOwnProperty(fieldName)) {
+                            var errorMessages = errors[fieldName];
+
+                            errorMessages.forEach(function (errorMessage) {
+                                console.log(errorMessage);
+                                NioApp.Toast(errorMessage, 'error', { position: 'top-right' });
+                            });
+                        }
+                    }
+                }
+
+
+
+            });
     });
 });
-
-
-                // $(document).ready(function() {
-                //     $(document).on('click', '.pagination .page-link', function() {
-                //         const pageId = $(this).data('dt-idx');
-                //         console.log('Clicked Page ID:', pageId);
-                        
-                //         $('.checkall').attr('data-page', pageId); // Set the 'data-page' attribute to the page ID
-                        
-                //         console.log($('.checkall').attr('data-page'));
-                //     });
-                    
-                //     $(document).on('click', '.checkall', function(event) {
-                //         event.preventDefault();
-                //         const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
-                //         console.log('Clicked Page ID:', pageId);
-                //         const targetIdx = pageId; // Replace with the desired data-dt-idx value
-                //         // Find the <a> tag with the matching data-dt-idx value and trigger the click event
-                //         $('a[data-dt-idx="' + targetIdx + '"]').click();
-                //         // if($(this).prop('checked'),true){
-                //             $(this).prop('checked',true);
-                //             $('input[type="checkbox"]').prop('checked', true);
-                //             return true;
-                //         // }else{
-                //         //     $(this).prop('checked',true);
-                //         // $('input[type="checkbox"]').prop('checked', true);
-                //         // }
-                //     });
-                // });
-
-// $(document).on('click', '.checkall', function(e) {
-//     e.preventDefault();
-//     console.log($(this).attr('id'));
-// });
-// $(document).on('click', '#page-' + pageId, function() {
-//     console.log('Clicked Page ID:', $(this).data('dt-idx'));
-// });
-
-//     $(document).ready(function() {
-//     $(document).on('click', '.pagination .page-link', function() {
-//         const pageId = $(this).data('dt-idx');
-//         console.log('Clicked Page ID:', pageId);
-//         // Perform any necessary operations for the clicked page here
-//     });
-
-//     // Rest of your code...
-// });
-
-
-//     $(document).ready(function() {
-//     $('#maincheck input.checkall').change(function() {
-//         const isAllChecked = $(this).is(':checked');
-//         const currentPage = $(this).closest('.pagination').find('.paginate_button.active');
-//         const checkboxes = currentPage.find('input[type="checkbox"]');
-        
-//         checkboxes.prop('checked', isAllChecked);
-//     });
-// });
-
-
-// });
-// $(document).ready(function() {
-    // $(document).on('click', '.checkall', function(){
-    //     const checkbox = $(this);
-    //     const currentPage = checkbox.closest('.paginate_button.active');
-    //     console.log(currentPage);
-    //     const pageIdx = currentPage.find('a').data('dt-idx');
-    //     console.log('Page ID:', pageIdx);
-    //     const checkboxes = $('input[type="checkbox"][data-dt-idx="' + pageIdx + '"]');
-    //     console.log(checkboxes);
-
-    //     if (checkbox.is(':checked')) {
-    //         checkboxes.prop('checked', true);
-    //     } else {
-    //         checkboxes.prop('checked', false);
-    //     }
-    // });
-
-// });
-
 
 
 

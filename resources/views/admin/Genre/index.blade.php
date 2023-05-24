@@ -180,6 +180,11 @@ $(document).ready(function() {
                     position: 'top-right'
                 });
                 $('.tr' + remove_id).addClass('d-none').remove();
+                var rowCount = 1;
+                    $('tbody tr.tb-odr-item:visible').each(function() {
+                        $(this).find('.tb-odr-id').text(rowCount);
+                        rowCount++;
+                    });
                 // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {

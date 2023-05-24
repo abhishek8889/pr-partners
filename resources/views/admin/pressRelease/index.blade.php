@@ -61,7 +61,7 @@
                     <?php $i = 1 ?>
                     @foreach ($press_release as $release)
 
-                    <tr class="nk-tb-item tr{{ $release->id ?? '' }}">
+                    <tr class="tb-odr-item tr{{ $release->id ?? '' }}">
                         <td class="nk-tb-col">
                             <span class="tb-odr-id">{{$i++}}</span>
                         </td>
@@ -275,11 +275,16 @@ $(document).ready(function() {
                 setTimeout(function() {
                     $('.spinner-container').hide();
                 }, 1000);
-                console.warn(data);
+                // console.warn(data);
                 NioApp.Toast(data, 'success', {
                     position: 'top-right'
                 });
                 $('.tr' + remove_id).addClass('d-none').remove();
+                var rowCount = 1;
+                    $('tbody tr.tb-odr-item:visible').each(function() {
+                        $(this).find('.tb-odr-id').text(rowCount);
+                        rowCount++;
+                    });
                 // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {

@@ -15,11 +15,8 @@
                 <thead>
                    
                     <tr class="nk-tb-item nk-tb-head">
-                        <th class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid">
-                                <label class="custom-control-label" for="uid"></label>
-                            </div>
+                        <th class="nk-tb-col">
+                                <span class="tb-odr-id">ID</span>
                         </th>
                         <th class="nk-tb-col"><span class="sub-text">Title</span></th>
                         <th class="nk-tb-col tb-col-lg"><span class="sub-text">Publication</span></th>
@@ -29,15 +26,12 @@
                     </tr>
                 </thead>
                 <tbody>
-             
+                @php $z=1; @endphp
                 @foreach ($services as  $service)
                  
-                    <tr class="nk-tb-item tr{{$service->id ?? ''}}">
-                        <td class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid1">
-                                <label class="custom-control-label" for="uid1"></label>
-                            </div>
+                    <tr class="tb-odr-item tr{{$service->id ?? ''}}">
+                        <td class="nk-tb-col">
+                            <span class="tb-odr-id">{{ $z++ ?? ''}}</span>
                         </td>
                         <td class="nk-tb-col">
                             <div class="user-card">
@@ -208,6 +202,11 @@ $(document).ready(function() {
                     position: 'top-right'
                 });
                 $('.tr'+remove_id).addClass('d-none').remove();
+                var rowCount = 1;
+                    $('tbody tr.tb-odr-item:visible').each(function() {
+                        $(this).find('.tb-odr-id').text(rowCount);
+                        rowCount++;
+                    });
                 // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {

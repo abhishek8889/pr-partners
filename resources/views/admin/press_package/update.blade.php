@@ -80,7 +80,7 @@
                                 <li>
                                     <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $packageCategory['name'] }}" name="packageCategory" value="{{ $packageCategory['id'] }}" 
-                                        @if ( $packageCategory['id'] == $pressBundel->id)
+                                        @if ( $packageCategory['id'] == $pressBundel->press_package_category_id )
                                           checked  
                                         @endif
                                         />
@@ -208,18 +208,7 @@
                                                                     <td class="nk-tb-col tb-col-md">
                                                                         <span class="tb-status text-successs">{{ $publications[$i]['region']['country_name'] ?? ''}}</span>
                                                                     </td>
-                                                                    <!-- <td class="tb-odr-action">
-                                                                        <div class="dropdown">
-                                                                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"
-                                                                                data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
-                                                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                                                                <ul class="link-list-plain">
-                                                                                    <li><a class="text-primary edit" data-id="{{ $publications[$i]['id'] ?? '' }}">Edit</a></li>
-                                                                                    <li><a class="text-danger remove" data-id="{{ $publications[$i]['id'] ?? '' }}">Remove</a></li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td> -->
+                                                                  
                                                                 </tr><!-- .nk-tb-item  --> 
                                                                 @endfor
                                                             </tbody>
@@ -242,7 +231,7 @@
                 <div class="row g-3">
                     <div class="col-lg-7 offset-lg-5">
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-lg btn-primary">Add Package Bundel</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Update Package Bundel</button>
                         </div>
                     </div>
                 </div>

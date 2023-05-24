@@ -203,8 +203,13 @@
                     }, 1000);
                     ele.hide();
                     NioApp.Toast('Successfully deleted article type!', 'info', {position: 'top-right'});
-                   
-                }
+                    var rowCount = 1;
+                    $('tbody tr.tb-odr-item:visible').each(function() {
+                        $(this).find('.tb-odr-id').text(rowCount);
+                        rowCount++;
+                    });
+
+                    }
             });
 
     });

@@ -79,7 +79,25 @@ class PublicationController extends Controller
     }
 
     public function removePublication(Request $req){
+        if($req->has('remove_id')){
         Publication::where('id', $req->remove_id)->delete();
         return response()->json('Publication deleted successfully');
+        }
+        if($req->has('remove_data')){
+
+            $removeIds = $req->remove_data; // Get the array of IDs
+
+            if (!empty($removeIds) && is_null($removeIds[0])) {
+                array_shift($removeIds);
+            }
+     
+            if (!empty($removeIds)) {
+                Publication::whereIn('id', $removeIds)->delete();
+                return response()->json('Publication(s) deleted successfully');
+            } else {
+                return response()->json('No valid Data to delete');
+            }
+
+        }
     }
 }
