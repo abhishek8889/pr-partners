@@ -12,8 +12,7 @@ use App\Http\Controllers\admin\UserAccessToken;
 use App\Http\Controllers\admin\PressPackageController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\PressReleaseController;
-
-
+use App\Http\Middleware\UserCheck;
 use App\Http\Controllers\TryController\trycontroller;
 
 /*
@@ -28,10 +27,13 @@ use App\Http\Controllers\TryController\trycontroller;
 */
 
 Route::get('/',[AuthenticationController::class,'index']);
+Route::post('loginprocc',[AuthenticationController::class,'userLoginProc'])->name('login-proc');
 Route::get('/admin-login',[AuthenticationController::class,'adminLogin']);
 Route::post('/admin-loginproc',[AuthenticationController::class,'adminLoginProc'])->name('admin-login');
 Route::get('/logout',[AuthenticationController::class,'logout']);
-Route::get('/user-dashboard',[UserDashboard::class,'index']);
+Route::get('/userlogout',[AuthenticationController::class,'userlogout']);
+Route::get('/user-dashboard',[UserDashboard::class,'index'])->Middleware(UserCheck::class);
+
 
 
 //Admin routes
@@ -83,8 +85,9 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::post('/update-release',[PressReleaseController::class, 'updatePressRelease']);
     Route::post('/remove-release',[PressReleaseController::class, 'remove']);
     
-    //User password
-    // Route::get()
+    // User password
+    Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index']);
+    Route::post('update-token-procc',[UserAccessToken::class,'creatproc'])->name('update-token-procc');
 });
 
 

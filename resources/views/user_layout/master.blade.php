@@ -25,7 +25,7 @@
               <img src="{{ asset('partner-asset/img/Logo.png') }}" class="img-fluid" alt="">
             </div>
             <div class="log_out_bnt">
-              <a class="btn" href="javascript:void(0)" role="button"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>
+              <a class="btn" href="{{ url('userlogout') }}" role="button"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a>
             </div>
           </div>
         </div>
