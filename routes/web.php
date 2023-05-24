@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\PublicationController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\admin\RegionController;
+use App\Http\Controllers\admin\UserAccessToken;
 use App\Http\Controllers\admin\PressPackageController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\PressReleaseController;
@@ -41,6 +42,7 @@ Route ::group(['middleware' =>['is_admin']],function(){
 
     Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
+    Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
     Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
     Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
     Route::post('/addPublication',[PublicationController::class,'addPublication']);
@@ -53,7 +55,6 @@ Route ::group(['middleware' =>['is_admin']],function(){
 
     //regioncontroller
     Route::get('/admin-dashboard/regions',[RegionController::class,'index']);
-
     Route::post('/admin-dashboard/regions/add',[RegionController::class,'addProc'])->name('region-add');
     Route::post('/admin-dashboard/regions/action',[RegionController::class,'action'])->name('region-action');
 

@@ -31,9 +31,15 @@
                         <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                     <div class="nk-sidebar-brand">
+<<<<<<< HEAD
+                        <a href="admin-dashboard" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="{{ asset('/partner-asset/img/Logo.png') }}" srcset="{{ asset('/partner-asset/img/Logo.png') }}" alt="logo">
+                            <img class="logo-dark logo-img" src="{{ asset('/partner-asset/img/Logo.png') }}" srcset="{{ asset('/partner-asset/img/Logo.png') }}" alt="logo-dark">
+=======
                         <a href="{{ url('admin-dashboard') ?? ''}}" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
                             <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+>>>>>>> 219a53aa815bdb57f663e9f46bbbf58ff3e44d89
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -116,6 +122,16 @@
                                         </li>
                                         <li class="nk-menu-item">
                                             <a href="{{ url('/admin-dashboard/insert-publications') }}" class="nk-menu-link"><span class="nk-menu-text">Insert Publication</span></a>
+                                        </li>
+                                    </ul>
+                                    <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-text">User Access</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="admin-dashboard" class="nk-menu-link"><span class="nk-menu-text">Update token</span></a>
                                         </li>
                                     </ul>
                                 </li>
