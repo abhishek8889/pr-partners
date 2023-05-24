@@ -8,15 +8,12 @@ use App\Http\Controllers\admin\PublicationController;
 use App\Http\Controllers\admin\GenreController;
 use App\Http\Controllers\admin\ArticleController;
 use App\Http\Controllers\admin\RegionController;
-<<<<<<< HEAD
 use App\Http\Controllers\admin\UserAccessToken;
-=======
 use App\Http\Controllers\admin\PressPackageController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\PressReleaseController;
 
 
->>>>>>> 219a53aa815bdb57f663e9f46bbbf58ff3e44d89
 use App\Http\Controllers\TryController\trycontroller;
 
 /*
@@ -45,16 +42,13 @@ Route ::group(['middleware' =>['is_admin']],function(){
 
     Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
-<<<<<<< HEAD
     Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
-=======
     Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
     Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
     Route::post('/addPublication',[PublicationController::class,'addPublication']);
     Route::post('/publication-remove',[PublicationController::class,'removePublication']);
 
 
->>>>>>> 219a53aa815bdb57f663e9f46bbbf58ff3e44d89
     Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
     Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
     Route::post('/admin-dashboard/article/action',[ArticleController::class,'action'])->name('article-action');
@@ -64,9 +58,6 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::post('/admin-dashboard/regions/add',[RegionController::class,'addProc'])->name('region-add');
     Route::post('/admin-dashboard/regions/action',[RegionController::class,'action'])->name('region-action');
 
-<<<<<<< HEAD
-    
-=======
     //Routes for press package
     Route::get('/admin-dashboard/press-package',[PressPackageController::class,'index']);
     Route::post('/addPackageBundle',[PressPackageController::class,'addPackageBundle']);
@@ -96,9 +87,7 @@ Route ::group(['middleware' =>['is_admin']],function(){
     // Route::get()
 });
 
->>>>>>> 219a53aa815bdb57f663e9f46bbbf58ff3e44d89
 
-});
 
 Route::get('/trycode',[trycontroller::class,'index']);
 Route::any('/trycodes',[trycontroller::class,'adddata']);
