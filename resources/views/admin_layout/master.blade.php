@@ -125,7 +125,7 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="admin-dashboard" class="nk-menu-link"><span class="nk-menu-text">Update token</span></a>
+                                            <a href="{{ url('admin-dashboard/update-token') }}" class="nk-menu-link"><span class="nk-menu-text">Update token</span></a>
                                         </li>
                                     </ul>
                                 </li>

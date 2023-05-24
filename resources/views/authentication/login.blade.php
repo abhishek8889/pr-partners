@@ -38,9 +38,11 @@
               <img src="{{ asset('partner-asset/img/login.png') }}" class="img-fluid" alt="">
             </div>
             <h2>Protected Page</h2>
-            <form>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Enter your password">
-              <a class="btn" href="javascript:void(0)" role="button">Submit</a>
+            <form action="{{ route('login-proc') }}" method="POST">
+              @csrf
+              <input type="password" class="form-control" name="password" id="inputEmail4" placeholder="Enter your password">
+             <div class="text text-left text-danger"> {{ Session::get('error') }}</div>
+              <button class="btn" role="button">Submit</button>
             </form>
           </div>
         </div>
@@ -58,12 +60,12 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> 
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="{{ asset('partner-asset/js/script.js') }} "></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{ asset('partner-asset/js/script.js') }} "></script>
+   
 </body>
 </html>
