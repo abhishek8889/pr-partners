@@ -72,10 +72,9 @@
                       <div class="form-group wrapper">
                         <label for="formGroupExampleInput">Select regions</label>
                         <select multiple data-placeholder="Select regions">
-                          <option>lorem ipsum</option>
-                          <option>lorem ipsum</option>
-                          <option>lorem ipsum</option>
-                          <option>lorem ipsum</option>
+                        @foreach($region_filter as $rf)  
+                        <option>{{ $rf->country_name ?? '' }}</option>
+                        @endforeach
                         </select>
                       </div>
                       <div class="select_wreap">
@@ -89,18 +88,9 @@
                       <div class="select_wreap">
                         <h3>Type</h3>
                         <div class="publication_list">
-                          <a href="javascript:void(0)">Pitch</a>
-                          <a href="javascript:void(0)">New</a>
-                          <a href="javascript:void(0)">Exclusive</a>
-                          <a href="javascript:void(0)">Contributor</a>
-                          <a href="javascript:void(0)">Press Release</a>
-                          <a href="javascript:void(0)">Staff</a>
-                          <a href="javascript:void(0)">Lowered</a>
-                          <a href="javascript:void(0)">Exclusive Rate</a>
-                          <a href="javascript:void(0)">Raised</a>
-                          <a href="javascript:void(0)">1 Year Lifespan</a>
-                          <a href="javascript:void(0)">Includes Social Posts</a>
-                          <a href="javascript:void(0)">400K Impressions</a>
+                          @foreach($article_filter as $af)
+                          <a href="javascript:void(0)">{{ $af->type ?? '' }}</a>
+                          @endforeach
                         </div>
                       </div>
                       <div class="select_wreap">
@@ -150,7 +140,7 @@
                                   <img src="img/company_logo1.png" class="img-fluid" alt="">
                                 </div>
                                 <span>
-                                  <a href="{{ $pd->url ?? '' }}">{{ $pd['title'] ?? '' }}</a>
+                                  <a href="{{ $pd['url'] ?? '' }}">{{ $pd['title'] ?? '' }}</a>
                                 </span>
                               </div>
                             </td>
@@ -226,8 +216,9 @@
                   <div class="business_content">
                     <h3>Other Services</h3>
                     <div class="business_grid">
+                      @foreach($other_services as $os)
                       <div class="business_wreap">
-                        <h4 class="bundle_text"><span>PR services</span></h4>
+                        <h4 class="bundle_text"><span>{{ $os->title }}</span></h4>
                         <div class="business_list">
                           <h5>Publication</h5>
                           <ul class="m-0">
@@ -239,32 +230,7 @@
                           </ul>
                         </div>
                       </div>
-                      <div class="business_wreap">
-                        <h4 class="bundle_text"><span>Social media services</span></h4>
-                        <div class="business_list">
-                          <h5>Publication</h5>
-                          <ul class="m-0">
-                            <li>LA Weekly</li>
-                            <li>IB Times (SG)</li>
-                            <li>Digital Journal</li>
-                            <li>NY Weekly</li>
-                            <li>Daily Scanner</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="business_wreap">
-                        <h4 class="bundle_text"><span>Other services</span></h4>
-                        <div class="business_list">
-                          <h5>Publication</h5>
-                          <ul class="m-0">
-                            <li>LA Weekly</li>
-                            <li>IB Times (SG)</li>
-                            <li>Digital Journal</li>
-                            <li>NY Weekly</li>
-                            <li>Daily Scanner</li>
-                          </ul>
-                        </div>
-                      </div>
+                    @endforeach
                     </div>
                   </div>
                 </div>
