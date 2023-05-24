@@ -3,19 +3,20 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="title nk-block-title">Insert Publications</h4>
+            <h4 class="title nk-block-title">Update Publications</h4>
             <div class="nk-block-des">
-                <p>You can insert your publications here.</p>
+                <p>You can update your publications here.</p>
             </div>
         </div>
     </div>
     <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">Publication Form</h5>
+                <h5 class="card-title">Update-Publication Form</h5>
             </div>
-            <form action="" id="publication_form" methos="post"class="gy-3">
+            <form action="" id="publication_form" method="post"class="gy-3">
                 @csrf
+                <input type="hidden" value="{{ $publication['region']['id'] ?? ''}}" name="id">
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
@@ -26,7 +27,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="title" name="title" value="" placeholder="Enter title here"/>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ $publication['title'] ?? '' }}" placeholder="Enter title here"/>
                             </div>
                         </div>
                     </div>
@@ -41,7 +42,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="url" name="url" value="" placeholder="Enter url here"/>
+                                <input type="text" class="form-control" id="url" name="url" value="{{ $publication['url'] ?? '' }}" placeholder="Enter url here"/>
                             </div>
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="price" name="price" value="" placeholder="Enter price here">
+                                <input type="text" class="form-control" id="price" name="price" value="{{ $publication['price'] ?? '' }}" placeholder="Enter price here">
                             </div>
                         </div>
                     </div>
@@ -71,7 +72,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
+                                <input type="number" min="1" class="form-control" id="domain_authority" name="domain_authority" value="{{ $publication['domain_authority'] ?? '' }}" placeholder="Enter number of domain authority">
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number"  min="1" class="form-control" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
+                                <input type="number"  min="1" class="form-control" id="turn_around_time" value="{{ $publication['tat'] ?? '' }}" name="turn_around_time" placeholder="Enter turn around time">
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,16 @@
                                
                                 <li>
                                     <div class="custom-control custom-control-sm custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}" name="genre_list[]" value="{{ $genre['id'] }}">
+
+                                        <input type="checkbox" class="custom-control-input" id="{{ $genre['name'] }}"  name="genre_list[]" value="{{ $genre['id'] }}"
+                                        <?php $genres =  json_decode($publication['genre']); ?>
+                                        @for ($g = 0; $g < count($genres); $g++)
+                                         
+                                        @if ($genre["id"] == $genres[$g])
+                                            checked
+                                        @endif
+                                        @endfor
+                                        />
                                         <label class="custom-control-label" for="{{ $genre['name'] }}">{{ $genre['name'] }}</label>
                                     </div>
                                 </li>
@@ -135,7 +145,11 @@
                                
                                 <li>
                                     <div class="custom-control custom-control-sm custom-radio">
-                                        <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}">
+                                        <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}"
+                                        @if ($article['id'] == $publication['article_type']['id'])
+                                            checked
+                                        @endif
+                                        />
                                         <label class="custom-control-label" for="{{ $article['type'] }}">{{ $article['type'] }}</label>
                                     </div>
                                 </li>
@@ -163,7 +177,11 @@
                                
                                 <li>
                                     <div class="custom-control custom-control-sm custom-radio">
-                                        <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}">
+                                        <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}"
+                                        @if ($region['id'] == $publication['region']['id'])
+                                            checked
+                                        @endif
+                                        />
                                         <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
                                     </div>
                                 </li>
@@ -179,7 +197,7 @@
                 <div class="row g-3">
                     <div class="col-lg-7 offset-lg-5">
                         <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-lg btn-primary">Add Publication</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Update Publication</button>
                         </div>
                     </div>
                 </div>
@@ -194,7 +212,7 @@
             formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
-                url: 'addPublication',
+                url: '/updatePublication',
                 data: formdata,
                 dataType: 'json',
                 contentType: false,
@@ -203,11 +221,11 @@
                 $('.spinner-container').show();
                 },
                 success: function (data) {
-                    // console.warn(data);
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').prop('checked', false).val('');
+                    // $(':input').prop('checked', false).val('');
+                    console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

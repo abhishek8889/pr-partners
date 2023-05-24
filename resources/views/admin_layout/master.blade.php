@@ -31,9 +31,15 @@
                         <a href="#" class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                     </div>
                     <div class="nk-sidebar-brand">
+<<<<<<< HEAD
                         <a href="admin-dashboard" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="{{ asset('/partner-asset/img/Logo.png') }}" srcset="{{ asset('/partner-asset/img/Logo.png') }}" alt="logo">
                             <img class="logo-dark logo-img" src="{{ asset('/partner-asset/img/Logo.png') }}" srcset="{{ asset('/partner-asset/img/Logo.png') }}" alt="logo-dark">
+=======
+                        <a href="{{ url('admin-dashboard') ?? ''}}" class="logo-link nk-sidebar-logo">
+                            <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
+                            <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+>>>>>>> 219a53aa815bdb57f663e9f46bbbf58ff3e44d89
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -43,7 +49,7 @@
                             <ul class="nk-menu">
                                 <!-- Dashboard -->
                                 <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Dashboard</h6>
+                                    <a href="{{ url('admin-dashboard') ?? ''}}"><h6 class="overline-title text-primary-alt">Dashboard</h6></a>
                                 </li>
                                 <!-- <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
@@ -129,6 +135,48 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-text">Press Package</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="{{url('/admin-dashboard/press-package')}}" class="nk-menu-link"><span class="nk-menu-text">Package Bundel</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ url('/admin-dashboard/package-category') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel category</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel List</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-text">Other Services</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="{{url('/admin-dashboard/services-list')}}" class="nk-menu-link"><span class="nk-menu-text">Services list</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="{{ url('/admin-dashboard/services-insert') }}" class="nk-menu-link"><span class="nk-menu-text">Services Insert</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-text">Press Release</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="{{url('/admin-dashboard/press-release')}}" class="nk-menu-link"><span class="nk-menu-text">Press Release</span></a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -144,7 +192,7 @@
                                 <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                             </div>
                             <div class="nk-header-brand d-xl-none">
-                                <a href="html/index.html" class="logo-link">
+                                <a href="{{url('admin-dashboard') ?? ''}}" class="logo-link">
                                     <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
                                     <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
                                 </a>
@@ -152,11 +200,11 @@
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
+                                        <!-- <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="quick-icon border border-light">
                                                 <img class="icon" src="{{ asset('admin-theme/images/flags/english-sq.png') }}" alt="">
                                             </div>
-                                        </a>
+                                        </a> -->
                                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-s1">
                                             <ul class="language-list">
                                                 <li>
@@ -294,7 +342,7 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2023 by <a href="https://softnio.com" target="_blank">Logomax</a>
+                            <div class="nk-footer-copyright"> &copy; 2023 by <a href="{{ url('admin-dashboard') ?? ''}}" target="_blank">PR Partners</a>
                             </div>
                         </div>
                     </div>

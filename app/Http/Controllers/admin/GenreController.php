@@ -14,7 +14,7 @@ class GenreController extends Controller
     //
     public function index(){
         // $genre = Genre::all();
-        $genres = Genre::orderBy('created_at','desc')->paginate(10);
+        $genres = Genre::orderBy('created_at','desc')->get();
         return view('admin.Genre.index',compact('genres'));
     }
     public function genreAdd(Request $request)

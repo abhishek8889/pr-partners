@@ -10,7 +10,7 @@ use App\Models\Region;
 class RegionController extends Controller
 {
     public function index(){
-        $regions = Region::get();
+        $regions = Region::orderBy('created_at','desc')->get();
         return view('admin.regions.index',compact('regions'));
     }
     public function addProc(Request $request){
