@@ -9,7 +9,7 @@ class ServiceController extends Controller
 {
     //
     public function index(){
-        $services = Service::orderBy('created_at','desc')->all();
+        $services = Service::orderBy('created_at','desc')->get();
         return view('admin.Services.index',compact('services'));
     }
     public function insertService(){

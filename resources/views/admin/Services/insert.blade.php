@@ -214,7 +214,10 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').prop('checked', false).val('');
+                    // $(':input').prop('checked', false).val('');
+                    $('.form-control').val('');
+                    $('.custom-control-input').prop('checked', false);
+                    $('.checkboxName').html('');
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },

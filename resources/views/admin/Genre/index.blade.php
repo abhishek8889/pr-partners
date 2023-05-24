@@ -114,14 +114,20 @@ $(document).ready(function() {
             success: function(data) {
                 setTimeout(function() {
                     $('.spinner-container').hide();
-                }, 1000);
+                    NioApp.Toast(data, 'success', { position: 'top-right' });
+                    location.reload();
+                }, 2000);
+                // setTimeout(function() {
+                //     $('.spinner-container').hide();
+                // }, 1000);
                 // console.warn(data);
-                $(':input').val(null);
+                // $(':input').val(null);
 
-                NioApp.Toast(data, 'success', {
-                    position: 'top-right'
-                });
-                $("#table").load(location.href + " #table");
+                // NioApp.Toast(data, 'success', {
+                //     position: 'top-right'
+                // });
+                // location.reload();
+                // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {

@@ -56,7 +56,7 @@ class PressPackageController extends Controller
         return response()->json('Your package has been Updated successfully');
     }
     public function packageCategory(){
-        $packageCategorys = PressPackageCategory::all();
+        $packageCategorys = PressPackageCategory::orderBy('created_at','desc')->get();
         return view('admin.press_package.packageCategory',compact('packageCategorys'));
     }
     public function addPackageCategory(Request $request){
