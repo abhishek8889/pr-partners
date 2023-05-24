@@ -140,15 +140,22 @@ $(document).ready(function() {
             success: function(data) {
                 setTimeout(function() {
                     $('.spinner-container').hide();
-                }, 1000);
-                // console.warn(data);
-                $('.title').val('');
-                $('.price').val('');
-                // $(':input').prop('checked', false).val('');
-                NioApp.Toast(data, 'success', {
-                    position: 'top-right'
-                });
-                $("#table").load(location.href + " #table");
+                    NioApp.Toast(data, 'success', { position: 'top-right' });
+                    location.reload();
+                }, 2000);
+
+                // setTimeout(function() {
+                //     $('.spinner-container').hide();
+                // }, 1000);
+                // // console.warn(data);
+                // // $('.title').val('');
+                // // $('.price').val('');
+                // // $(':input').prop('checked', false).val('');
+                // NioApp.Toast(data, 'success', {
+                //     position: 'top-right'
+                // });
+                // location.reload();
+                // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
 
@@ -215,7 +222,12 @@ $(document).ready(function() {
                     NioApp.Toast(data, 'success', {
                         position: 'top-right'
                     });
-                    $("#table").load(location.href + " #table");
+                    $('.editprice' + edit_id).prop('disabled', true);
+                    $('.edittitle' + edit_id).prop('disabled', true).focus();
+                    $('.div' + edit_id).addClass('d-none');
+                    $('.drop' + edit_id).removeClass('d-none');
+
+                    // $("#table").load(location.href + " #table");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {

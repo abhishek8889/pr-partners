@@ -57,6 +57,7 @@
                         <span class="tb-odr-date">{{ $packageCategory->updated_at->format('j F, Y') ?? ''}}</span>
                     </td>
                     <td class="nk-tb-col">
+                        <span class="d-none">{{ $packageCategory->name ?? ''}}</span>
                         <span class="tb-odr-total">
                             <input type="text" data-id="{{ $packageCategory->id ?? ''}}" old-name="{{$packageCategory->name ?? ''}}"
                                 name="editname{{ $packageCategory->id ?? ''}}" class="form-control editname{{ $packageCategory->id ?? ''}}" disabled
@@ -100,13 +101,18 @@
                 $('.spinner-container').show();
                 },
                 success: function (data) {
-                setTimeout(function() {
+                    setTimeout(function() {
                         $('.spinner-container').hide();
-                    }, 1000);
-                    $(':input').prop('checked', false).val('');
-                    // console.warn(data);
-                    NioApp.Toast(data, 'success', { position: 'top-right' });
-                    $("#table").load(location.href + " #table");
+                        NioApp.Toast(data, 'success', { position: 'top-right' });
+                        location.reload();
+                    }, 2000);
+                    // setTimeout(function() {
+                    //     $('.spinner-container').hide();
+                    // }, 1000);
+                    // $(':input').prop('checked', false).val('');
+                    // // console.warn(data);
+                    // NioApp.Toast(data, 'success', { position: 'top-right' });
+                    // $("#table").load(location.href + " #table");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {

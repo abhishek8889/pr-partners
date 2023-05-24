@@ -43,7 +43,7 @@
                 
                 @for ($i = 0; $i < count($publications); $i++)
                       
-                    <tr class="nk-tb-item">
+                    <tr class="nk-tb-item tr{{ $publications[$i]['id'] ?? ''}}">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input type="checkbox" class="custom-control-input" id="{{ $publications[$i]['id'] ?? ''}}">
@@ -329,8 +329,8 @@ $(document).ready(function() {
                     }, 1000);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
-                    // $('.tr'+remove_id).addClass('d-none').remove();
-                    $("#table").load(location.href + " #table");
+                    $('.tr'+remove_id).addClass('d-none').remove();
+                    // $("#table").load(location.href + " #table");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {

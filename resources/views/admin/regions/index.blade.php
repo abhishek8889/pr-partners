@@ -67,7 +67,7 @@
                             </td>
                             <td class="nk-tb-col">
                             <span class="d-none">{{ $r->country_code ?? '' }}</span>
-                                <span class="tb-odr-id">
+                                <span class="tb-odr">
                                 <input type="text" id="country_code{{ $r->id }}" class="form-control" value="{{ $r->country_code ?? '' }}" disabled> 
                                 </span>
                             </td>
@@ -100,8 +100,8 @@
  $(document).ready(function(){
             $('#country_form').on('submit',function(e){
                 e.preventDefault();
-               $('#country_name').html('');
-               $('#country_code').html('');
+            //    $('#country_name').html('');
+            //    $('#country_code').html('');
                 formdata = new FormData(this);
                 $.ajax({
                 method: 'post',
@@ -113,21 +113,35 @@
                 beforeSend: function() {
                 $('.spinner-container').show();
                 },
-                success: function(response)
-                {
+                success: function(response) {
                     setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
-                    $('#country_codee').val('');
-                    $('#country_namee').val('');
-                    NioApp.Toast('Successfully saved regions', 'info', {position: 'top-right'});
-                    let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
-                    let second_td = '<span class="tb-odr-id"><input type="text" id="country_code'+response.region.id+'" class="form-control" value="'+response.region.country_code+'" disabled> </span>';
-                    let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="country_name'+response.region.id+'" value="'+response.region.country_name+'" disabled> </span></span>';
-                    let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
-                    let ul_buttons = '<li><a data-id="'+response.region.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.region.id+'" id="remove" class="text-danger">Remove</a></li>';
-                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                            $('.spinner-container').hide();
+                            NioApp.Toast('Region name add successfully', 'success', { position: 'top-right' });
+                            location.reload();
+                        }, 2000);
                 },
+                    // setTimeout(function() {
+                    //     $('.spinner-container').hide();
+                    // }, 1000);
+                    // $('#country_codee').val('');
+                    // $('#country_namee').val('');
+                    // NioApp.Toast('Successfully saved regions', 'info', {position: 'top-right'});
+                    // location.reload();
+                    // let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
+                    // let second_td = '<span class="tb-odr"><input type="text" id="country_code'+response.region.id+'" class="form-control" value="'+response.region.country_code+'" disabled> </span>';
+                    // let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="country_name'+response.region.id+'" value="'+response.region.country_name+'" disabled> </span></span>';
+                    // let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
+                    // let ul_buttons = '<li><a data-id="'+response.region.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.region.id+'" id="remove" class="text-danger">Remove</a></li>';
+                    // $('tbody').prepend(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+
+                        // Update the S.No for each row
+                        // var rowCount = 1;
+                        // $('tbody tr.tb-odr-item').each(function() {
+                        // $(this).find('.tb-odr-id').text(rowCount);
+                        // rowCount++;
+                        // });
+                    // $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                // },
                 error: function(jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {
                         $('.spinner-container').hide();

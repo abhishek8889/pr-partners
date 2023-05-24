@@ -26,7 +26,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="title" name="title" value="" placeholder="Enter title here"/>
+                                <input type="text" class="form-control form-data" id="title" name="title" value="" placeholder="Enter title here"/>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="url" name="url" value="" placeholder="Enter url here"/>
+                                <input type="text" class="form-control form-data" id="url" name="url" value="" placeholder="Enter url here"/>
                             </div>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="text" class="form-control" id="price" name="price" value="" placeholder="Enter price here">
+                                <input type="text" class="form-control form-data" id="price" name="price" value="" placeholder="Enter price here">
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number" min="1" class="form-control" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
+                                <input type="number" min="1" class="form-control form-data" id="domain_authority" name="domain_authority" value="" placeholder="Enter number of domain authority">
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class="col-lg-7">
                         <div class="form-group">
                             <div class="form-control-wrap">
-                                <input type="number"  min="1" class="form-control" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
+                                <input type="number"  min="1" class="form-control form-data" id="turn_around_time" value="" name="turn_around_time" placeholder="Enter turn around time">
                             </div>
                         </div>
                     </div>
@@ -203,11 +203,13 @@
                 $('.spinner-container').show();
                 },
                 success: function (data) {
-                    // console.warn(data);
+                    console.warn(data);
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').prop('checked', false).val('');
+                    $('.form-data').val('');
+                    $('.custom-control-input').prop('checked', false);
+                  
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

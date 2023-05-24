@@ -104,21 +104,41 @@
                 beforeSend: function() {
                 $('.spinner-container').show();
                 },
-                success: function(response)
-                {
+                success: function(response) {
                     setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
-                    $('#type').val('');
-                    $('#error_wrap').html('');
-                    NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
-                    let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
-                    let second_td = '<span class="tb-odr-date">'+response.created_at+'</span>';
-                    let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
-                    let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
-                    let ul_buttons = '<li><a data-id="'+response.article.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.article.id+'" id="remove" class="text-danger">Remove</a></li>';
-                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                            $('.spinner-container').hide();
+                            NioApp.Toast('Article has been saved', 'success', { position: 'top-right' });
+                            location.reload();
+                        }, 2000);
                 },
+
+                // success: function(response)
+                // {
+                //     setTimeout(function() {
+                //         $('.spinner-container').hide();
+                //     }, 1000);
+                //     $('#type').val('');
+                //     $('#error_wrap').html('');
+                //     NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
+                //     location.reload();
+                //     // let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
+                //     // let second_td = '<span class="tb-odr-date">'+response.created_at+'</span>';
+                //     // let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
+                //     // let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
+                //     // let ul_buttons = '<li><a data-id="'+response.article.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.article.id+'" id="remove" class="text-danger">Remove</a></li>';
+                //     // $('tbody').prepend(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                //         // Prepend the new row at the beginning of the table body
+                //         // $('tbody').prepend(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+
+                //         // // Update the S.No for each row
+                //         // var rowCount = 1;
+                //         // $('tbody tr.tb-odr-item').each(function() {
+                //         // $(this).find('.tb-odr-id').text(rowCount);
+                //         // rowCount++;
+                //         // });
+
+                //     // $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                // },
                 error: function (error) {
                     setTimeout(function() {
                         $('.spinner-container').hide();
@@ -131,7 +151,7 @@
         e.preventDefault();
         
         var id = $(this).attr('data-id');
-        $("input#input"+id).removeAttr('disabled');
+        $("input#input"+id).removeAttr('disabled').focus();
         $("input#input"+id).on('change',function(){
             let type = $(this).val();
             
