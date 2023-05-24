@@ -207,7 +207,7 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').val(null);
+                    $(':input').prop('checked', false).val('');
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

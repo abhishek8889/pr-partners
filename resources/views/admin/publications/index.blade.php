@@ -15,10 +15,16 @@
                 <thead>
                    
                     <tr class="nk-tb-item nk-tb-head">
+                        <!-- <th class="nk-tb-col ">
+                            <div class="">
+                                <input type="checkbox" class="checkall" id="uid">
+                                <label class="" for="uid"></label>
+                            </div>
+                        </th> -->
                         <th class="nk-tb-col nk-tb-col-check">
-                            <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid">
-                                <label class="custom-control-label" for="uid"></label>
+                            <div class="custom-control custom-control-sm custom-checkbox notext " id="maincheck">
+                                <input type="checkbox" class="custom-control-input checkall" id="page-0">
+                                <label class="custom-control-label" for="page-0"></label>
                             </div>
                         </th>
                         <th class="nk-tb-col"><span class="sub-text">Publication</span></th>
@@ -40,10 +46,16 @@
                     <tr class="nk-tb-item">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
-                                <input type="checkbox" class="custom-control-input" id="uid1">
-                                <label class="custom-control-label" for="uid1"></label>
+                                <input type="checkbox" class="custom-control-input" id="{{ $publications[$i]['id'] ?? ''}}">
+                                <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
                             </div>
                         </td>
+                        <!-- <td class="nk-tb-col ">
+                            <div class="">
+                                <input type="checkbox" class="" id="{{ $publications[$i]['id'] ?? ''}}">
+                                <label class="" for="{{ $publications[$i]['id'] ?? ''}}"></label>
+                            </div>
+                        </td> -->
                         <td class="nk-tb-col">
                             <div class="user-card">
                                 <div class="user-info">
@@ -96,13 +108,13 @@
                                         <div class="dropdown-menu dropdown-menu-end">
                                             <ul class="link-list-opt no-bdr">
                                                  <!-- <li><a href="#"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>  -->
-                                                 <li><a href="{{ url('admin-dashboard/update-publications')}}/{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-eye"></em><span>Edit</span></a></li>
+                                                 <li><a href="{{ url('admin-dashboard/update-publications')}}/{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-pen"></em><span>Edit</span></a></li>
                                                 <!-- <li><a href="#"><em class="icon ni ni-repeat"></em><span>Transaction</span></a></li>
                                                 <li><a href="#"><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Pass</span></a></li>
                                                 <li><a href="#"><em class="icon ni ni-shield-off"></em><span>Reset 2FA</span></a></li> -->
-                                                <li><a href="#" class="remove" data-id="{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-na"></em><span>Remove</span></a></li> 
+                                                <li><a href="#" class="remove" data-id="{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-trash"></em><span>Remove</span></a></li> 
                                             </ul>
                                         </div>
                                     </div>
@@ -115,7 +127,185 @@
             </table>
         </div>
     </div><!-- .card-preview -->
-</div> <!-- nk-block -->publication-remove
+</div> <!-- nk-block -->
+<script>
+// $(document).ready(function() {
+//     $('.checkall').change(function() {
+//         const checkbox = $(this);
+
+//         if (checkbox.is(':checked')) {
+//             $('input[type="checkbox"]').prop('checked', true);
+//         } else {
+//             $('input[type="checkbox"]').prop('checked', false);
+//         }
+//     });
+// });
+
+// $(document).ready(function() {
+    // $('.paginate_button page-item').on('click', function() {
+    //     // const pageId = $(this).data('dt-idx');
+    //     // console.log('Page ID:', pageId);
+    //     console.log('cliked page');
+    // });
+
+    // Rest of your code...
+    // $(document).on('click', '.page-link', function(){
+
+    //    const pageId = $(this).data('dt-idx');
+    //     console.log('Page ID:', pageId);
+    //     $("#maincheck").find('checkall').attr('id',pageId);
+    
+    // }); 
+
+//     $(document).ready(function() {
+//     $(document).on('click', '.pagination .page-link', function() {
+//         const pageId = $(this).data('dt-idx');
+//         console.log('Clicked Page ID:', pageId);
+//         // Perform any necessary operations for the clicked page here
+//     });
+
+//     $(document).on('change', '#maincheck input.checkall', function() {
+//         const isAllChecked = $(this).is(':checked');
+//         const currentPage = $(this).closest('.pagination').find('.paginate_button.active');
+//         const checkboxes = currentPage.find('input[type="checkbox"]');
+        
+//         checkboxes.prop('checked', isAllChecked);
+//     });
+
+//     // Rest of your code...
+// });
+// $(document).ready(function() {
+//     $(document).on('click', '.pagination .page-link', function() {
+//         const pageId = $(this).data('dt-idx');
+//         console.log('Clicked Page ID:', pageId);
+        
+//         $('.checkall').attr('data-page', pageId); // Set the 'data-page' attribute to the page ID
+        
+//         console.log($('.checkall').attr('data-page'));
+//     });
+    
+//     $(document).on('click', '.checkall', function(event) {
+//         event.preventDefault();
+//         const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
+//         console.log('Clicked Page ID:', pageId);
+//         const targetIdx = pageId; // Replace with the desired data-dt-idx value
+        
+//         // Find the <a> tag with the matching data-dt-idx value and trigger the click event
+//         $('a[data-dt-idx="' + targetIdx + '"]').click();
+        
+//         // Uncheck the checkboxes
+//         $('input[type="checkbox"]').prop('checked', false);
+//     });
+// });
+$(document).ready(function() {
+    $(document).on('click', '.pagination .page-link', function() {
+        const pageId = $(this).data('dt-idx');
+        console.log('Clicked Page ID:', pageId);
+        
+        $('.checkall').attr('data-page', pageId); // Set the 'data-page' attribute to the page ID
+        
+        console.log($('.checkall').attr('data-page'));
+    });
+    
+    $(document).on('click', '.checkall', function(event) {
+        event.preventDefault();
+        const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
+        console.log('Clicked Page ID:', pageId);
+        const targetIdx = pageId; // Replace with the desired data-dt-idx value
+        
+        // Find the <a> tag with the matching data-dt-idx value and trigger the click event
+        $('a[data-dt-idx="' + targetIdx + '"]').click();
+        
+        // Toggle the checkboxes
+        $('input[type="checkbox"]').each(function() {
+            $(this).prop('checked', !$(this).prop('checked'));
+        });
+    });
+});
+
+
+                // $(document).ready(function() {
+                //     $(document).on('click', '.pagination .page-link', function() {
+                //         const pageId = $(this).data('dt-idx');
+                //         console.log('Clicked Page ID:', pageId);
+                        
+                //         $('.checkall').attr('data-page', pageId); // Set the 'data-page' attribute to the page ID
+                        
+                //         console.log($('.checkall').attr('data-page'));
+                //     });
+                    
+                //     $(document).on('click', '.checkall', function(event) {
+                //         event.preventDefault();
+                //         const pageId = $(this).attr('data-page'); // Retrieve the page ID from the 'data-page' attribute
+                //         console.log('Clicked Page ID:', pageId);
+                //         const targetIdx = pageId; // Replace with the desired data-dt-idx value
+                //         // Find the <a> tag with the matching data-dt-idx value and trigger the click event
+                //         $('a[data-dt-idx="' + targetIdx + '"]').click();
+                //         // if($(this).prop('checked'),true){
+                //             $(this).prop('checked',true);
+                //             $('input[type="checkbox"]').prop('checked', true);
+                //             return true;
+                //         // }else{
+                //         //     $(this).prop('checked',true);
+                //         // $('input[type="checkbox"]').prop('checked', true);
+                //         // }
+                //     });
+                // });
+
+// $(document).on('click', '.checkall', function(e) {
+//     e.preventDefault();
+//     console.log($(this).attr('id'));
+// });
+// $(document).on('click', '#page-' + pageId, function() {
+//     console.log('Clicked Page ID:', $(this).data('dt-idx'));
+// });
+
+//     $(document).ready(function() {
+//     $(document).on('click', '.pagination .page-link', function() {
+//         const pageId = $(this).data('dt-idx');
+//         console.log('Clicked Page ID:', pageId);
+//         // Perform any necessary operations for the clicked page here
+//     });
+
+//     // Rest of your code...
+// });
+
+
+//     $(document).ready(function() {
+//     $('#maincheck input.checkall').change(function() {
+//         const isAllChecked = $(this).is(':checked');
+//         const currentPage = $(this).closest('.pagination').find('.paginate_button.active');
+//         const checkboxes = currentPage.find('input[type="checkbox"]');
+        
+//         checkboxes.prop('checked', isAllChecked);
+//     });
+// });
+
+
+// });
+// $(document).ready(function() {
+    // $(document).on('click', '.checkall', function(){
+    //     const checkbox = $(this);
+    //     const currentPage = checkbox.closest('.paginate_button.active');
+    //     console.log(currentPage);
+    //     const pageIdx = currentPage.find('a').data('dt-idx');
+    //     console.log('Page ID:', pageIdx);
+    //     const checkboxes = $('input[type="checkbox"][data-dt-idx="' + pageIdx + '"]');
+    //     console.log(checkboxes);
+
+    //     if (checkbox.is(':checked')) {
+    //         checkboxes.prop('checked', true);
+    //     } else {
+    //         checkboxes.prop('checked', false);
+    //     }
+    // });
+
+// });
+
+
+
+
+</script>
 <script>
     //  Remove function 
     $(document).ready(function () {

@@ -46,16 +46,17 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault">Select Publication</button>
 
                                     <!-- Modal Content Code -->
-                                    <div class="modal fade" tabindex="-1" id="modalDefault">
+                                    <div class="modal fade" tabindex="-1" id="modalDefault" style="--bs-modal-width: 1111px !important;">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Select Publications</h5>
+                                                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <em class="icon ni ni-cross"></em>
+                                                </a>
+                                            </div>
                                                 <div class="card card-bordered card-preview tablecard">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Select Publications</h5>
-                                                        <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                            <em class="icon ni ni-cross"></em>
-                                                        </a>
-                                                    </div>
+                                            
                                                     <div class="card-inner">
                                                         <!-- datatable-init and s here  -->
                                                         <table class="datatable-inits nowrap nk-tb-list nk-tb-ulist " data-auto-responsive="true">
@@ -88,7 +89,7 @@
                                                                     <td class="nk-tb-col nk-tb-col-check">
                                                                         <div class="custom-control custom-control-sm custom-checkbox notext ">
                                                                             <!--onclick="test()" <input type="checkbox" name="publication_id[]" class="custom-control-input" id="checkbox{{ $publications[$i]['id'] ?? ''}}" value="{{ $publications[$i]['id'] ?? ''}}"> -->
-                                                                            <input  type="checkbox" class="custom-control-input publication_id" id="{{ $publications[$i]['id'] ?? ''}}" name="publication_id[]" value="{{ $publications[$i]['id'] ?? ''}}">
+                                                                            <input  type="checkbox" class="custom-control-input publication_id" data-name="{{ $publications[$i]['title'] ?? ''}}" id="{{ $publications[$i]['id'] ?? ''}}" name="publication_id[]" value="{{ $publications[$i]['id'] ?? ''}}">
                                                                             <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
                                                                         </div>
                                                                     </td>
@@ -142,10 +143,15 @@
                                                             </tbody>
                                                         </table>
                                                     </div>
-    </div>
+                                                 </div>	
+                                            <div class="modal-footer bg-light">
+												 <a href="#" class="btn btn-lg btn-mw btn-primary" data-bs-dismiss="modal">Done</a>
+											 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="checkboxName"></div>
+
                             </ul>
                         </div>
                     </div>
@@ -162,6 +168,33 @@
         </div>
     </div><!-- card -->
 </div><!-- .nk-block -->
+<script>
+    $(document).ready(function() {
+  $('.publication_id').change(function() {
+    const checkbox = $(this);
+    const checkboxName = checkbox.data('name');
+    const checkboxDiv = $('.checkboxName');
+
+    if (checkbox.is(':checked')) {
+      const newLabel = $('<span>', {
+        'class':'publisherTag',
+        'data-name': checkboxName,
+        'text': checkboxName
+      }).append($('<span>', {
+        'class': 'remove-chekbox',
+        'text': 'x',
+        'click': function() {
+          checkbox.prop('checked', false);
+          $(this).parent().remove();
+        }
+      }));
+      checkboxDiv.append(newLabel);
+    } else {
+      checkboxDiv.find(`span[data-name="${checkboxName}"]`).remove();
+    }
+  });
+});
+  </script>
 <script>
     $(document).ready(function(){
         $('#service_form').on('submit',function(e){
@@ -181,7 +214,7 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').val(null);
+                    $(':input').prop('checked', false).val('');
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },

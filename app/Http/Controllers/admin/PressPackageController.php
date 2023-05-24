@@ -10,7 +10,7 @@ class PressPackageController extends Controller
 {
     //
     public function index(){
-        $packageCategorys = PressPackageCategory::all();
+        $packageCategorys = PressPackageCategory::orderBy('created_at','desc')->get();
         $publications = Publication::with('article_type','region')->get()->toArray();
         return view('admin.press_package.index',compact('packageCategorys','publications'));
     }
@@ -89,7 +89,7 @@ class PressPackageController extends Controller
 
 
     public function packageList(Request $request){
-        $packageBundles = PackageBundle::with('category')->get()->toArray();
+        $packageBundles = PackageBundle::orderBy('created_at','desc')->with('category')->get()->toArray();
         return view('admin.press_package.packageList',compact('packageBundles'));
     }
 

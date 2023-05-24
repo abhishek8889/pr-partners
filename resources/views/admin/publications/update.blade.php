@@ -144,7 +144,7 @@
                                 @foreach($article_types as $article)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                    <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $article['type'] }}" name="article_type" value="{{ $article['id'] }}"
                                         @if ($article['id'] == $publication['article_type']['id'])
                                             checked
@@ -176,7 +176,7 @@
                                 @foreach($region_list as $region)
                                
                                 <li>
-                                    <div class="custom-control custom-control-sm custom-checkbox">
+                                    <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}"
                                         @if ($region['id'] == $publication['region']['id'])
                                             checked
@@ -224,6 +224,7 @@
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
+                    // $(':input').prop('checked', false).val('');
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                 },

@@ -42,36 +42,43 @@
 </div>
 
 <div class="card card-bordered card-preview">
-                <table class="table table-orders" id="table">
-                    <thead class="tb-odr-head">
-                        <tr class="tb-odr-item">
-                            <th class="tb-odr-info">
+        <div class="card-inner">
+            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
+                <thead>
+					<tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-id">#</span>
+                            </th>
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-id">Country code</span>
                             </th>
-                            <th class="tb-odr-amount">
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-total">Article Type</span>
                             </th>
-                            <th class="tb-odr-action">Action</th>
+                            <th class="nk-tb-col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="tb-odr-body">
-                        <?php $count = 0; ?>
+                    <tbody>
+                        <?php $i = 1 ?>
                         @foreach($regions as $r)
-                        <?php $count = $count+1 ?>
                         <tr class="tb-odr-item" id="tr{{$r->id}}">
-                            <td class="tb-odr-info">
-                                <span class="tb-odr-id">#{{ $count }}</span>
+                            <td class="nk-tb-col">
+                                <span class="tb-odr-id">{{$i++}}</span>
+                            </td>
+                            <td class="nk-tb-col">
+                            <span class="d-none">{{ $r->country_code ?? '' }}</span>
                                 <span class="tb-odr-id">
                                 <input type="text" id="country_code{{ $r->id }}" class="form-control" value="{{ $r->country_code ?? '' }}" disabled> 
                                 </span>
                             </td>
-                            <td class="tb-odr-amount">
+                            <td class="nk-tb-col">
+                            <span class="d-none">{{ $r->country_name ?? '' }}</span>
+
                                 <span class="tb-odr-total">
                                   <input type="text" id="country_name{{ $r->id }}" class="form-control" value="{{ $r->country_name ?? '' }}" disabled> 
                                 </span>
                             </td>
-                            <td class="tb-odr-action">
+                            <td class="nk-tb-col">
                                 <div class="dropdown">
                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
@@ -87,6 +94,7 @@
                     </tbody>
                 </table>
         </div>
+</div>
 
 <script>
  $(document).ready(function(){
@@ -113,11 +121,12 @@
                     $('#country_codee').val('');
                     $('#country_namee').val('');
                     NioApp.Toast('Successfully saved regions', 'info', {position: 'top-right'});
-                    let first_td = '<span class="tb-odr-id">#'+response.total+'</span> <span class="tb-odr-id"><input type="text" id="country_code'+response.region.id+'" class="form-control" value="'+response.region.country_code+'" disabled> </span>';
-                    let second_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="country_name'+response.region.id+'" value="'+response.region.country_name+'" disabled> </span></span>';
+                    let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
+                    let second_td = '<span class="tb-odr-id"><input type="text" id="country_code'+response.region.id+'" class="form-control" value="'+response.region.country_code+'" disabled> </span>';
+                    let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="country_name'+response.region.id+'" value="'+response.region.country_name+'" disabled> </span></span>';
                     let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
                     let ul_buttons = '<li><a data-id="'+response.region.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.region.id+'" id="remove" class="text-danger">Remove</a></li>';
-                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.region.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {

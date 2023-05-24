@@ -8,7 +8,7 @@ use App\Models\ArticleType;
 class ArticleController extends Controller
 {
     public function index(){
-        $article_data = ArticleType::get();
+        $article_data = ArticleType::orderBy('created_at','desc')->get();
         return view('admin.article.index',compact('article_data'));
     }
     public function articleAdd(Request $req){

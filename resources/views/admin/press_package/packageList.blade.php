@@ -35,7 +35,7 @@
              
                 @for ($i = 0; $i < count($packageBundles); $i++)
                       
-                    <tr class="nk-tb-item">
+                    <tr class="nk-tb-item tr{{ $packageBundles[$i]['id'] ?? ''}}">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input type="checkbox" class="custom-control-input" id="uid1">
@@ -71,20 +71,21 @@
                                 // die();
                                 ?>
                         <!-- Modal Trigger Code -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault">View Publications</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault{{ $packageBundles[$i]['id'] ?? ''}}">View Publications</button>
 
                                
                                     <!-- Modal Content Code -->
-                                    <div class="modal fade" tabindex="-1" id="modalDefault">
+                                    <div class="modal fade" tabindex="-1" id="modalDefault{{ $packageBundles[$i]['id'] ?? ''}}" style="--bs-modal-width: 1111px !important;">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Select Publications</h5>
+                                                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                    <em class="icon ni ni-cross"></em>
+                                                </a>
+                                            </div>
                                                 <div class="card card-bordered card-preview tablecard">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">View Publications</h5>
-                                                        <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                            <em class="icon ni ni-cross"></em>
-                                                        </a>
-                                                    </div>
+                                                   
                                                     <div class="card-inner">
                                                         <table class="datatable-inits nowrap nk-tb-list nk-tb-ulist " data-auto-responsive="true">
                                                             <thead>
@@ -167,6 +168,9 @@
                                                         </table>
                                                     </div>
                                                 </div>
+                                                <div class="modal-footer bg-light">
+												    <a href="#" class="btn btn-lg btn-mw btn-primary" data-bs-dismiss="modal">Done</a>
+											    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -217,8 +221,8 @@ $(document).ready(function() {
                 NioApp.Toast(data, 'success', {
                     position: 'top-right'
                 });
-                // $('.tr'+remove_id).addClass('d-none').remove();
-                $("#table").load(location.href + " #table");
+                $('.tr'+remove_id).addClass('d-none').remove();
+                // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 var errors = jqXHR.responseJSON.errors;

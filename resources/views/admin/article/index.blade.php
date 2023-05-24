@@ -36,34 +36,41 @@
         </div>
 </div>
 <div class="card card-bordered card-preview">
-                <table class="table table-orders" id="table">
-                    <thead class="tb-odr-head">
-                        <tr class="tb-odr-item">
-                            <th class="tb-odr-info">
+        <div class="card-inner">
+            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
+                <thead>
+                        <tr class="nk-tb-item nk-tb-head">
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-id">#</span>
+                            </th>
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-date d-none d-md-inline-block">Date</span>
                             </th>
-                            <th class="tb-odr-amount">
+                            <th class="nk-tb-col">
                                 <span class="tb-odr-total">Article Type</span>
                             </th>
-                            <th class="tb-odr-action">Action</th>
+                            <th class="nk-tb-col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="tb-odr-body">
+                    <tbody>
                         <?php $count = 0; ?>
                         @foreach($article_data as $ad)
                         <?php $count = $count+1 ?>
                         <tr class="tb-odr-item" id="tr{{$ad->id}}">
-                            <td class="tb-odr-info">
-                                <span class="tb-odr-id">#{{ $count }}</span>
-                                <span class="tb-odr-date">{{ $ad->created_at ?? '' }}</span>
+                            <td class="nk-tb-col">
+                                <span class="tb-odr-id">{{ $count }}</span>
+                                
                             </td>
-                            <td class="tb-odr-amount">
+                            <td class="nk-tb-col">
+                                <span class="">{{ $ad->created_at ?? '' }}</span>
+                            </td>
+                            <td class="nk-tb-col">
+                            <span class="d-none">{{ $ad->type ?? '' }}</span>
                                 <span class="tb-odr-total">
                                   <input type="text" id="input{{ $ad->id }}" class="form-control" value="{{ $ad->type ?? '' }}" disabled> 
                                 </span>
                             </td>
-                            <td class="tb-odr-action">
+                            <td class="nk-tb-col">
                                 <div class="dropdown">
                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
@@ -79,6 +86,7 @@
                     </tbody>
                 </table>
         </div>
+</div>
 
 <script>
     $(document).ready(function(){
@@ -104,13 +112,17 @@
                     $('#type').val('');
                     $('#error_wrap').html('');
                     NioApp.Toast('Successfully saved article type', 'info', {position: 'top-right'});
-                    let first_td = '<span class="tb-odr-id">#'+response.total+'</span> <span class="tb-odr-date">'+response.created_at+'</span>';
-                    let second_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
+                    let first_td = '<span class="tb-odr-id">'+response.total+'</span> ';
+                    let second_td = '<span class="tb-odr-date">'+response.created_at+'</span>';
+                    let third_td ='<span class="tb-odr-total"><input type="text" class="form-control" id="input'+response.article.id+'" value="'+response.article.type+'" disabled> </span></span>';
                     let dropdown_button = '<a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>';
                     let ul_buttons = '<li><a data-id="'+response.article.id+'" id="edit" class="text-primary">Edit</a></li><li><a data-id="'+response.article.id+'" id="remove" class="text-danger">Remove</a></li>';
-                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="tb-odr-info">'+first_td+'</td> <td class="tb-odr-amount">'+second_td+'</td><td class="tb-odr-action"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
+                    $('tbody').append(' <tr class="tb-odr-item" id="tr'+response.article.id+'"><td class="nk-tb-col">'+first_td+'</td> <td class="nk-tb-col">'+second_td+'</td><td class="nk-tb-col">'+third_td+'</td><td class="nk-tb-col"><div class="dropdown">'+dropdown_button+'<div class="dropdown-menu dropdown-menu-end dropdown-menu-xs"><ul class="link-list-plain">'+ul_buttons+'</ul></div></td></tr>');
                 },
                 error: function (error) {
+                    setTimeout(function() {
+                        $('.spinner-container').hide();
+                    }, 1000);
                   $('#error_wrap').html(error.responseJSON.message);
                 }
             });

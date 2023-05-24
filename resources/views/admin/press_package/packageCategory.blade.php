@@ -33,36 +33,37 @@
             </div>
         </div>
     </div>
-    <div class="card card-bordered card-preview mt-2 tablebody">
-        <table class="table table-orders" id="table">
-            <thead class="tb-odr-head">
-                <tr class="tb-odr-item">
-                    <th class="tb-odr-info">
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
+            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
+                <thead>
+					<tr class="nk-tb-item nk-tb-head">
+                    <th class="nk-tb-col">
                         <span class="tb-odr-id">ID</span>
                         <span class="tb-odr-date d-none d-md-inline-block">Date</span>
                     </th>
-                    <th class="tb-odr-amount">
+                    <th class="nk-tb-col">
                         <span class="tb-odr-total">Name</span>
                     </th>
-                    <th class="tb-odr-action">Action</th>
+                    <th class="nk-tb-col">Action</th>
                 </tr>
             </thead>
-            <tbody class="tb-odr-body">
+            <tbody>
                 @php $x=1; @endphp
-                @forelse($packageCategorys as $packageCategory)
+                @foreach($packageCategorys as $packageCategory)
                 <tr class="tb-odr-item tr{{ $packageCategory->id ?? '' }}">
-                    <td class="tb-odr-info">
+                    <td class="nk-tb-col">
                         <span class="tb-odr-id">#{{ $x++ ?? ''}}</span>
                         <span class="tb-odr-date">{{ $packageCategory->updated_at->format('j F, Y') ?? ''}}</span>
                     </td>
-                    <td class="tb-odr-amount">
+                    <td class="nk-tb-col">
                         <span class="tb-odr-total">
                             <input type="text" data-id="{{ $packageCategory->id ?? ''}}" old-name="{{$packageCategory->name ?? ''}}"
                                 name="editname{{ $packageCategory->id ?? ''}}" class="form-control editname{{ $packageCategory->id ?? ''}}" disabled
                                 value="{{ $packageCategory->name ?? ''}}">
                         </span>
                     </td>
-                    <td class="tb-odr-action">
+                    <td class="nk-tb-col">
                         <div class="dropdown">
                             <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"
                                 data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
@@ -75,13 +76,11 @@
                         </div>
                     </td>
                 </tr>
-                @empty
-                <tr>
-                    <td colspan="3">No Package Category found.</td>
-                </tr>
-                @endforelse
+              
+                @endforeach
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 <script>
@@ -104,7 +103,7 @@
                 setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
-                    $(':input').val(null);
+                    $(':input').prop('checked', false).val('');
                     // console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
                     $("#table").load(location.href + " #table");
@@ -155,8 +154,8 @@
                     }, 1000);
                     console.warn(data);
                     NioApp.Toast(data, 'success', { position: 'top-right' });
-                    // $('.tr'+remove_id).addClass('d-none').remove();
-                    $("#table").load(location.href + " #table");
+                    $('.tr'+remove_id).addClass('d-none').remove();
+                    // $("#table").load(location.href + " #table");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {

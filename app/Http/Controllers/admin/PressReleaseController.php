@@ -11,7 +11,7 @@ class PressReleaseController extends Controller
 {
     //
     public function index(){
-        $press_release = Press_release::all();
+        $press_release = Press_release::orderBy('created_at','desc')->all();
         return view('admin.pressRelease.index',compact('press_release'));
     }
     public function addPressRelease(Request $request){

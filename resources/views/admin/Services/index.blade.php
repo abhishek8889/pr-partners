@@ -32,7 +32,7 @@
              
                 @foreach ($services as  $service)
                  
-                    <tr class="nk-tb-item">
+                    <tr class="nk-tb-item tr{{$service->id ?? ''}}">
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input type="checkbox" class="custom-control-input" id="uid1">
@@ -49,26 +49,29 @@
                         <td class="nk-tb-col tb-col-lg">
                             <ul class="list-status">
                                 <?php
+                                
                                 $genreIds = explode(',', $service->publication_id);
                                 $items = str_replace(['[', '"', ']'], '', $genreIds);
                                 $publications = App\Models\Publication::with('article_type','region')->whereIn('id', $items)->get()->toArray();
-                               
+                                // echo '<pre>';
+                                // print_r(count($publications));
+                                // echo '</pre>';
                                 ?>
-                        <!-- Modal Trigger Code -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault">View Publications</button>
+                            <!-- Modal Trigger Code -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault{{ $service->id ?? ''}}">View Publications</button>
 
                                
                                     <!-- Modal Content Code -->
-                                    <div class="modal fade" tabindex="-1" id="modalDefault">
+                                    <div class="modal fade" tabindex="-1" id="modalDefault{{ $service->id ?? ''}}" style="--bs-modal-width: 1111px !important;">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
+                                            <div class="modal-header">
+                                                    <h5 class="modal-title">Select Publications</h5>
+                                                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <em class="icon ni ni-cross"></em>
+                                                    </a>
+                                            </div>
                                                 <div class="card card-bordered card-preview tablecard">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">View Publications</h5>
-                                                        <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                            <em class="icon ni ni-cross"></em>
-                                                        </a>
-                                                    </div>
                                                     <div class="card-inner">
                                                         <table class="datatable-inits nowrap nk-tb-list nk-tb-ulist " data-auto-responsive="true">
                                                             <thead>
@@ -80,20 +83,18 @@
                                                                             <label class="custom-control-label" for="uid"></label>
                                                                         </div>
                                                                     </th> -->
-                                                                    <th class="nk-tb-col"><span class="sub-text">Publication</span></th>
+                                                                    <th class="nk-tb-col"><span class="sub-text">Publications</span></th>
                                                                     <th class="nk-tb-col tb-col-mb"><span class="sub-text">Price</span></th>
                                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Domain Authority</span></th>
                                                                     <th class="nk-tb-col tb-col-lg"><span class="sub-text">TAT</span></th>
                                                                     <th class="nk-tb-col tb-col-lg"><span class="sub-text">Genre</span></th>
                                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Article type</span></th>
                                                                     <th class="nk-tb-col tb-col-md"><span class="sub-text">Country / Region</span></th>
-                                                                   
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            
                                                             @for ($p = 0; $p < count($publications); $p++)
-                                                                
+                                                           
                                                                 <tr class="nk-tb-item">
                                                                     <!-- <td class="nk-tb-col nk-tb-col-check">
                                                                         <div class="custom-control custom-control-sm custom-checkbox notext ">
@@ -151,6 +152,10 @@
                                                         </table>
                                                     </div>
                                                 </div>
+
+                                                <div class="modal-footer bg-light">
+                                                    <a href="#" class="btn btn-lg btn-mw btn-primary" data-bs-dismiss="modal">Done</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +172,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                            </td>
+                        </td>
                     </tr><!-- .nk-tb-item  --> 
                        
                 @endforeach
@@ -202,8 +207,8 @@ $(document).ready(function() {
                 NioApp.Toast(data, 'success', {
                     position: 'top-right'
                 });
-                // $('.tr'+remove_id).addClass('d-none').remove();
-                $("#table").load(location.href + " #table");
+                $('.tr'+remove_id).addClass('d-none').remove();
+                // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {

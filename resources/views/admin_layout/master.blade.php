@@ -126,13 +126,13 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="{{url('/admin-dashboard/press-package')}}" class="nk-menu-link"><span class="nk-menu-text">Press Package Bundel</span></a>
+                                            <a href="{{url('/admin-dashboard/press-package')}}" class="nk-menu-link"><span class="nk-menu-text">Package Bundel</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="{{ url('/admin-dashboard/package-category') }}" class="nk-menu-link"><span class="nk-menu-text">Press Package category</span></a>
+                                            <a href="{{ url('/admin-dashboard/package-category') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel category</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link"><span class="nk-menu-text">Press Package List</span></a>
+                                            <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel List</span></a>
                                         </li>
                                     </ul>
                                 </li>

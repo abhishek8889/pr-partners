@@ -34,92 +34,66 @@
         </div>
     </div>
     <!-- Table content of genre start here -->
-    <div class="card card-bordered card-preview mt-2 tablebody">
-        <table class="table table-orders" id="table">
-            <thead class="tb-odr-head">
-                <tr class="tb-odr-item">
-                    <th class="tb-odr-info">
-                        <span class="tb-odr-id">ID</span>
-                        <span class="tb-odr-date d-none d-md-inline-block">Date</span>
-                    </th>
-                    <th class="tb-odr-amount">
-                        <span class="tb-odr-total">Name</span>
-                    </th>
-                    <th class="tb-odr-action">Action</th>
-                </tr>
-            </thead>
-            <tbody class="tb-odr-body">
-                @forelse($genres as $genre)
-                <tr class="tb-odr-item tr{{ $genre->id ?? '' }}">
-                    <td class="tb-odr-info">
-                        <span
-                            class="tb-odr-id">#{{ ($genres ->currentpage()-1) * $genres ->perpage() + $loop->index + 1 }}</span>
-                        <span class="tb-odr-date">{{ $genre->updated_at->format('j F, Y') ?? ''}}</span>
-                    </td>
-                    <td class="tb-odr-amount">
-                        <span class="tb-odr-total">
-                            <input type="text" data-id="{{ $genre->id ?? ''}}" old-name="{{$genre->name ?? ''}}"
-                                name="editname{{ $genre->id ?? ''}}" class="form-control editname{{ $genre->id ?? ''}}"
-                                disabled value="{{ $genre->name ?? ''}}">
-                        </span>
-                    </td>
-                    <td class="tb-odr-action">
-                        <div class="dropdown">
-                            <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"
-                                data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
-                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
-                                <ul class="link-list-plain">
-                                    <li><a class="text-primary edit" data-id="{{ $genre->id ?? '' }}">Edit</a></li>
-                                    <li><a class="text-danger remove" data-id="{{ $genre->id ?? '' }}">Remove</a></li>
-                                </ul>
+    <div class="card card-bordered card-preview">
+        <div class="card-inner">
+            <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
+                <thead>
+                    <tr class="nk-tb-item nk-tb-head">
+                        <th class="nk-tb-col">
+                            <span class="tb-odr-id">ID</span>
+                        </th>
+                        <th class="nk-tb-col">
+                            <span class="tb-odr-date d-none d-md-inline-block">Date</span>
+                        </th>
+                        <th class="nk-tb-col">
+                            <span class="tb-odr-total">Name</span>
+                        </th>
+                        <th class="nk-tb-col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $count = 0; ?>
+                    @foreach($genres as $genre)
+                    <?php $count = $count+1 ?>
+                    <tr class="tb-odr-item tr{{ $genre->id ?? '' }}">
+                        <td class="nk-tb-col">
+                            <span class="tb-odr-id">{{ $count }}</span>
+                        </td>
+                        <td class="nk-tb-col">
+
+                            <span class="tb-odr-date">{{ $genre->created_at ?? ''}}</span>
+                        </td>
+                        <td class="nk-tb-col">
+                            <span class="d-none">{{ $genre->name ?? ''}}</span>
+                            <span class="tb-odr-total">
+                                <input type="text" data-id="{{ $genre->id ?? ''}}" old-name="{{$genre->name ?? ''}}"
+                                    name="editname{{ $genre->id ?? ''}}"
+                                    class="form-control editname{{ $genre->id ?? ''}}" disabled
+                                    value="{{ $genre->name ?? ''}}">
+                            </span>
+                        </td>
+                        <td class="nk-tb-col">
+                            <div class="dropdown">
+                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"
+                                    data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
+                                    <ul class="link-list-plain">
+                                        <li><a class="text-primary edit" data-id="{{ $genre->id ?? '' }}">Edit</a></li>
+                                        <li><a class="text-danger remove" data-id="{{ $genre->id ?? '' }}">Remove</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="3">No genres found.</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-        {{ $genres->links() }}
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
-<script type="text/javascript">
-$("body").delegate(".pagination a", "click", function(e) {
-    //  $(document).on('click', '.pagination a', function (e) {
-    $('.pagination a').removeClass("active");
-    $(this).addClass('active');
 
-    e.preventDefault();
-    let url = $(this).attr('href');
-    loadGenres(url);
-});
-$("body").delegate(".page-item span", "click", function(e) {
-    //  $(document).on('click', '.pagination a', function (e) {
-    // console.log('Here is your first page link');
-    $('.pagination a').removeClass("active");
-    $(this).addClass('active');
-
-    e.preventDefault();
-    let url = $(this).attr('href');
-    loadGenres(url);
-});
-
-function loadGenres(url) {
-    $.ajax({
-        url: url,
-        success: function(response) {
-            $('#table').html($(response).find('#table').html());
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
-}
-</script>
 
 <script>
 $(document).ready(function() {
@@ -136,11 +110,11 @@ $(document).ready(function() {
             },
             beforeSend: function() {
                 $('.spinner-container').show();
-                },
+            },
             success: function(data) {
                 setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
+                    $('.spinner-container').hide();
+                }, 1000);
                 // console.warn(data);
                 $(':input').val(null);
 
@@ -151,8 +125,8 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
+                    $('.spinner-container').hide();
+                }, 1000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
                     if (errors.hasOwnProperty(fieldName)) {
@@ -190,22 +164,22 @@ $(document).ready(function() {
             },
             beforeSend: function() {
                 $('.spinner-container').show();
-                },
+            },
             success: function(data) {
                 setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
+                    $('.spinner-container').hide();
+                }, 1000);
                 console.warn(data);
                 NioApp.Toast(data, 'success', {
                     position: 'top-right'
                 });
-                // $('.tr'+remove_id).addClass('d-none').remove();
-                $("#table").load(location.href + " #table");
+                $('.tr' + remove_id).addClass('d-none').remove();
+                // $("#table").load(location.href + " #table");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {
-                        $('.spinner-container').hide();
-                    }, 1000);
+                    $('.spinner-container').hide();
+                }, 1000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
                     if (errors.hasOwnProperty(fieldName)) {

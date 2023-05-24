@@ -12,7 +12,7 @@ class PublicationController extends Controller
 {
     //
     public function index(){
-        $publications = Publication::with('article_type','region')->get()->toArray();
+        $publications = Publication::with('article_type','region')->orderBy('created_at','desc')->get()->toArray();
         return view('admin.publications.index',compact('publications'));
     }
     public function publicationInsert(){
