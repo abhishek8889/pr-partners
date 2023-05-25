@@ -19,14 +19,14 @@ class ServiceController extends Controller
     public function addService(Request $request){
         $request->validate([
             'title' => 'required',
-            'publication_id' => 'required',
+            'services' => 'required',
             
         ]);
         $service = new Service;
         $service->title = $request->title;      
-        $service->publication_id = json_encode($request->publication_id);
+        $service->publication_id = json_encode($request->services);
         $service->save();
-        return response()->json('Other Services has been added.');
+        return response()->json('Your services have been added');
     }
     public function updateService(Request $request,$id){
         $service = Service::where('id',$id)->first();
@@ -36,14 +36,14 @@ class ServiceController extends Controller
     public function ServiceUpdate(Request $request){
         $request->validate([
             'title' => 'required',
-            'publication_id' => 'required',
+            'services' => 'required',
             
         ]);
         $service = Service::find($request->id);
         $service->title = $request->title;      
-        $service->publication_id = json_encode($request->publication_id);
+        $service->publication_id = json_encode($request->services);
         $service->update();
-        return response()->json('Other Services has been updated.'); 
+        return response()->json('Other Service updated successfully'); 
     }
 
     public function remove(Request $request){

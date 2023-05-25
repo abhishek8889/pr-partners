@@ -20,8 +20,8 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label" for="site-name">Title</label>
-                            <span class="form-note">Specify the title of your Other Services.</span>
+                            <label class="form-label" for="site-name">Service title</label>
+                            <span class="form-note">Specify the title of your Services.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -36,135 +36,33 @@
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
-                            <label class="form-label">Publication</label>
-                            <span class="form-note">Please select the Publications for your Other Services.</span>
+                            <label class="form-label">Service features</label>
+                            <span class="form-note">Please select the features for your Services.</span>
                         </div>
                     </div>
+                    <?php $serviceList = json_decode($service->publication_id ?? '') ?>
                     <div class="col-lg-7">
-                        <div class="form-group">
-                            <ul class="custom-control-group g-3 align-center">
-                                <!-- Modal Trigger Code -->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault">Update Publications</button>
-
-                                    <!-- Modal Content Code -->
-                                    <div class="modal fade" tabindex="-1" id="modalDefault" style="--bs-modal-width: 1111px !important;">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Select Publications</h5>
-                                                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                    <em class="icon ni ni-cross"></em>
-                                                </a>
-                                            </div>
-                                                <div class="card card-bordered card-preview tablecard">
-                                                    
-                                                    <div class="card-inner">
-                                                        <!-- datatable-init and s here  -->
-                                                        <table class="datatable-inits nowrap nk-tb-list nk-tb-ulist " data-auto-responsive="true">
-                                                            <thead>
-                                                            
-                                                                <tr class="nk-tb-item nk-tb-head">
-                                                                    <th class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                                            <input type="checkbox" class="custom-control-input" id="uid">
-                                                                            <label class="custom-control-label" for="uid"></label>
-                                                                        </div>
-                                                                    </th>
-                                                                    <th class="nk-tb-col"><span class="sub-text">Publication</span></th>
-                                                                    <th class="nk-tb-col tb-col-mb"><span class="sub-text">Price</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Domain Authority</span></th>
-                                                                    <th class="nk-tb-col tb-col-lg"><span class="sub-text">TAT</span></th>
-                                                                    <th class="nk-tb-col tb-col-lg"><span class="sub-text">Genre</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Article type</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Country / Region</span></th>
-                                                                    <!-- <th class="nk-tb-col nk-tb-col-tools text-end">
-                                                                        Action
-                                                                    </th> -->
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            
-                                                            @for ($i = 0; $i < count($publications); $i++)
-                                                                
-                                                                <tr class="nk-tb-item">
-                                                                    <td class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext ">
-                                                                            <!--onclick="test()" <input type="checkbox" name="publication_id[]" class="custom-control-input" id="checkbox{{ $publications[$i]['id'] ?? ''}}" value="{{ $publications[$i]['id'] ?? ''}}"> -->
-                                                                            <input  type="checkbox" class="custom-control-input publication_id" id="{{ $publications[$i]['id'] ?? ''}}" name="publication_id[]" data-name="{{ $publications[$i]['title'] ?? ''}}" value="{{ $publications[$i]['id'] ?? ''}}"
-                                                                            <?php $MyPublication = json_decode($service->publication_id);
-                                                                            ?>
-                                                                            @for ($x=0; $x < count($MyPublication); $x++)
-                                                                                
-                                                                                    @if ($publications[$i]['id'] == $MyPublication[$x])
-                                                                                        checked
-                                                                                    @endif
-                                                                                        
-                                                                            @endfor
-                                                                            />
-                                                                            <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="nk-tb-col">
-                                                                        <div class="user-card">
-                                                                            <div class="user-info">
-                                                                            <a href="{{ $publications[$i]['url'] ?? ''}}">  <span class="tb-lead">{{ $publications[$i]['title'] ?? ''}}<span class="dot dot-success d-md-none ms-1"></span></span></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-
-                                                                    <td class="nk-tb-col tb-col-mb" data-order="35040.34">
-                                                                        <span class="tb-amount">{{ $publications[$i]['price'] ?? ''}}<span class="currency"><b> $</b></span></span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-md">
-                                                                        <span>{{ $publications[$i]['domain_authority'] ?? ''}}</span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <ul class="list-status">
-                                                                            <li><span>{{ $publications[$i]['tat'] ?? ''}}</span></li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <ul class="list-status">
-                                                                            <?php
-                                                                            $genreIds = explode(',', $publications[$i]['genre']);
-                                                                            $items = str_replace(['[', '"', ']'], '', $genreIds);
-                                                                            $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
-                                                                            ?>
-
-                                                                            <li> <span>
-                                                                            @for ($x = 0; $x < count($genreNames); $x++)
-                                                                                {{ $genreNames[$x] ?? ''}} /
-                                                                                <!-- <br> -->
-                                                                                @if($x % 2 == 0)
-                                                                                    <br>
-                                                                                @endif
-                                                                            @endfor
-                                                                            </span></li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <span>{{ $publications[$i]['article_type']['type'] ?? ''}}</span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-md">
-                                                                        <span class="tb-status text-successs">{{ $publications[$i]['region']['country_name'] ?? ''}}</span>
-                                                                    </td>
-                                                                   
-                                                                </tr><!-- .nk-tb-item  --> 
-                                                                @endfor
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer bg-light">
-												    <a href="#" class="btn btn-lg btn-mw btn-primary" data-bs-dismiss="modal">Done</a>
-											    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="checkboxName"></div>
-
-                            </ul>
+                        @for ($s = 0; $s < count($serviceList); $s++)
+                        <div id="row">
+                            
+                            <div class="input-group m-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-danger" id="DeleteRow" type="button">
+                                        <i class="bi bi-trash"></i>
+                                        Delete
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control m-input" name="services[]" value="{{ $serviceList[$s] ?? ''}}"/>
+                            </div>
                         </div>
+                            @endfor
+
+
+                        <div id="newinput"></div>
+                        <button id="rowAdder" type="button" class="btn btn-dark">
+                            <span class="bi bi-plus-square-dotted">
+                            </span> ADD
+                        </button>
                     </div>
                 </div>
                 <hr>
@@ -179,44 +77,66 @@
         </div>
     </div><!-- card -->
 </div><!-- .nk-block -->
-<script>
-   $(document).ready(function() {
-  // Function to add or remove checkboxes from the div
-  function updateCheckboxDiv() {
-    const checkboxDiv = $('.checkboxName');
-    checkboxDiv.empty();
+<script type="text/javascript">
+$("#rowAdder").click(function() {
+    newRowAdd =
+        '<div id="row"> <div class="input-group m-3">' +
+        '<div class="input-group-prepend">' +
+        '<button class="btn btn-danger" id="DeleteRow" type="button">' +
+        '<i class="bi bi-trash"></i> Delete</button> </div>' +
+        '<input type="text" class="form-control m-input" name="services[]"> </div> </div>';
 
-    $('.publication_id:checked').each(function() {
-      const checkbox = $(this);
-      const checkboxName = checkbox.data('name');
-
-      const newLabel = $('<span>', {
-        'class': 'publisherTag',
-        'data-name': checkboxName,
-        'text': checkboxName
-      }).append($('<span>', {
-        'class': 'remove-chekbox',
-        'text': 'x',
-        'click': function() {
-          checkbox.prop('checked', false);
-          $(this).parent().remove();
-        }
-      }));
-
-      checkboxDiv.append(newLabel);
-    });
-  }
-
-  // Trigger the updateCheckboxDiv function on page load
-  updateCheckboxDiv();
-
-  // Trigger the updateCheckboxDiv function when any checkbox is changed
-  $('.publication_id').change(function() {
-    updateCheckboxDiv();
-  });
+    $('#newinput').append(newRowAdd);
 });
 
-  </script>
+$("body").on("click", "#DeleteRow", function() {
+    $(this).parents("#row").remove();
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#service_form").submit(function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        var formData = $(this).serialize();
+        console.log(formData);
+
+        $.ajax({
+            url: "/updateService",
+            type: "POST",
+            data: formData,
+            success: function(data) {
+                setTimeout(function() {
+                    $('.spinner-container').hide();
+                }, 1000);
+                console.warn(data);
+                NioApp.Toast(data, 'success', {
+                    position: 'top-right'
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                setTimeout(function() {
+                    $('.spinner-container').hide();
+                }, 1000);
+                var errors = jqXHR.responseJSON.errors;
+                for (var fieldName in errors) {
+                    if (errors.hasOwnProperty(fieldName)) {
+                        var errorMessages = errors[fieldName];
+
+                        errorMessages.forEach(function(errorMessage) {
+                            console.log(errorMessage);
+                            NioApp.Toast(errorMessage, 'error', {
+                                position: 'top-right'
+                            });
+                        });
+                    }
+                }
+            }
+        });
+
+    });
+});
+</script>
+<!-- 
 <script>
     $(document).ready(function(){
         $('#service_form').on('submit',function(e){
@@ -259,5 +179,5 @@
             });
         });
     });
-</script>
+</script> -->
 @endsection

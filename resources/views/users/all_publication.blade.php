@@ -221,12 +221,11 @@
                         <h4 class="bundle_text"><span>{{ $os->title }}</span></h4>
                         <div class="business_list">
                           <h5>Publication</h5>
+                          <?php $serviceList = json_decode($os->publication_id); ?>
                           <ul class="m-0">
-                            <li>LA Weekly</li>
-                            <li>IB Times (SG)</li>
-                            <li>Digital Journal</li>
-                            <li>NY Weekly</li>
-                            <li>Daily Scanner</li>
+                            @for ($s=0; $s< count($serviceList); $s++)
+                            <li>{{ $serviceList[$s] ?? ''}}</li>
+                            @endfor
                           </ul>
                         </div>
                       </div>
