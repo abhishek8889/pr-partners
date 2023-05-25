@@ -353,6 +353,8 @@ body.bg_color {
 .leftside_rang form hr {
 	margin: 50px 0;
 }
+
+
 .leftside_rang form .publication_list label {
 	font-size: 12px;
 	line-height: 18px;
@@ -368,6 +370,10 @@ body.bg_color {
     color: #925C03;
 }
 .leftside_rang form .publication_list label.selected {
+    background: rgba(146, 92, 3, 0.17);
+    color: #925C03;
+}
+.leftside_rang form .publication_list label.genreselected {
     background: rgba(146, 92, 3, 0.17);
     color: #925C03;
 }

@@ -90,7 +90,7 @@
                         <h3>Type</h3>
                         <div class="publication_list">
                           @foreach($article_filter as $af)
-                          <label for="article_filter{{ $af->id ?? '' }}" >{{ $af->type ?? '' }}</label>
+                          <label id="article_label{{ $af->id ?? '' }}" for="article_filter{{ $af->id ?? '' }}" >{{ $af->type ?? '' }}</label>
                           <input type="checkbox" class="articlefilter" id="article_filter{{ $af->id ?? '' }}" name="article_filter[]" value="{{ $af->id ?? '' }}" style="display:none;">
                           @endforeach
                         </div>
@@ -277,6 +277,9 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -288,7 +291,8 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-
+              $('.spinner-container').hide();
+              
             }
       });
     });
@@ -324,6 +328,9 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -335,7 +342,7 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-
+              $('.spinner-container').hide();
             }
       });
       });
@@ -365,6 +372,9 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
         divdata = [];
               $.each(data, function(key,value){
@@ -376,6 +386,7 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
+              $('.spinner-container').hide();
             }
       });
       });
@@ -405,6 +416,9 @@
                 'genre_id': genre_id,
                 'sortedval': sortedval,
             },
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             dataType: 'json',
             success: function(data) {
               divdata = [];
@@ -417,10 +431,18 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
+              $('.spinner-container').hide();
             }
       });
       });
       $('.articlefilter').change(function(){
+        var ischecked= $(this).is(':checked');
+        id = $(this).val();
+        if(ischecked == true){
+          $('#article_label'+id).addClass('genreselected');
+        }else{
+          $('#article_label'+id).removeClass('genreselected');
+        }
         var article_filter = [];
         $('.articlefilter:checked').each(function(i){
           article_filter[i] = $(this).val();
@@ -450,6 +472,9 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -461,20 +486,26 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
+              $('.spinner-container').hide();
             }
       });
       });
       $('.generesfilter').change(function(){
-        
+        var ischecked= $(this).is(':checked');
+        id = $(this).val();
+        if(ischecked == true){
+          $('#genere_label'+id).addClass('selected');
+        }else{
+          $('#genere_label'+id).removeClass('selected');
+        }
         var genere_filter = [];
         $('.generesfilter:checked').each(function(i){
-          id = $(this).val();
-          console.log(id);
-          var ischecked= $(this).is(':checked');
-          console.log(ischecked);
-          if(ischecked == true){
-            $('#genere_label'+id).addClass('selected');
-          }
+         
+          
+        
+          // if(ischecked == true){
+          //   $('#genere_label'+id).addClass('selected');
+          // }
           genere_filter[i] = $(this).val();
 
         });
@@ -503,6 +534,9 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -514,6 +548,7 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
+              $('.spinner-container').hide();
 
             }
       });
@@ -536,6 +571,9 @@
                 'sortedval': "",
             },
             dataType: 'json',
+            beforeSend: function() {
+                $('.spinner-container').show();
+                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -547,7 +585,7 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-
+              $('.spinner-container').hide();
             }
       });
 

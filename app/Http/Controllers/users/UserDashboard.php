@@ -109,14 +109,15 @@ class UserDashboard extends Controller
                 }
             }
             if($request->minprice !== null){
-                $query->where('price','>',$request->minprice);
+                $query->where('price','>=',$request->minprice);
             }
             if($request->maxprice !== null){
-                $query->where('price','<',$request->maxprice);
+                $query->where('price','<=',$request->maxprice);
             }
             if($request->sorted_val == 'dsc'){
                $query->orderBy('price','DESC'); 
             }elseif($request->sorted_val == 'asc'){
+               $query->orderBy('price','ASC'); 
                
             }
      return response()->json($query->get());
