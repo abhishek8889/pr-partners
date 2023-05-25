@@ -39,17 +39,17 @@
                   <div class="leftside_rang">
                     <form>
                       <div class="form-group">
-                        <label for="formGroupExampleInput">Publication name</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput">
+                        <label for="publication_name">Publication name</label>
+                        <input type="text" class="form-control" id="publication_name" name="publication_name">
                       </div>
                       <div class="form-group">
                         <div class="form-group asc_wrapper">
-                          <label for="exampleFormControlSelect1">Sort by</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Price (Asc)</option>
-                            <option>lorem ipsum</option>
-                            <option>lorem ipsum</option>
-                            <option>lorem ipsum</option>
+                          <label for="sorted_filter">Sort by</label>
+                          <select class="form-control" id="sorted_filter">
+                            <option value="asc">Price (Asc)</option>
+                            <option value="dsc">Price (Dsc)</option>
+                            <!-- <option>lorem ipsum</option>
+                            <option>lorem ipsum</option> -->
                           </select>
                         </div>
                       </div>
@@ -71,9 +71,9 @@
                       </div>
                       <div class="form-group wrapper">
                         <label for="formGroupExampleInput">Select regions</label>
-                        <select multiple data-placeholder="Select regions">
+                        <select multiple data-placeholder="Select regions" id="region_filter">
                         @foreach($region_filter as $rf)  
-                        <option>{{ $rf->country_name ?? '' }}</option>
+                        <option value="{{ $rf->id }}" >{{ $rf->country_name ?? '' }}</option>
                         @endforeach
                         </select>
                       </div>
@@ -81,7 +81,8 @@
                         <h3>Select genres</h3>
                         <div class="publication_list">
                           @foreach($genres_filter as $gf)
-                          <a href="javascript:void(0)">{{ $gf->name ?? '' }}</a>
+                          <label id="genere_label{{ $gf->id ?? '' }}" for="genere_filter{{ $gf->id ?? '' }}">{{ $gf->name ?? '' }}</label>
+                          <input type="checkbox" class="generesfilter" id="genere_filter{{ $gf->id ?? '' }}" name="genere_filter[]" value="{{ $gf->id ?? '' }}" style="display:none;">
                           @endforeach
                         </div>
                       </div>
@@ -89,7 +90,8 @@
                         <h3>Type</h3>
                         <div class="publication_list">
                           @foreach($article_filter as $af)
-                          <a href="javascript:void(0)">{{ $af->type ?? '' }}</a>
+                          <label for="article_filter{{ $af->id ?? '' }}" >{{ $af->type ?? '' }}</label>
+                          <input type="checkbox" class="articlefilter" id="article_filter{{ $af->id ?? '' }}" name="article_filter[]" value="{{ $af->id ?? '' }}" style="display:none;">
                           @endforeach
                         </div>
                       </div>
@@ -110,13 +112,13 @@
                       </div>
                       <hr>
                       <div class="ques_btn">
-                        <a class="btn" href="javascript:void(0)" role="button">Reset all filters</a>
+                        <a id="reset_button" class="btn" href="javascript:void(0)" role="button">Reset all filters</a>
                       </div>
                     </form>
                   </div>
                   <div class="rightside_publication">
                     <div class="publications_show">
-                      <span>Showing {{ count($publication_data) }} of {{ count($publication_data) }} publications</span>
+                      <span>Showing <span id="publication_length">{{ count($publication_data) }}</span> of {{ count($publication_data) }} publications</span>
                     </div>
                     <div class="overview_company">
                       <table>
@@ -144,7 +146,7 @@
                                 </span>
                               </div>
                             </td>
-                            <td>${{ $pd['price'] ?? '' }}.00</td>
+                            <td>${{ $pd['price'] ?? '' }}</td>
                             <td>{{ $pd['domain_authority'] ?? '' }}</td>
                             <td>{{ $pd['tat'] ?? 0 }} Week</td>
                             <?php $genre = json_decode($pd['genre']); ?> 
@@ -162,7 +164,9 @@
 
               <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="business_wrapper">
+              
                   @foreach($press_packages as $pp)
+                  @if(count($pp['package']) !== 0)
                   <div class="business_content">
                     <h3>{{ $pp->name }}</h3>
                     <div class="business_grid">
@@ -187,7 +191,9 @@
                       @endforeach
                     </div>
                   </div>
+                  @endif
                   @endforeach
+                
                 </div>
               </div>
 
@@ -221,12 +227,12 @@
                         <h4 class="bundle_text"><span>{{ $os->title }}</span></h4>
                         <div class="business_list">
                           <h5>Publication</h5>
+                          <?php $publication_id = json_decode($os->publication_id); ?>
                           <ul class="m-0">
-                            <li>LA Weekly</li>
-                            <li>IB Times (SG)</li>
-                            <li>Digital Journal</li>
-                            <li>NY Weekly</li>
-                            <li>Daily Scanner</li>
+                            @foreach($publication_id as $p)
+                            <?php  $publication_title = App\Models\Publication::find($p)->title; ?>
+                            <li>{{ $publication_title }}</li>
+                           @endforeach
                           </ul>
                         </div>
                       </div>
@@ -241,4 +247,314 @@
       </div>
     </div>
   </section>
+  <script>
+    $(document).ready(function(){
+      localStorage.clear();
+      $('#region_filter').on('change',function(){
+         regions = $(this).val();
+        localStorage.setItem('regions', regions);
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+
+       
+
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'.00</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                  console.log(value.genre);
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+
+            }
+      });
+    });
+
+
+      $('#slider-range').on('click',function(){
+       minprice = $('#slider-range-value1').html().replace('$','');
+       maxprice = $('#slider-range-value2').html().replace('$','');
+        min_price = minprice.replace(',','');
+       max_price = maxprice.replace(',','');
+        localStorage.setItem('minprice', min_price);
+        localStorage.setItem('maxprice', max_price);
+
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+ 
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                  console.log(value.genre);
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+
+            }
+      });
+      });
+      $('#publication_name').on('keyup',function(){
+        publication_name = $(this).val();
+        localStorage.setItem('publicationname', publication_name);
+
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+  
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+        divdata = [];
+              $.each(data, function(key,value){
+              genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+            }
+      });
+      });
+      $('#sorted_filter').on('change',function(){
+        sorted_val = $(this).val();
+        console.log(sorted_val);
+        localStorage.setItem('sortedval', sorted_val);
+
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+              
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+            }
+      });
+      });
+      $('.articlefilter').change(function(){
+        var article_filter = [];
+        $('.articlefilter:checked').each(function(i){
+          article_filter[i] = $(this).val();
+        });
+        localStorage.setItem('articlefilter', article_filter);
+
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+
+
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                  console.log(value.genre);
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+            }
+      });
+      });
+      $('.generesfilter').change(function(){
+        
+        var genere_filter = [];
+        $('.generesfilter:checked').each(function(i){
+          id = $(this).val();
+          console.log(id);
+          var ischecked= $(this).is(':checked');
+          console.log(ischecked);
+          if(ischecked == true){
+            $('#genere_label'+id).addClass('selected');
+          }
+          genere_filter[i] = $(this).val();
+
+        });
+       
+        localStorage.setItem('generefilter', genere_filter);
+
+        region_id = localStorage.getItem('regions');
+        maxprice = localStorage.getItem('maxprice');
+        minprice = localStorage.getItem('minprice');
+        publicationname = localStorage.getItem('publicationname');
+        article_id = localStorage.getItem('articlefilter');
+        genre_id = localStorage.getItem('generefilter');
+        sortedval = localStorage.getItem('sortedval');
+
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': region_id,
+                'maxprice': maxprice,
+                'minprice': minprice,
+                'publicationname': publicationname,
+                'article_id': article_id,
+                'genre_id': genre_id,
+                'sortedval': sortedval,
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                  
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+
+            }
+      });
+      });
+
+      $('#reset_button').click(function(){
+
+        localStorage.clear();
+        $.ajax({
+            method: 'post',
+            url: '{{ route('search-filter') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                'region_id': "",
+                'maxprice': "",
+                'minprice': "",
+                'publicationname': "",
+                'article_id': "",
+                'genre_id': "",
+                'sortedval': "",
+            },
+            dataType: 'json',
+            success: function(data) {
+              divdata = [];
+              $.each(data, function(key,value){
+                genre = JSON.parse(value.genre).length;
+                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+              
+                divdata.push(html);
+                  
+              });
+              $('tbody').html(divdata);
+              $('#publication_length').html(divdata.length);
+
+            }
+      });
+
+      });
+    
+    });
+  </script>
 @endsection
+
+

@@ -33,6 +33,7 @@ Route::post('/admin-loginproc',[AuthenticationController::class,'adminLoginProc'
 Route::get('/logout',[AuthenticationController::class,'logout']);
 Route::get('/userlogout',[AuthenticationController::class,'userlogout']);
 Route::get('/user-dashboard',[UserDashboard::class,'index'])->Middleware(UserCheck::class);
+Route::post('/search-filter',[UserDashboard::class,'filterData'])->name('search-filter');
 
 
 

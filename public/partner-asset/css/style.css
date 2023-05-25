@@ -353,7 +353,7 @@ body.bg_color {
 .leftside_rang form hr {
 	margin: 50px 0;
 }
-.leftside_rang form .publication_list a {
+.leftside_rang form .publication_list label {
 	font-size: 12px;
 	line-height: 18px;
 	color: #FFFFFF;
@@ -363,10 +363,15 @@ body.bg_color {
 	text-decoration: none;
 	transition: all 0.3s ease-in-out;
 }
-.leftside_rang form .publication_list a:hover {
+.leftside_rang form .publication_list label:hover {
     background: rgba(146, 92, 3, 0.17);
     color: #925C03;
 }
+.leftside_rang form .publication_list label.selected {
+    background: rgba(146, 92, 3, 0.17);
+    color: #925C03;
+}
+
 .leftside_rang form .publication_list {
 	display: flex;
 	flex-wrap: wrap;
