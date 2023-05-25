@@ -23,20 +23,28 @@ class PressPackageController extends Controller
             'title' => 'required',
             'publication_id' => 'required',
         ]);
-        $packageBundel = new PackageBundle;
-        $packageBundel->press_package_category_id = $request->packageCategory;
-        $packageBundel->title = $request->title;
-        $packageBundel->bundle_price = $request->price;
-        $packageBundel->retail_price = $request->retail_price;
-        $packageBundel->publication_id = json_encode($request->publication_id);
-        $packageBundel->save();
+        $packageBundle = new PackageBundle;
+        $packageBundle->press_package_category_id = $request->packageCategory;
+        $packageBundle->title = $request->title;
+        $packageBundle->bundle_price = $request->price;
+        $packageBundle->retail_price = $request->retail_price;
+        $packageBundle->publication_id = json_encode($request->publication_id);
+        $packageBundle->save();
         return response()->json(json_encode('Your package has been added to the press package'));
     }
     public function updatepressPackage(Request $request,$id){
-        $pressBundel = PackageBundle::where('id',$id)->first();
-        $packageCategorys = PressPackageCategory::all();
-        $publications = Publication::with('article_type','region')->get()->toArray();
-        return view('admin.press_package.update',compact('packageCategorys','publications','pressBundel'));
+        if($id){
+            if(PackageBundle::where('id',$id)->exists()){
+                $pressBundel = PackageBundle::where('id',$id)->first();
+                $packageCategorys = PressPackageCategory::all();
+                $publications = Publication::with('article_type','region')->get()->toArray();
+                return view('admin.press_package.update',compact('packageCategorys','publications','pressBundel'));
+            }else{
+                return redirect()->back()->with('error', 'No such package exists with that id');
+            }
+        }else{
+            return redirect()->back()->with('error', 'Failed to update press package');
+        }
     }
     public function updatePackageBundle(Request $request){
         $request->validate([
@@ -46,13 +54,13 @@ class PressPackageController extends Controller
             'title' => 'required',
             'publication_id' => 'required',
         ]);
-        $packageBundel = PackageBundle::find($request->id);
-        $packageBundel->press_package_category_id = $request->packageCategory;
-        $packageBundel->title = $request->title;
-        $packageBundel->bundle_price = $request->price;
-        $packageBundel->retail_price = $request->retail_price;
-        $packageBundel->publication_id = json_encode($request->publication_id);
-        $packageBundel->update();
+        $packageBundle = PackageBundle::find($request->id);
+        $packageBundle->press_package_category_id = $request->packageCategory;
+        $packageBundle->title = $request->title;
+        $packageBundle->bundle_price = $request->price;
+        $packageBundle->retail_price = $request->retail_price;
+        $packageBundle->publication_id = json_encode($request->publication_id);
+        $packageBundle->update();
         return response()->json('Your package has been Updated successfully');
     }
     public function packageCategory(){

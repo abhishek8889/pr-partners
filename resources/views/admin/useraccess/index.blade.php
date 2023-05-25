@@ -17,7 +17,7 @@
                          </div>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="btn">Update</button>
+                        <button type="submit" class="btn btn-dark text-light bg-dark">Update</button>
                      </div>     
                  </form>
 </div>

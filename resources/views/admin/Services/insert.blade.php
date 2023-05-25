@@ -42,11 +42,11 @@
                     </div>
                     <div class="col-lg-7">
                         <div id="row">
-                            <div class="input-group m-3">
+                            <div class="input-group my-2">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-danger" id="DeleteRow" type="button">
                                         <i class="bi bi-trash"></i>
-                                        Delete
+                                        
                                     </button>
                                 </div>
                                 <input type="text" class="form-control m-input" name="services[]" />
@@ -76,10 +76,10 @@
 <script type="text/javascript">
 $("#rowAdder").click(function() {
     newRowAdd =
-        '<div id="row"> <div class="input-group m-3">' +
+        '<div id="row"> <div class="input-group my-3">' +
         '<div class="input-group-prepend">' +
         '<button class="btn btn-danger" id="DeleteRow" type="button">' +
-        '<i class="bi bi-trash"></i> Delete</button> </div>' +
+        '<i class="bi bi-trash"></i></button> </div>' +
         '<input type="text" class="form-control m-input" name="services[]"> </div> </div>';
 
     $('#newinput').append(newRowAdd);

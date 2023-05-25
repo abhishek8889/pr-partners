@@ -28,16 +28,16 @@ class trycontroller extends Controller
          for($i = 0; $i < count($data); $i++){
             // print_r($data[$i]['publication']);
             // print_r($data[$i]['countryRegion']);
-            // $try = new Publication;
-            // $try->title = $data[$i]['publication'];
-            // $try->url = $data[$i]['url'];
-            // $try->price = $data[$i]['price'];
-            // $try->domain_authority = $data[$i]['domainAuthority'];
-            // $try->tat = $data[$i]['tat'];
-            // $try->genre = json_encode($data[$i]['elements']);
-            // $try->article_type = $data[$i]['articleType'];
-            // $try->region = $data[$i]['countryRegionId'];
-            // $try->save();
+                        // $try = new Publication;
+                        // $try->title = $data[$i]['publication'];
+                        // $try->url = $data[$i]['url'];
+                        // $try->price = $data[$i]['price'];
+                        // $try->domain_authority = $data[$i]['domainAuthority'];
+                        // $try->tat = $data[$i]['tat'];
+                        // $try->genre = json_encode($data[$i]['elements']);
+                        // $try->article_type = $data[$i]['articleType'];
+                        // $try->region = $data[$i]['countryRegionId'];
+                        // $try->save();
 
          }
         

@@ -73,7 +73,7 @@
                                 </li> -->
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="fas fa-network-wired"></i></span>
                                         <span class="nk-menu-text">Genre</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -85,7 +85,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="fas fa-globe-asia"></i></span>
                                         <span class="nk-menu-text">Country / Region</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -96,7 +96,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="fas fa-newspaper"></i></span>
                                         <span class="nk-menu-text">Article</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -107,7 +107,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="bi bi-signpost-fill"></i></span>
                                         <span class="nk-menu-text">Publications</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -120,7 +120,7 @@
                                     </ul>
                                     <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="fas fa-user-shield"></i></span>
                                         <span class="nk-menu-text">User Access</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -131,7 +131,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="fas fa-box"></i></span>
                                         <span class="nk-menu-text">Press Package</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -148,7 +148,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="bi bi-file-earmark-plus-fill"></i></span>
                                         <span class="nk-menu-text">Other Services</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -162,7 +162,7 @@
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+                                        <span class="nk-menu-icon"><i class="bi bi-newspaper"></i></span>
                                         <span class="nk-menu-text">Press Release</span>
                                     </a>
                                     <ul class="nk-menu-sub">
@@ -238,7 +238,7 @@
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
                                                     <!-- <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li> -->
-                                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="{{url('admin-dashboard/update-token') ?? ''}}"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
                                                     <!-- <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li> -->
                                                     <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                 </ul>
@@ -250,7 +250,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="dropdown notification-dropdown me-n1">
+                                    <!-- <li class="dropdown notification-dropdown me-n1">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
                                             <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
                                         </a>
@@ -321,7 +321,7 @@
                                                 <a href="#">View All</a>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>

@@ -7859,7 +7859,18 @@ trElements.forEach((tr) => {
   const url = tdElements[1].querySelector('a').href;
   const publication = tdElements[1].querySelector('a').textContent;
   const prices = tdElements[2].textContent;
-  const  price = prices.replace("$","");
+  const sanitizedPrice = prices.replace("$", "");
+    let price;
+
+    if (sanitizedPrice === "ASK") {
+    price = 0;
+    } else {
+    price = parseFloat(sanitizedPrice.replace(/,/g, ""));
+    }
+
+console.log(sanitizedPrice);
+// You can now use the sanitizedPrice variable further in your code
+
   const domainAuthority = tdElements[3].textContent;
   const tats = tdElements[4].textContent;
   const tat = tats.replace(/\D/g, "");
@@ -7949,7 +7960,7 @@ trElements.forEach((tr) => {
 //             }
 //         }
         const articleType = articleArray.find(article => article.name === tdElements[6].textContent)?.id.toString();
-        console.warn(articleType);
+        // console.warn(articleType);
 
 // if(art)
 var regionArray = [
@@ -7995,7 +8006,7 @@ for (var i = 0; i < regionArray.length; i++) {
   }
 }
 
-console.warn(countryRegionId);
+// console.warn(countryRegionId);
 
   // Create an object with the extracted values and add it to the data array
   data.push({

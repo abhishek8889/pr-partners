@@ -8,12 +8,21 @@ use App\Models\{Genre,Region,Publication,ArticleType};
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class PublicationController extends Controller
 {
     //
     public function index(){
-        $publications = Publication::with('article_type','region')->orderBy('created_at','desc')->get()->toArray();
-        return view('admin.publications.index',compact('publications'));
+        try {
+
+            $publications = Publication::with('article_type','region')->orderBy('created_at','desc')->get()->toArray();
+            return view('admin.publications.index',compact('publications'));
+            
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error' . $e->getMessage());
+
+        }
     }
     public function publicationInsert(){
         $article_types = ArticleType::all();
@@ -47,11 +56,28 @@ class PublicationController extends Controller
     }
 
     public function updatePublication(Request $req,$id){
-        $publication = Publication::with('article_type','region')->where('id',$id)->first()->toArray();
-        $article_types = ArticleType::all();
-        $genre_list = Genre::all();
-        $region_list = Region::all();
-        return view('admin.publications.update',compact('article_types','genre_list','region_list','publication'));
+        // if($id){
+            //     if(Publication::where('id',$_id)->exists()){
+           try {
+
+                $_id = \Crypt::decrypt($id);
+                $publication = Publication::with('article_type','region')->where('id',$_id)->first()->toArray();
+                $article_types = ArticleType::all();
+                $genre_list = Genre::all();
+                $region_list = Region::all();
+                return view('admin.publications.update',compact('article_types','genre_list','region_list','publication'));
+            
+            } catch (\Exception $e) {
+
+                return redirect()->back()->with('error',$e->getMessage());  
+                
+            }
+        //     }else{
+        //         return redirect()->back()->with('error', 'Failed to find publication !');
+        //     }
+        // }else{
+        //     return redirect()->back()->with('error','Failed to update publication');
+        // }
     }
 
     public function publicationUpdate(Request $req){

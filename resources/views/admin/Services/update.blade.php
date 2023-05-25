@@ -40,22 +40,26 @@
                             <span class="form-note">Please select the features for your Services.</span>
                         </div>
                     </div>
-                    <?php $serviceList = json_decode($service->publication_id ?? '') ?>
-                    <div class="col-lg-7">
-                        @for ($s = 0; $s < count($serviceList); $s++)
-                        <div id="row">
-                            
-                            <div class="input-group m-3">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-danger" id="DeleteRow" type="button">
-                                        <i class="bi bi-trash"></i>
-                                        Delete
-                                    </button>
-                                </div>
-                                <input type="text" class="form-control m-input" name="services[]" value="{{ $serviceList[$s] ?? ''}}"/>
-                            </div>
-                        </div>
-                            @endfor
+                    <?php
+                            $serviceList = json_decode($service->publication_id ?? '');
+                    ?>
+                                
+                                <div class="col-lg-7">
+                                    @if(is_array($serviceList) && count($serviceList) > 0)
+                                        @for($s = 0; $s < count($serviceList); $s++) 
+                                            <div id="row">
+                                                <div class="input-group my-3">
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-danger" id="DeleteRow" type="button">
+                                                            <i class="bi bi-trash"></i>
+                                                            
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" class="form-control m-input" name="services[]" value="{{ $serviceList[$s] ?? '' }}"/>
+                                                </div>
+                                            </div>
+                                        @endfor
+                                    @endif
 
 
                         <div id="newinput"></div>
@@ -80,10 +84,10 @@
 <script type="text/javascript">
 $("#rowAdder").click(function() {
     newRowAdd =
-        '<div id="row"> <div class="input-group m-3">' +
+        '<div id="row"> <div class="input-group my-3">' +
         '<div class="input-group-prepend">' +
         '<button class="btn btn-danger" id="DeleteRow" type="button">' +
-        '<i class="bi bi-trash"></i> Delete</button> </div>' +
+        '<i class="bi bi-trash"></i> </button> </div>' +
         '<input type="text" class="form-control m-input" name="services[]"> </div> </div>';
 
     $('#newinput').append(newRowAdd);

@@ -99,7 +99,8 @@
                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                         <ul class="link-list-plain">
-                                            <li><a href="{{ url('admin-dashboard/services-update') }}/{{ $service->id ?? '' }}" data-id="{{ $service->id ?? '' }}" id="edit" class="text-primary">Edit</a></li>
+                                            <?php $data = \Crypt::encrypt($service->id); ?>
+                                            <li><a href="{{ url('admin-dashboard/services-update') }}/{{ $data ?? '' }}" data-id="{{ $service->id ?? '' }}" id="edit" class="text-primary">Edit</a></li>
                                             <li><a data-id="{{ $service->id ?? '' }}" id="remove" class="text-danger remove">Remove</a></li>
                                         </ul>
                                     </div>
