@@ -24,7 +24,9 @@ h3 {
 	line-height: 33px;
 	color: #1E1E1E;
 }
-
+h4 {
+	
+}
 
 .p-100 {
 	padding: 100px 0;
@@ -366,7 +368,6 @@ body.bg_color {
 	transition: all 0.3s ease-in-out;
 	margin: 0;
 }
-.leftside_rang form .publication_list label.selected,
 .leftside_rang form .publication_list label:hover {
 	background: rgba(146, 92, 3, 0.17);
 	color: #925C03;
@@ -460,7 +461,6 @@ body.bg_color {
 	display: inline-block;
 	text-decoration: none;
 	opacity: 1;
-	z-index: inherit;
 }
 /*.tooltip .tooltiptext {
 	visibility: hidden;
@@ -485,7 +485,7 @@ body.bg_color {
     border-radius: 5px;
     padding: 10px;
     position: absolute;
-    z-index: 9999;
+    z-index: 1;
     bottom: 100%;
     left: 5px;
     right: 0;
@@ -550,7 +550,6 @@ body.bg_color {
 	position: sticky;
 	top: 0;
 	background-color: #fff;
-	z-index: 9;
 }
 .publication_content .leftside_rang form {
 	position: sticky;

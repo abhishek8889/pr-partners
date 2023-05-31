@@ -31,6 +31,10 @@ class UserDashboard extends Controller
     
         return view('users.all_publication',compact('publication_data','press_packages','press_release','genres_filter','article_filter','region_filter','other_services'));
     }
+    public function genreName(Request $request){
+        $genreName = Genre::whereIn('id', $request->items)->pluck('name')->toArray();
+        return response()->json($genreName);
+    }
 
     public function filterData(Request $request){
         // $data = array();
@@ -264,14 +268,25 @@ class UserDashboard extends Controller
 
         // Filter by price range
         $minPrice = $request->input('minprice');
-        if ($minPrice !== null) {
-            $query->where('price', '>=', $minPrice);
-        }
-
         $maxPrice = $request->input('maxprice');
-        if ($maxPrice !== null) {
+
+        if ($minPrice !== null && $maxPrice !== null) {
+            $query->whereBetween('price', [$minPrice, $maxPrice]);
+        } elseif ($minPrice !== null) {
+            $query->where('price', '>=', $minPrice);
+        } elseif ($maxPrice !== null) {
             $query->where('price', '<=', $maxPrice);
         }
+
+        // $minPrice = $request->input('minprice');
+        // if ($minPrice !== null) {
+        //     $query->where('price', '>=', $minPrice);
+        // }
+
+        // $maxPrice = $request->input('maxprice');
+        // if ($maxPrice !== null) {
+        //     $query->where('price', '<=', $maxPrice);
+        // }
 
         // Sort by price
         $sortedVal = $request->input('sortedval');
@@ -279,6 +294,18 @@ class UserDashboard extends Controller
             $query->orderBy('price', 'desc');
         } elseif ($sortedVal === 'asc') {
             $query->orderBy('price', 'asc');
+        } elseif ($sortedVal === 'tatasc'){
+            $query->orderBy('tat', 'asc');
+
+        }elseif ($sortedVal === 'tatdsc'){
+            $query->orderBy('tat', 'desc');
+
+        }elseif ($sortedVal === 'daasc'){
+            $query->orderBy('domain_authority', 'asc');
+
+        }elseif ($sortedVal === 'dadsc'){
+            $query->orderBy('domain_authority', 'desc');
+
         }
 
         $results = $query->get();

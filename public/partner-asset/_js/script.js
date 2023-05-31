@@ -2134,5 +2134,3 @@ $(".chosen-toggle").each(function (index) {
     .trigger("chosen:updated");
   });
 });
-
-

@@ -24,10 +24,11 @@
     .login_content form .form-control {
         padding: 16px;
     }
-    .login_content form a.btn {
+    .login_content form button.btn {
         font-size: 18px;
         padding: 12px 0;
     }
+
 }
 
 @media only screen and (max-width: 1199px) {
@@ -51,7 +52,7 @@
         line-height: 1.2;
         padding: 16px;
     }
-    .login_content form a.btn {
+    .login_content form button.btn {
         font-size: 17px;
         line-height: 1.2;
     }

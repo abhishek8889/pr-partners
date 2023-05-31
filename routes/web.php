@@ -34,7 +34,7 @@ Route::get('/logout',[AuthenticationController::class,'logout']);
 Route::get('/userlogout',[AuthenticationController::class,'userlogout']);
 Route::get('/user-dashboard',[UserDashboard::class,'index'])->Middleware(UserCheck::class);
 Route::post('/search-filter',[UserDashboard::class,'filterData'])->name('search-filter');
-
+Route::post('/genre-name',[UserDashboard::class,'genreName'])->name('genre-name');
 
 
 //Admin routes
@@ -91,6 +91,7 @@ Route ::group(['middleware' =>['is_admin']],function(){
     // User password
     Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index']);
     Route::post('update-token-procc',[UserAccessToken::class,'creatproc'])->name('update-token-procc');
+
 });
 
 
