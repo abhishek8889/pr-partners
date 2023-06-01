@@ -666,4 +666,12 @@ body.bg_color {
 /*========== Press Release tab end here ========*/
 
 
-
+.chosen-container .chosen-drop{
+	display: none; 
+ }
+ .chosen-container-active .chosen-drop {
+	 display: block;
+ }
+ select#region_filter {
+    display: none;
+}

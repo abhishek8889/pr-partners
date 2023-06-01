@@ -28,8 +28,8 @@ class UserDashboard extends Controller
         $article_filter = ArticleType::get();
 
         $region_filter = Region::get();
-    
-        return view('users.all_publication',compact('publication_data','press_packages','press_release','genres_filter','article_filter','region_filter','other_services'));
+        $priceRange = Publication::max('price');
+        return view('users.all_publication',compact('priceRange','publication_data','press_packages','press_release','genres_filter','article_filter','region_filter','other_services'));
     }
     public function genreName(Request $request){
         $genreName = Genre::whereIn('id', $request->items)->pluck('name')->toArray();
@@ -241,7 +241,7 @@ class UserDashboard extends Controller
         // Filter by publication name
         $publicationName = $request->input('publicationname');
         if ($publicationName !== null) {
-            $query->where('title', 'like', '%' . $publicationName . '%');
+            $query->where('title', 'like', $publicationName . '%');
         }
 
         // Filter by genre

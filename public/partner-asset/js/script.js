@@ -11,12 +11,15 @@ $(document).ready(function () {
     thousand: ",",
     prefix: "$"
   });
+  // Add these 2 varibale in js code for get Dinamic price range slider
+  var minvalue = $('#minValue').val();
+  var maxvalue = $("#maxValue").val();
   noUiSlider.create(rangeSlider, {
-    start: [0, 30000],
+    start: [parseInt(minvalue), parseInt(maxvalue)],
     step: 1,
     range: {
-      min: [0],
-      max: [30000]
+      min: [parseInt(minvalue)],
+      max: [parseInt(maxvalue)]
     },
     format: moneyFormat,
     connect: true

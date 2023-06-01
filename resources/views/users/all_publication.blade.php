@@ -57,6 +57,7 @@
                           </select>
                         </div>
                       </div>
+                      
                       <div class="range_wreap">
                         <h3>Price range</h3>
                         <div id="slider-range"></div>
@@ -69,6 +70,8 @@
                           </div>
                         </div>
                         <div>
+                          <input type="hidden" id="maxValue" value="{{ $priceRange ?? ''}}" data-max="{{ $priceRange ?? ''}}">
+                          <input type="hidden" id="minValue" value="1" data-min="1">
                           <input type="hidden" name="min-value" value="">
                           <input type="hidden" name="max-value" value="">
                         </div>
@@ -114,7 +117,7 @@
                   </div>
                   <div class="rightside_publication">
                     <div class="publications_show">
-                      <span>Showing 580 of 580 publications</span>
+                      <span>Showing <span class="showtotal">{{ count($publication_data) ?? ''}}</span>  of {{ count($publication_data) ?? ''}} publications</span>
                     </div>
                     <div class="overview_company">
                         <div class="spinner_wreap d-none"><div id="mySpinner" class="dots-bars-4"></div></div>
@@ -307,6 +310,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -348,8 +352,8 @@
        if(minprice == 0){
         minprice = '1';
        }
-       console.log(minprice);
-       console.log(maxprice);
+      //  console.log(minprice);
+      //  console.log(maxprice);
        min_price = minprice.replace(',','');
        max_price = maxprice.replace(',','');
         localStorage.setItem('minprice', min_price);
@@ -379,7 +383,8 @@
                 dataType: 'json',
                 
                 success: async function (data) {
-                    
+                    // console.warn(data.length);
+                    $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -444,6 +449,7 @@
 
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -506,6 +512,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -586,6 +593,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -662,6 +670,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -699,6 +708,34 @@
 
       $('#reset_button').click(function(){
         localStorage.clear();
+        $('.search-choice-close').click();
+        $('#publication_name').val('');
+        // $(".slider-range").load(location.href + " .slider-range");
+        // console.warn($('.noUi-connect').css(style));
+        // var leftValue = $('.noUi-origin.noUi-connect').css('left');
+        // console.log(leftValue);
+        // $('.noUi-origin.noUi-connect').removeAttr('style');
+        // $('.noUi-origin.noUi-connect').css('left', '0%');
+
+            // Initialize the slider
+            // $('.slider-range-value1').val('1');
+                      $('.noUi-origin.noUi-connect').css({'left': '0%'});
+                      $('.noUi-origin.noUi-connect').css({'left': '0%'});
+                      $('.noUi-origin.noUi-background').css({'left': '100%'});
+                      $('.noUi-origin.noUi-background').css({'left': '100%'});
+                      var Min = $('#minValue').attr('data-min');
+                      var Max = $('#maxValue').attr('data-max');
+                      $('#slider-range-value1').html('$ '+Min).val(Min);
+                      $('#minValue').val(Min);
+                      $('#maxValue').val(Max);
+                      $('#slider-range-value2').html('$ '+Max).val(Max);
+                      document.getElementsByName("min-value").value = Min; 
+                      document.getElementsByName("max-value").value = Max;
+
+        // document.getElementById("slider-range-value1") = '0';
+        // console.log($('#minValue').attr('data-min'));
+        // document.getElementById("slider-range-value2") = '40000';
+        // console.log($('#maxValue').attr('data-max'));
         $('.article_lable').removeClass('selected');
         $('.genrelabel').removeClass('selected');
 
@@ -717,6 +754,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
