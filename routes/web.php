@@ -34,24 +34,26 @@ Route::get('/logout',[AuthenticationController::class,'logout']);
 Route::get('/userlogout',[AuthenticationController::class,'userlogout']);
 Route::get('/user-dashboard',[UserDashboard::class,'index'])->Middleware(UserCheck::class);
 Route::post('/search-filter',[UserDashboard::class,'filterData'])->name('search-filter');
-
+Route::post('/genre-name',[UserDashboard::class,'genreName'])->name('genre-name');
 
 
 //Admin routes
 Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
+
+    //Genre
     Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
     Route::any('/genre-add',[GenreController::class,'genreAdd']);
 
+    //Publication 
     Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
     Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
-    Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
-    Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
-    Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
     Route::post('/addPublication',[PublicationController::class,'addPublication']);
     Route::post('/publication-remove',[PublicationController::class,'removePublication']);
+    Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
+    Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
 
-
+    //article
     Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
     Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
     Route::post('/admin-dashboard/article/action',[ArticleController::class,'action'])->name('article-action');
@@ -89,9 +91,10 @@ Route ::group(['middleware' =>['is_admin']],function(){
     // User password
     Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index']);
     Route::post('update-token-procc',[UserAccessToken::class,'creatproc'])->name('update-token-procc');
+
 });
 
 
 
-Route::get('/trycode',[trycontroller::class,'index']);
-Route::any('/trycodes',[trycontroller::class,'adddata']);
+// Route::get('/trycode',[trycontroller::class,'index']);
+// Route::any('/trycodes',[trycontroller::class,'adddata']);

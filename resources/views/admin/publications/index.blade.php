@@ -11,7 +11,7 @@
     </div>
     <div class="card card-bordered card-preview">
         <div class="card-inner">
-            <button class="btn btn-danger my-1 delbtn d-none">delete</button>
+            <button class="btn btn-danger my-1 delbtn d-none"><i class="bi bi-trash"></i></button>
             <table class="datatable-init nowrap nk-tb-list nk-tb-ulist" data-auto-responsive="false" id="table">
                 <thead>
                    
@@ -66,14 +66,20 @@
                         </td>
 
                         <td class="nk-tb-col tb-col-mb" data-order="35040.34">
-                            <span class="tb-amount">{{ $publications[$i]['price'] ?? ''}}<span class="currency"><b> $</b></span></span>
+                            <span class="tb-amount">
+                                @if ($publications[$i]['price'] == 0)
+                                    ASK
+                                @else
+                                {{ $publications[$i]['price'] ?? ''}} <span class="currency"><b> $</b></span>
+                                @endif
+                            </span>
                         </td>
                         <td class="nk-tb-col tb-col-md">
                             <span>{{ $publications[$i]['domain_authority'] ?? ''}}</span>
                         </td>
                         <td class="nk-tb-col tb-col-lg">
                             <ul class="list-status">
-                                <li><span>{{ $publications[$i]['tat'] ?? ''}}</span></li>
+                                <li><span>{{ $publications[$i]['tat'] ?? ''}} Week</span></li>
                             </ul>
                         </td>
                         <td class="nk-tb-col tb-col-lg">
@@ -107,14 +113,11 @@
                                     <div class="drodown">
                                         <a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
                                         <div class="dropdown-menu dropdown-menu-end">
+                                        <?php $id = \Crypt::encrypt($publications[$i]['id']); ?>
                                             <ul class="link-list-opt no-bdr">
                                                  <!-- <li><a href="#"><em class="icon ni ni-focus"></em><span>Quick View</span></a></li>  -->
-                                                 <li><a href="{{ url('admin-dashboard/update-publications')}}/{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-pen"></em><span>Edit</span></a></li>
-                                                <!-- <li><a href="#"><em class="icon ni ni-repeat"></em><span>Transaction</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-activity-round"></em><span>Activities</span></a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#"><em class="icon ni ni-shield-star"></em><span>Reset Pass</span></a></li>
-                                                <li><a href="#"><em class="icon ni ni-shield-off"></em><span>Reset 2FA</span></a></li> -->
+                                                 <li><a href="{{ url('admin-dashboard/update-publications')}}/{{ $id ?? ''}}"><em class="icon ni ni-pen"></em><span>Edit</span></a></li>
+                                              
                                                 <li><a href="#" class="remove" data-id="{{ $publications[$i]['id'] ?? ''}}"><em class="icon ni ni-trash"></em><span>Remove</span></a></li> 
                                             </ul>
                                         </div>

@@ -19,19 +19,20 @@
                                 <span class="tb-odr-id">ID</span>
                         </th>
                         <th class="nk-tb-col"><span class="sub-text">Title</span></th>
-                        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Publication</span></th>
+                        <th class="nk-tb-col tb-col-lg"><span class="sub-text">Service View</span></th>
                         <th class="nk-tb-col nk-tb-col-tools text-end">
                             Action
                         </th>
                     </tr>
                 </thead>
+                <?php $i = 1 ?>
                 <tbody>
-                @php $z=1; @endphp
+               
                 @foreach ($services as  $service)
                  
                     <tr class="tb-odr-item tr{{$service->id ?? ''}}">
                         <td class="nk-tb-col">
-                            <span class="tb-odr-id">{{ $z++ ?? ''}}</span>
+                            <span class="tb-odr-id">{{$i++}}</span>
                         </td>
                         <td class="nk-tb-col">
                             <div class="user-card">
@@ -42,17 +43,7 @@
                         </td>
                         <td class="nk-tb-col tb-col-lg">
                             <ul class="list-status">
-                                <?php
-                                
-                                $genreIds = explode(',', $service->publication_id);
-                                $items = str_replace(['[', '"', ']'], '', $genreIds);
-                                $publications = App\Models\Publication::with('article_type','region')->whereIn('id', $items)->get()->toArray();
-                                // echo '<pre>';
-                                // print_r(count($publications));
-                                // echo '</pre>';
-                                ?>
-                            <!-- Modal Trigger Code -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault{{ $service->id ?? ''}}">View Publications</button>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDefault{{ $service->id ?? ''}}">View Service List</button>
 
                                
                                     <!-- Modal Content Code -->
@@ -60,7 +51,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                    <h5 class="modal-title">Select Publications</h5>
+                                                    <h5 class="modal-title">View Services</h5>
                                                     <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                                                         <em class="icon ni ni-cross"></em>
                                                     </a>
@@ -69,79 +60,26 @@
                                                     <div class="card-inner">
                                                         <table class="datatable-inits nowrap nk-tb-list nk-tb-ulist " data-auto-responsive="true">
                                                             <thead>
-                                                            
                                                                 <tr class="nk-tb-item nk-tb-head">
-                                                                    <!-- <th class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext">
-                                                                            <input type="checkbox" class="custom-control-input" id="uid">
-                                                                            <label class="custom-control-label" for="uid"></label>
-                                                                        </div>
-                                                                    </th> -->
-                                                                    <th class="nk-tb-col"><span class="sub-text">Publications</span></th>
-                                                                    <th class="nk-tb-col tb-col-mb"><span class="sub-text">Price</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Domain Authority</span></th>
-                                                                    <th class="nk-tb-col tb-col-lg"><span class="sub-text">TAT</span></th>
-                                                                    <th class="nk-tb-col tb-col-lg"><span class="sub-text">Genre</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Article type</span></th>
-                                                                    <th class="nk-tb-col tb-col-md"><span class="sub-text">Country / Region</span></th>
+                                                                    <th class="nk-tb-col"><span class="sub-text"><b>S.No</b></span></th>
+                                                                
+                                                                    <th class="nk-tb-col"><span class="sub-text"><b>Services list</b></span></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @for ($p = 0; $p < count($publications); $p++)
+                                                                <?php $servicesList =  json_decode($service->publication_id); $z = 1; ?>
+                                                            @for ($p = 0; $p < count($servicesList); $p++)
                                                            
                                                                 <tr class="nk-tb-item">
-                                                                    <!-- <td class="nk-tb-col nk-tb-col-check">
-                                                                        <div class="custom-control custom-control-sm custom-checkbox notext ">
-                                                                            <input  type="checkbox" class="custom-control-input publication_id" id="{{ $publications[$p]['id'] ?? ''}}" name="publication_id[]" value="{{ $publications[$p]['id'] ?? ''}}">
-                                                                            <label class="custom-control-label" for="{{ $publications[$p]['id'] ?? ''}}"></label>
-                                                                        </div>
-                                                                    </td> -->
-                                                                    <td class="nk-tb-col">
-                                                                        <div class="user-card">
-                                                                            <div class="user-info">
-                                                                            <a href="{{ $publications[$p]['url'] ?? ''}}">  <span class="tb-lead">{{ $publications[$p]['title'] ?? ''}}<span class="dot dot-success d-md-none ms-1"></span></span></a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
+                                                                <td class="nk-tb-col tb-col-lg">
+                                                                        <span>{{ $z++ ?? ''}}</span>
+                                                                </td> 
+                                                                <td class="nk-tb-col tb-col-lg">
+                                                                        <span>{{ $servicesList[$p] ?? ''}}</span>
+                                                                </td>
 
-                                                                    <td class="nk-tb-col tb-col-mb" data-order="35040.34">
-                                                                        <span class="tb-amount">{{ $publications[$p]['price'] ?? ''}}<span class="currency"><b> $</b></span></span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-md">
-                                                                        <span>{{ $publications[$p]['domain_authority'] ?? ''}}</span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <ul class="list-status">
-                                                                            <li><span>{{ $publications[$p]['tat'] ?? ''}}</span></li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <ul class="list-status">
-                                                                            <?php
-                                                                            $genreIds = explode(',', $publications[$p]['genre']);
-                                                                            $items = str_replace(['[', '"', ']'], '', $genreIds);
-                                                                            $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
-                                                                            ?>
-
-                                                                            <li> <span>
-                                                                            @for ($x = 0; $x < count($genreNames); $x++)
-                                                                                {{ $genreNames[$x] ?? ''}} /
-                                                                                <!-- <br> -->
-                                                                                @if($x % 2 == 0)
-                                                                                    <br>
-                                                                                @endif
-                                                                            @endfor
-                                                                            </span></li>
-                                                                        </ul>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-lg">
-                                                                        <span>{{ $publications[$p]['article_type']['type'] ?? ''}}</span>
-                                                                    </td>
-                                                                    <td class="nk-tb-col tb-col-md">
-                                                                        <span class="tb-status text-successs">{{ $publications[$p]['region']['country_name'] ?? ''}}</span>
-                                                                    </td>
                                                                 </tr><!-- .nk-tb-item  --> 
-                                                                @endfor
+                                                            @endfor
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -161,7 +99,8 @@
                                     <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" data-offset="-8,0"><em class="icon ni ni-more-h"></em></a>
                                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs">
                                         <ul class="link-list-plain">
-                                            <li><a href="{{ url('admin-dashboard/services-update') }}/{{ $service->id ?? '' }}" data-id="{{ $service->id ?? '' }}" id="edit" class="text-primary">Edit</a></li>
+                                            <?php $data = \Crypt::encrypt($service->id); ?>
+                                            <li><a href="{{ url('admin-dashboard/services-update') }}/{{ $data ?? '' }}" data-id="{{ $service->id ?? '' }}" id="edit" class="text-primary">Edit</a></li>
                                             <li><a data-id="{{ $service->id ?? '' }}" id="remove" class="text-danger remove">Remove</a></li>
                                         </ul>
                                     </div>

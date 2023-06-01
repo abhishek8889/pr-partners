@@ -6,7 +6,7 @@
         <div class="col-lg-12">
           <div class="pricing_content">
             <div class="pricing_text">
-              <h2>Pricing Sheet (Ascend)</h2>
+              <h2>Pricing Sheet (PR-Partners)</h2>
               <p>
                 Once we have published the article for you, any further edits may include an extra charge.
               </p>
@@ -44,10 +44,14 @@
                       </div>
                       <div class="form-group">
                         <div class="form-group asc_wrapper">
-                          <label for="sorted_filter">Sort by</label>
+                        <label for="sorted_filter">Sort by</label>
                           <select class="form-control" id="sorted_filter">
                             <option value="asc">Price (Asc)</option>
                             <option value="dsc">Price (Dsc)</option>
+                            <option value="tatasc">TAT (Asc)</option>
+                            <option value="tatdsc">TAT (Dsc)</option>
+                            <option value="daasc">DA (Asc)</option>
+                            <option value="dadsc">DA (Dsc)</option>
                             <!-- <option>lorem ipsum</option>
                             <option>lorem ipsum</option> -->
                           </select>
@@ -71,17 +75,17 @@
                       </div>
                       <div class="form-group wrapper">
                         <label for="formGroupExampleInput">Select regions</label>
-                        <select multiple data-placeholder="Select regions" id="region_filter">
-                        @foreach($region_filter as $rf)  
-                        <option value="{{ $rf->id }}" >{{ $rf->country_name ?? '' }}</option>
-                        @endforeach
-                        </select>
+                            <select multiple data-placeholder="Select regions" id="region_filter">
+                                @foreach($region_filter as $rf)  
+                                <option value="{{ $rf->id }}" >{{ $rf->country_name ?? '' }}</option>
+                                @endforeach
+                            </select>
                       </div>
                       <div class="select_wreap">
                         <h3>Select genres</h3>
                         <div class="publication_list">
-                          @foreach($genres_filter as $gf)
-                          <label id="genere_label{{ $gf->id ?? '' }}" for="genere_filter{{ $gf->id ?? '' }}">{{ $gf->name ?? '' }}</label>
+                        @foreach($genres_filter as $gf)
+                          <label class="genrelabel" id="genere_label{{ $gf->id ?? '' }}" for="genere_filter{{ $gf->id ?? '' }}">{{ $gf->name ?? '' }}</label>
                           <input type="checkbox" class="generesfilter" id="genere_filter{{ $gf->id ?? '' }}" name="genere_filter[]" value="{{ $gf->id ?? '' }}" style="display:none;">
                           @endforeach
                         </div>
@@ -90,7 +94,7 @@
                         <h3>Type</h3>
                         <div class="publication_list">
                           @foreach($article_filter as $af)
-                          <label id="article_label{{ $af->id ?? '' }}" for="article_filter{{ $af->id ?? '' }}" >{{ $af->type ?? '' }}</label>
+                          <label for="article_filter{{ $af->id ?? '' }}" >{{ $af->type ?? '' }}</label>
                           <input type="checkbox" class="articlefilter" id="article_filter{{ $af->id ?? '' }}" name="article_filter[]" value="{{ $af->id ?? '' }}" style="display:none;">
                           @endforeach
                         </div>
@@ -98,16 +102,15 @@
                       <div class="select_wreap">
                         <h3>Sponsored</h3>
                         <div class="publication_list">
-                          <a href="javascript:void(0)">Yes</a>
+                            <label for="">Yes</label>
+                            <input type="hidden">
+                            <label for="">No</label>
+                            <input type="hidden">
+                            <label for="">Discrete</label>
+                            <input type="hidden">
+                          <!-- <a href="javascript:void(0)">Yes</a>
                           <a href="javascript:void(0)">No</a>
-                          <a href="javascript:void(0)">Discrete</a>
-                        </div>
-                      </div>
-                      <div class="select_wreap">
-                        <h3>Do follow</h3>
-                        <div class="publication_list">
-                          <a href="javascript:void(0)">Yes</a>
-                          <a href="javascript:void(0)">No</a>
+                          <a href="javascript:void(0)">Discrete</a> -->
                         </div>
                       </div>
                       <hr>
@@ -118,51 +121,87 @@
                   </div>
                   <div class="rightside_publication">
                     <div class="publications_show">
-                      <span>Showing <span id="publication_length">{{ count($publication_data) }}</span> of {{ count($publication_data) }} publications</span>
+                      <span>Showing 580 of 580 publications</span>
                     </div>
                     <div class="overview_company">
+                        <div class="spinner_wreap d-none"><div id="mySpinner" class="dots-bars-4"></div></div>
                       <table>
                         <thead>
                           <tr>
                             <th class="text-left">Publication</th>
+                            <th>Genres</th>
                             <th>Price</th>
-                            <th>Domain Authority</th>
-                            <th>TAT</th>
-                            <th>Genre</th>
-                            <th>Article type</th>
-                            <th>Country / Region</th>
+                            
+                                <th class='d-flex'>DA
+                                <div class="tooltip"><i class="fa-regular fa-circle-question"></i>
+                                    <p class="tooltiptext">
+                                    <span>Domain authority</span><br>
+                                    Search engine ranking score (1-100)
+                                    </p>
+                                </div>
+                                </th>
+                            <th>TAT
+                              <div class="tooltip"><i class="fa-regular fa-circle-question"></i>
+                                <p class="tooltiptext">
+                                  <span>Time at arrival</span><br>
+                                  Estimated time to deliver
+                                </p>
+                              </div>
+                            </th>
+                            <th>Article Type</th>
+                            <th>Country/Region</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($publication_data as $pd)
+                           
+                        @foreach($publication_data as $pd)
                           <tr>
                             <td class="cpy_content">
                               <div class="cpy_logo">
                                 <div class="cpy_logo_img">
-                                  <img src="img/company_logo1.png" class="img-fluid" alt="">
+                                  <img src="{{ asset('partner-asset/img/company_logo1.png') }}" class="img-fluid" alt="">
                                 </div>
                                 <span>
                                   <a href="{{ $pd['url'] ?? '' }}">{{ $pd['title'] ?? '' }}</a>
                                 </span>
                               </div>
                             </td>
+                            <?php $genre = json_decode($pd['genre']); ?>
+                            <?php
+                                $genreIds = explode(',', $pd['genre']);
+                                $items = str_replace(['[', '"', ']'], '', $genreIds);
+                                // print_r($items);
+                                $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
+                            ?>
+                            @if (count($genre) == 1)
+                             <td>{{ $genreNames[0] ?? ''}}</td>
+                            @else
+                            <td>{{ count($genre)  ?? ''}} genres
+                              <div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i>
+                                <ul class="tooltiptext">
+                                    @for ($g = 0; $g < count($genreNames); $g++)    
+                                        <li>{{$genreNames[$g] ?? ''}}</li>
+                                    @endfor
+                                </ul>
+                              </div> 
+                            </td>
+                            @endif 
+                            
                             <td>${{ $pd['price'] ?? '' }}</td>
                             <td>{{ $pd['domain_authority'] ?? '' }}</td>
                             <td>{{ $pd['tat'] ?? 0 }} Week</td>
-                            <?php $genre = json_decode($pd['genre']); ?> 
-                            <td>{{ count($genre)  }} Genre</td>
                             <td>{{$pd['article_type']['type'] ?? '' }}</td>
                             <td>{{$pd['region']['country_name'] ?? '' }}</td>
                           </tr>
-                          @endforeach
+                        @endforeach 
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+<!-- Press package starts here! -->
+<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="business_wrapper">
               
                   @foreach($press_packages as $pp)
@@ -179,9 +218,9 @@
                           <h5>Publication</h5>
                           <ul class="m-0">
                             @foreach($category as $c)
-                          <?php
+                            <?php
                              $publication = App\Models\Publication::find($c);
-                     ?>
+                            ?>
                             <li>{{ $publication->title ?? '' }}</li>
                             
                             @endforeach
@@ -196,47 +235,43 @@
                 
                 </div>
               </div>
-
+<!-- Press release start here -->
               <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="press_wrapper">
-                  <div class="press_content">
+                <div class="business_wrapper">
+                  <div class="business_content">
                     <h3>Publications</h3>
-                    <div class="press_list">
-                      @foreach($press_release as $pr)
-                      <div class="press_grid">
-                        <div class="press_wreap">
-                          <p>{{ $pr->title ?? '' }}</p>
-                          <div class="press_price">
-                            <span>Price: ${{ $pr->price ?? '' }}.00</span>
-                          </div>
+                    <div class="business_grid">
+                    @foreach($press_release as $pr)
+                        <div class="business_wreap">
+                            <h4 class="bundle_text"><span>Price</span> <span class="business_price">${{ $pr->price ?? '' }}</span></h4>
+                            <p>{{ $pr->title ?? '' }}</p>
                         </div>
-                      </div>
-                      @endforeach
+                    @endforeach
                     </div>
                   </div>
                 </div>
               </div>
-
+<!-- Other service start here -->
               <div class="tab-pane fade" id="pills-services" role="tabpanel" aria-labelledby="pills-services-tab">
                 <div class="business_wrapper">
                   <div class="business_content">
                     <h3>Other Services</h3>
                     <div class="business_grid">
-                      @foreach($other_services as $os)
+                    @foreach($other_services as $os)
                       <div class="business_wreap">
                         <h4 class="bundle_text"><span>{{ $os->title }}</span></h4>
                         <div class="business_list">
                           <h5>Publication</h5>
-                          <?php $publication_id = json_decode($os->publication_id); ?>
+                          <?php $serviceList = json_decode($os->publication_id); ?>
                           <ul class="m-0">
-                            @foreach($publication_id as $p)
-                            <?php  $publication_title = App\Models\Publication::find($p)->title; ?>
-                            <li>{{ $publication_title }}</li>
-                           @endforeach
+                            @for ($s=0; $s< count($serviceList); $s++)
+                                <li>{{ $serviceList[$s] ?? ''}}</li>
+                            @endfor
+                            
                           </ul>
                         </div>
                       </div>
-                    @endforeach
+                    @endforeach  
                     </div>
                   </div>
                 </div>
@@ -247,6 +282,7 @@
       </div>
     </div>
   </section>
+  <!-- Search filter script here ! -->
   <script>
     $(document).ready(function(){
       localStorage.clear();
@@ -277,9 +313,6 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -295,13 +328,17 @@
               
             }
       });
-    });
-
+      });
 
       $('#slider-range').on('click',function(){
        minprice = $('#slider-range-value1').html().replace('$','');
        maxprice = $('#slider-range-value2').html().replace('$','');
-        min_price = minprice.replace(',','');
+       if(minprice == 0){
+        minprice = '1';
+       }
+       console.log(minprice);
+       console.log(maxprice);
+       min_price = minprice.replace(',','');
        max_price = maxprice.replace(',','');
         localStorage.setItem('minprice', min_price);
         localStorage.setItem('maxprice', max_price);
@@ -328,9 +365,6 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -346,6 +380,7 @@
             }
       });
       });
+      
       $('#publication_name').on('keyup',function(){
         publication_name = $(this).val();
         localStorage.setItem('publicationname', publication_name);
@@ -371,10 +406,9 @@
                 'genre_id': genre_id,
                 'sortedval': sortedval,
             },
+            
+
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
         divdata = [];
               $.each(data, function(key,value){
@@ -386,13 +420,12 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-              $('.spinner-container').hide();
             }
       });
       });
       $('#sorted_filter').on('change',function(){
         sorted_val = $(this).val();
-        console.log(sorted_val);
+        // console.log(sorted_val);
         localStorage.setItem('sortedval', sorted_val);
 
         region_id = localStorage.getItem('regions');
@@ -420,33 +453,58 @@
                 $('.spinner-container').show();
                 },
             dataType: 'json',
-            success: function(data) {
-              divdata = [];
-              $.each(data, function(key,value){
-                genre = JSON.parse(value.genre).length;
-                html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="img/company_logo1.png" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+genre+' Genre</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-              
-                divdata.push(html);
-              
-              });
+            success: async function (data) {
+                divdata = [];
+                for (let key in data) {
+                    let value = data[key];
+                    genre = JSON.parse(value.genre).length;
+                    var genreIds = value.genre.split(",");
+                    var items = genreIds.map(function (item) {
+                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
+                    });
+                    try {
+                        var genreNames = await retrieveGenreNames(items);
+                        // console.log(genreNames.length);
+                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
+                        if(genreNames.length == 1){
+                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                        }else{
+                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                        var genresList = genreNames.map(function(genre) {
+                            return '<li>'+genre+'</li>';
+                            }).join('');
+                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                       
+                        }
+                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                        divdata.push(html);
+                        } catch (error) {
+                        console.error(error);
+                        }
+                    }
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-              $('.spinner-container').hide();
             }
       });
       });
       $('.articlefilter').change(function(){
-        var ischecked= $(this).is(':checked');
-        id = $(this).val();
-        if(ischecked == true){
-          $('#article_label'+id).addClass('genreselected');
-        }else{
-          $('#article_label'+id).removeClass('genreselected');
-        }
         var article_filter = [];
-        $('.articlefilter:checked').each(function(i){
+        $('.articlefilter:checked').each(function(i) {
+          var id = $(this).val();
+        //   console.log(id);
+          var ischecked = $(this).is(':checked');
+        //   console.log(ischecked);
+          
+          if(ischecked == true){
+            $('.articleFilter'+id).addClass(' selected ');
+          }
+          
           article_filter[i] = $(this).val();
+          console.warn(article_filter);
         });
+        // $('.articlefilter:checked').each(function(i){
+        //   article_filter[i] = $(this).val();
+        // });
         localStorage.setItem('articlefilter', article_filter);
 
         region_id = localStorage.getItem('regions');
@@ -472,9 +530,6 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -486,26 +541,21 @@
               });
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-              $('.spinner-container').hide();
             }
       });
       });
+
       $('.generesfilter').change(function(){
-        var ischecked= $(this).is(':checked');
-        id = $(this).val();
-        if(ischecked == true){
-          $('#genere_label'+id).addClass('selected');
-        }else{
-          $('#genere_label'+id).removeClass('selected');
-        }
+        
         var genere_filter = [];
         $('.generesfilter:checked').each(function(i){
-         
-          
-        
-          // if(ischecked == true){
-          //   $('#genere_label'+id).addClass('selected');
-          // }
+          id = $(this).val();
+          console.log(id);
+          var ischecked= $(this).is(':checked');
+          console.log(ischecked);
+          if(ischecked == true){
+            $('#genere_label'+id).addClass('selected');
+          }
           genere_filter[i] = $(this).val();
 
         });
@@ -534,9 +584,6 @@
                 'sortedval': sortedval,
             },
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -555,8 +602,10 @@
       });
 
       $('#reset_button').click(function(){
-
         localStorage.clear();
+        $('.article_lable').removeClass('selected');
+        $('.genrelabel').removeClass('selected');
+
         $.ajax({
             method: 'post',
             url: '{{ route('search-filter') }}',
@@ -571,9 +620,6 @@
                 'sortedval': "",
             },
             dataType: 'json',
-            beforeSend: function() {
-                $('.spinner-container').show();
-                },
             success: function(data) {
               divdata = [];
               $.each(data, function(key,value){
@@ -588,11 +634,37 @@
               $('.spinner-container').hide();
             }
       });
-
       });
     
     });
+
+    // Get gerne name according to data
+    function retrieveGenreNames(items) {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+            method: 'post',
+            url: '{{ route('genre-name') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "items": items,
+            },
+            dataType: 'json',
+            beforeSend: function() {
+                $('.spinner_wreap').removeClass('d-none');
+                },
+            success: function (data) {
+                $('.spinner_wreap').addClass('d-none');
+                resolve(data); // Resolve the promise with the genre name data
+            },
+            error: function (error) {
+                $('.spinner_wreap').addClass('d-none');
+                reject(error); // Reject the promise with the error information
+            }
+            });
+        });
+        }
   </script>
-@endsection
+
+  @endsection
 
 

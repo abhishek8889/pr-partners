@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('img_url')->nullable();
             $table->string('url');
-            $table->string('price');
+            $table->float('price');
             $table->integer('domain_authority');
             $table->string('tat');
             $table->string('genre');

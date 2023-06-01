@@ -17,7 +17,11 @@ class UserCheck
     public function handle(Request $request, Closure $next): Response
     {   
         if(Auth::check()){
-        return $next($request);
+            if(Auth::user()->is_admin == 1){
+                return redirect('admin-dashboard');
+            }else{
+                return $next($request);
+            }
         }else{
             return redirect('/');
         }
