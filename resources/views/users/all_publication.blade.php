@@ -708,6 +708,7 @@
 
       $('#reset_button').click(function(){
         localStorage.clear();
+        location.reload();
         $('.search-choice-close').click();
         $('#publication_name').val('');
         // $(".slider-range").load(location.href + " .slider-range");
