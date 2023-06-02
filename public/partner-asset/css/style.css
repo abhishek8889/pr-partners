@@ -1,3 +1,4 @@
+/*this is test */
 body {
 	font-family: 'Oswald', sans-serif;
 	font-style: normal;
@@ -35,7 +36,7 @@ h3 {
 	border-color: transparent;
 }
 
-/*========== botton section start here ========*/
+/*========== botton section start here asfadsf rewywtywty ========*/
 .ques_btn a.btn {
 	font-size: 15px;
 	word-spacing: 1px;
@@ -46,7 +47,7 @@ h3 {
 	border-radius: 5px;
 	border: 0;
 }
-.login_content form a.btn {
+.login_content form .btn {
 	background: linear-gradient(180deg, #D4AF37 0%, #925C03 100%);
 	border-radius: 5px;
 	width: 100%;
@@ -58,7 +59,7 @@ h3 {
 	padding: 14px 0;
 	border: 0;
 }
-.login_content form a.btn:hover,
+.login_content form .btn:hover,
 .ques_btn a.btn:hover {
 	background: linear-gradient(0deg, #D4AF37 0%, #925C03 100%);
 }
@@ -80,7 +81,11 @@ h3 {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+}
+section.login_wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 header.header_wrapper {
 	padding: 50px 0 20px; 
@@ -103,6 +108,7 @@ header.header_wrapper {
 }
 .login_content h2 {
 	margin: 24px 0;
+	text-transform: uppercase;
 }
 .header_content {
 	display: flex;
@@ -253,7 +259,7 @@ body.bg_color {
 }
 .leftside_rang form  .chosen-container-multi .chosen-choices,
 .asc_wrapper .chosen-container-single .chosen-single {
-	padding: 17px;
+	padding: 14px;
 	height: auto;
 	font-weight: 400;
 	font-size: 14px;
@@ -321,7 +327,7 @@ body.bg_color {
 	background: linear-gradient(180deg, #D4AF37 0%, #925C03 100%);
 }
 .publication_content .leftside_rang form .form-control {
-	padding: 17px;
+	padding: 14px;
 	font-size: 14px;
 	line-height: 21px;
 	color: #909090;
@@ -350,10 +356,10 @@ body.bg_color {
 .publication_content form .range_wreap,
 .leftside_rang form .select_wreap,
 .leftside_rang form .form-group {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 .leftside_rang form hr {
-	margin: 50px 0;
+	margin: 35px 0;
 }
 .leftside_rang form .publication_list label {
 	font-size: 12px;
@@ -424,7 +430,6 @@ body.bg_color {
 .rightside_publication table tbody tr td .cpy_logo {
 	display: flex;
 	align-items: center;
-	width: 200px;
 }
 .rightside_publication table tbody tr td .cpy_logo .cpy_logo_img {
 	padding-right: 5px;
@@ -483,7 +488,7 @@ body.bg_color {
 	    visibility: hidden;
     display: inline-block;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     position: absolute;
     z-index: 9999;
     bottom: 100%;
@@ -523,14 +528,13 @@ body.bg_color {
 	flex-wrap: wrap;
 }
 .tooltip_data ul.tooltiptext li {
-	padding: 2px 5px;
-	margin: 0 5px;
+	padding: 1px 5px 3px;
+	margin: 4px;
 	border-radius: 2px;
 	font-size: 12px;
 	color: #fff;
 	background-color: #925c03c4;
 	line-height: 1.2;
-	margin-bottom: 5px;
 }
 
 
@@ -675,10 +679,9 @@ body.bg_color {
  select#region_filter {
     display: none;
 }
-.genre-wrap span {
+.genre-wrap {
     background-color: #925C03;
     color: #fff !important;
-	padding: 5px;
 }
 .rightside_publication table tr th.d-flex {
     border: 0;
