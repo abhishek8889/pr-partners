@@ -374,7 +374,7 @@
                         var genreNames = await retrieveGenreNames(items);
                         var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
                         if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td class="genre-wrap"><span>'+ genreNames.join(", ") +'</span></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
                         }else{
                         var genresList = genreNames.map(function(genre) {
                             return '<li>'+genre+'</li>';
