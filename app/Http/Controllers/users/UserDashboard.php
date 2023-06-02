@@ -222,95 +222,208 @@ class UserDashboard extends Controller
     // $results = $query->get();
     
     // return response()->json($results);
-    $query = Publication::with('article_type', 'region');
 
-        // Filter by region
-        $regionId = $request->input('region_id');
-            if ($regionId !== null) {
-                $query->whereHas('region', function ($regionQuery) use ($regionId) {
-                    $regionQuery->whereIn('id', explode(',', $regionId));
-                });
-            }
-        // $regionId = $request->input('region_id');
-        // if ($regionId !== null) {
-        //     $query->whereHas('region', function ($regionQuery) use ($regionId) {
-        //         $regionQuery->whereIn('id', explode(',', $regionId));
-        //     });
-        // }
+    // old code is here 
+                            // $query = Publication::with('article_type', 'region');
 
-        // Filter by publication name
-        $publicationName = $request->input('publicationname');
-        if ($publicationName !== null) {
-            $query->where('title', 'like', $publicationName . '%');
-        }
+                            //     // Filter by region
+                            //     $regionId = $request->input('region_id');
+                            //         if ($regionId !== null) {
+                            //             $query->whereHas('region', function ($regionQuery) use ($regionId) {
+                            //                 $regionQuery->whereIn('id', explode(',', $regionId));
+                            //             });
+                            //         }
+                            //     // $regionId = $request->input('region_id');
+                            //     // if ($regionId !== null) {
+                            //     //     $query->whereHas('region', function ($regionQuery) use ($regionId) {
+                            //     //         $regionQuery->whereIn('id', explode(',', $regionId));
+                            //     //     });
+                            //     // }
 
-        // Filter by genre
-        // $genreId = $request->input('genre_id');
-        // if ($genreId !== null) {
-        //     $query->whereJsonContains('genre', $genreId);
-        // }
-        $genreId = $request->input('genre_id');
-        if ($genreId !== null) {
-            $genreIds = explode(',', $request->input('genre_id'));
-			foreach ($genreIds as $genreI_d) {
-				$query->where(function ($query) use ($genreI_d) {
-					$query->whereJsonContains('genre', $genreI_d);
-				});
-			}
-        }
+                            //     // Filter by publication name
+                            //     $publicationName = $request->input('publicationname');
+                            //     if ($publicationName !== null) {
+                            //         $query->where('title', 'like', $publicationName . '%');
+                            //     }
+
+                            //     // Filter by genre
+                            //     // $genreId = $request->input('genre_id');
+                            //     // if ($genreId !== null) {
+                            //     //     $query->whereJsonContains('genre', $genreId);
+                            //     // }
+                            //     $genreId = $request->input('genre_id');
+                            //     if ($genreId !== null) {
+                            //         $genreIds = explode(',', $request->input('genre_id'));
+                            //         foreach ($genreIds as $genreI_d) {
+                            //             $query->where(function ($query) use ($genreI_d) {
+                            //                 $query->whereJsonContains('genre', $genreI_d);
+                            //             });
+                            //         }
+                            //     }
 
 
-        // Filter by article type
-        $articleId = $request->input('article_id');
-        if ($articleId !== null) {
-            $query->where('article_type', $articleId);
-        }
+                            //     // Filter by article type
+                            //     $articleId = $request->input('article_id');
+                            //     if ($articleId !== null) {
+                            //         $query->where('article_type', $articleId);
+                            //     }
 
-        // Filter by price range
-        $minPrice = $request->input('minprice');
-        $maxPrice = $request->input('maxprice');
+                            //     // Filter by price range
+                            //     $minPrice = $request->input('minprice');
+                            //     $maxPrice = $request->input('maxprice');
 
-        if ($minPrice !== null && $maxPrice !== null) {
-            $query->whereBetween('price', [$minPrice, $maxPrice]);
-        } elseif ($minPrice !== null) {
-            $query->where('price', '>=', $minPrice);
-        } elseif ($maxPrice !== null) {
-            $query->where('price', '<=', $maxPrice);
-        }
+                            //     if ($minPrice !== null && $maxPrice !== null) {
+                            //         $query->whereBetween('price', [$minPrice, $maxPrice]);
+                            //     } elseif ($minPrice !== null) {
+                            //         $query->where('price', '>=', $minPrice);
+                            //     } elseif ($maxPrice !== null) {
+                            //         $query->where('price', '<=', $maxPrice);
+                            //     }
 
-        // $minPrice = $request->input('minprice');
-        // if ($minPrice !== null) {
-        //     $query->where('price', '>=', $minPrice);
-        // }
+                            //     // $minPrice = $request->input('minprice');
+                            //     // if ($minPrice !== null) {
+                            //     //     $query->where('price', '>=', $minPrice);
+                            //     // }
 
-        // $maxPrice = $request->input('maxprice');
-        // if ($maxPrice !== null) {
-        //     $query->where('price', '<=', $maxPrice);
-        // }
+                            //     // $maxPrice = $request->input('maxprice');
+                            //     // if ($maxPrice !== null) {
+                            //     //     $query->where('price', '<=', $maxPrice);
+                            //     // }
 
-        // Sort by price
-        $sortedVal = $request->input('sortedval');
-        if ($sortedVal === 'dsc') {
-            $query->orderBy('price', 'desc');
-        } elseif ($sortedVal === 'asc') {
-            $query->orderBy('price', 'asc');
-        } elseif ($sortedVal === 'tatasc'){
-            $query->orderBy('tat', 'asc');
+                            //     // Sort by price
+                            //     $sortedVal = $request->input('sortedval');
+                            //     if ($sortedVal === 'dsc') {
+                            //         $query->orderBy('price', 'desc');
+                            //     } elseif ($sortedVal === 'asc') {
+                            //         $query->orderBy('price', 'asc');
+                            //     } elseif ($sortedVal === 'tatasc'){
+                            //         $query->orderBy('tat', 'asc');
 
-        }elseif ($sortedVal === 'tatdsc'){
-            $query->orderBy('tat', 'desc');
+                            //     }elseif ($sortedVal === 'tatdsc'){
+                            //         $query->orderBy('tat', 'desc');
 
-        }elseif ($sortedVal === 'daasc'){
-            $query->orderBy('domain_authority', 'asc');
+                            //     }elseif ($sortedVal === 'daasc'){
+                            //         $query->orderBy('domain_authority', 'asc');
 
-        }elseif ($sortedVal === 'dadsc'){
-            $query->orderBy('domain_authority', 'desc');
+                            //     }elseif ($sortedVal === 'dadsc'){
+                            //         $query->orderBy('domain_authority', 'desc');
 
-        }
+                            //     }
 
-        $results = $query->get();
+                            //     $results = $query->get();
 
-        return response()->json($results);
+                            //     return response()->json($results);
 
-            }
+                            //         }
+    //old code end here
+    //NEW CODE START FROM HERE 
+        // return response()->json($request->all());
+        $query = Publication::with('article_type', 'region');
+
+                                // Filter by region
+                                $regionId = $request->input('region_id');
+                                    if ($regionId !== null) {
+                                        // $query->whereHas('region', function ($regionQuery) use ($regionId) {
+                                        //     $regionQuery->whereIn('id', explode(',', $regionId));
+                                        // });
+                                        $query->whereHas('region', function ($regionQuery) use ($regionId) {
+                                            $regionQuery->whereIn('id', $regionId);
+                                        });
+                                    }
+                                // $regionId = $request->input('region_id');
+                                // if ($regionId !== null) {
+                                //     $query->whereHas('region', function ($regionQuery) use ($regionId) {
+                                //         $regionQuery->whereIn('id', explode(',', $regionId));
+                                //     });
+                                // }
+
+                                // Filter by publication name
+                                $publicationName = $request->input('publicationname');
+                                if ($publicationName !== null) {
+                                    $query->where('title', 'like', $publicationName . '%');
+                                }
+
+                                // Filter by genre
+                                // $genreId = $request->input('genre_id');
+                                // if ($genreId !== null) {
+                                //     $query->whereJsonContains('genre', $genreId);
+                                // }
+                                $genreId = $request->input('genre_id');
+                                if ($genreId !== null) {
+                                    $genreIds = $request->input('genre_id');
+                                    foreach ($genreIds as $genreI_d) {
+                                        $query->where(function ($query) use ($genreI_d) {
+                                            $query->whereJsonContains('genre', $genreI_d);
+                                        });
+                                    }
+                                    // $genreIds = explode(',', $request->input('genre_id'));
+                                    // foreach ($genreIds as $genreI_d) {
+                                    //     $query->where(function ($query) use ($genreI_d) {
+                                    //         $query->whereJsonContains('genre', $genreI_d);
+                                    //     });
+                                    // }
+                                }
+
+
+                                // Filter by article type
+                                // $articleId = $request->input('article_id');
+                                // if ($articleId !== null) {
+                                //     $query->where('article_type', $articleId);
+                                // }
+
+                                // Filter by price range
+                                $minPrice = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->input('minprice'));
+                                
+                                // $minPrice = $request->input('minprice');
+                                // $maxPrice = $request->input('maxprice');
+                                $maxPrice = preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $request->input('maxprice'));
+                                if($minPrice == 0){
+                                    $minPrice = 1;
+                                }  
+                                if ($minPrice !== null && $maxPrice !== null) {
+                                    $query->whereBetween('price', [$minPrice, $maxPrice]);
+                                } elseif ($minPrice !== null) {
+                                    $query->where('price', '>=', $minPrice);
+                                } elseif ($maxPrice !== null) {
+                                    $query->where('price', '<=', $maxPrice);
+                                }
+
+                                // $minPrice = $request->input('minprice');
+                                // if ($minPrice !== null) {
+                                //     $query->where('price', '>=', $minPrice);
+                                // }
+
+                                // $maxPrice = $request->input('maxprice');
+                                // if ($maxPrice !== null) {
+                                //     $query->where('price', '<=', $maxPrice);
+                                // }
+
+                                // Sort by price
+                                $sortedVal = $request->input('sortedval');
+                                if ($sortedVal === 'dsc') {
+                                    $query->orderBy('price', 'desc');
+                                } elseif ($sortedVal === 'asc') {
+                                    $query->orderBy('price', 'asc');
+                                } elseif ($sortedVal === 'tatasc'){
+                                    $query->orderBy('tat', 'asc');
+
+                                }elseif ($sortedVal === 'tatdsc'){
+                                    $query->orderBy('tat', 'desc');
+
+                                }elseif ($sortedVal === 'daasc'){
+                                    $query->orderBy('domain_authority', 'asc');
+
+                                }elseif ($sortedVal === 'dadsc'){
+                                    $query->orderBy('domain_authority', 'desc');
+
+                                }
+
+                                $results = $query->get();
+                                return response()->json($results);
+                                // $data = array('results' => $results, 'request' => $request->all());
+                                // return response()->json($data);
+
+                        
+    }
+    // NEW CODE IS END HERE 
 }

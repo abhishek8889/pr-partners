@@ -52,7 +52,23 @@
                     toastr.clear();
                     NioApp.Toast(response.error, 'error', {position: 'top-right'});
                 }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('.spinner-container').hide();
+                var errors = jqXHR.responseJSON.errors;
+                for (var fieldName in errors) {
+                    if (errors.hasOwnProperty(fieldName)) {
+                        var errorMessages = errors[fieldName];
+
+                        errorMessages.forEach(function(errorMessage) {
+                            console.log(errorMessage);
+                            NioApp.Toast(errorMessage, 'error', {
+                                position: 'top-right'
+                            });
+                        });
+                    }
                 }
+            }
         });
     });
 });

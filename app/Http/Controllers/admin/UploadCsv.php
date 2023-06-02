@@ -48,10 +48,10 @@ class UploadCsv extends Controller
     fclose($file);
     $isfirst = true;
     foreach($data1 as $d){
-      if($isfirst == true){
-         $isfirst = false;
-         continue;
-      }
+      // if($isfirst == true){
+      //    $isfirst = false;
+      //    continue;
+      // }
             $url = $d[0];
             $title = $d[1];
             //getprice
