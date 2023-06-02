@@ -675,3 +675,18 @@ body.bg_color {
  select#region_filter {
     display: none;
 }
+.genre-wrap span {
+    background-color: #925C03;
+    color: #fff !important;
+	padding: 5px;
+}
+.rightside_publication table tr th.d-flex {
+    border: 0;
+    align-items: center;
+}
+.rightside_publication table tr th.d-flex .tooltip {
+    padding: 0 0 0 5px;
+}
+select.form-control:not([size]):not([multiple]) {
+    height: inherit !important;
+}
