@@ -310,6 +310,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              
               $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
@@ -349,6 +350,8 @@
       $('#slider-range').on('click',function(){
        minprice = $('#slider-range-value1').html().replace('$','');
        maxprice = $('#slider-range-value2').html().replace('$','');
+       console.log($('#minValue').val());
+       console.log($('#maxValue').val());
        if(minprice == 0){
         minprice = '1';
        }
@@ -512,6 +515,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+             
               $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
@@ -593,6 +597,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+              
               $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
@@ -670,6 +675,7 @@
             },
             dataType: 'json',
             success: async function (data) {
+           
               $('.showtotal').html(data.length);
                 divdata = [];
                 for (let key in data) {
@@ -818,6 +824,12 @@
             });
         });
         }
+
+        // var rangeSlider = document.getElementById("slider-range");
+        // rangeSlider.noUiSlider.on("update", function (values, handle) {
+
+        //   console.log('done');
+        // })
   </script>
 
   @endsection

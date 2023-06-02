@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\UserAccessToken;
 use App\Http\Controllers\admin\PressPackageController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\PressReleaseController;
+use App\Http\Controllers\admin\UploadCsv;
 use App\Http\Middleware\UserCheck;
 use App\Http\Controllers\TryController\trycontroller;
 
@@ -92,9 +93,13 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index']);
     Route::post('update-token-procc',[UserAccessToken::class,'creatproc'])->name('update-token-procc');
 
+    //upload csv
+    Route::get('admin-dashboard/upload-csv',[UploadCsv::class,'index']);
+    Route::post('upload-csv-procc',[UploadCsv::class,'uploadproc'])->name('upload-csv-procc');
+
 });
 
 
 
-// Route::get('/trycode',[trycontroller::class,'index']);
+Route::get('/trycode',[trycontroller::class,'index']);
 // Route::any('/trycodes',[trycontroller::class,'adddata']);
