@@ -291,10 +291,50 @@
     </div>
   </section>
   <!-- New search filter start from here  -->
+    <script>
+        $(document).ready(function() {
+            var valueSelected;
+                $('select').on('change', function(e) {
+                    var optionSelected = $("option:selected", this);
+                    valueSelected = this.value;
+                    formControlFunction(); // Call the formControlFunction
+                });
+
+                $('.form-control').change(formControlFunction); // Call the formControlFunction
+
+                function formControlFunction() {
+                    // console.log(valueSelected);
+                    var publicationname = $('#publication_name').val();
+                    var sorted_filter = $('#sorted_filter').val();
+                    var min_value = $('.min_value').val().replace(/,/g, "");
+                    var max_value = $('.max_value').val().replace(/,/g, "");
+                    var maxValue = $('#maxValue').val();
+                    var minValue = $('#minValue').val();
+                    var generesfilter = $('.generesfilter').val();
+                    var region_filter = $('#region_filter').val();
+                    var generesfilter;
+                    var countChecked = function() {
+                    generesfilter = $("input:checked").length;
+                    };
+
+                    countChecked();
+
+                    $("input[type=checkbox]").on("click", countChecked);
+                    if (publicationname == '' && min_value == minValue && max_value == maxValue && sorted_filter == 'asc' && generesfilter == 0 && valueSelected == '') {
+                    $('#apply_button').addClass('d-none');
+                    } else {
+                    $('#apply_button').removeClass('d-none');
+                    }
+                }
+                });
+
+    </script>
+
+
   <script>
-    $('.form-control').change(function(){
-        $('#apply_button').removeClass('d-none');
-    });
+    // $('.form-control').change(function(){
+    //     $('#apply_button').removeClass('d-none');
+    // });
     $('input:checkbox').change(function(){
         var id = $(this).val();
         if($(this).is(":checked")) {
@@ -307,7 +347,7 @@
         $('#apply_button').removeClass('d-none');
         var minprice = $('#slider-range-value1').html().replace('$','');
         var maxprice = $('#slider-range-value2').html().replace('$','');
-        alert('change'+'maxprice'+maxprice+'minprice'+minprice);
+        // alert('change'+'maxprice'+maxprice+'minprice'+minprice);
         $('.min_value').val(minprice);
         $('.max_value').val(maxprice);
     });
@@ -400,6 +440,8 @@
             });
         });
         }
+
+
 </script>
 
   @endsection
