@@ -15,6 +15,7 @@
               <a class="btn" href="javascript:void(0)" role="button">Download PR Questionnaire</a>
             </div>
           </div>
+
           <div class="tab_btn">
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
               <li class="nav-item">
@@ -30,6 +31,15 @@
                 <a class="nav-link" id="pills-services-tab" data-toggle="pill" href="#pills-services" role="tab" aria-controls="pills-services" aria-selected="false">Other Services</a>
               </li>
             </ul>
+            <!-- Add reset and apply filter button here -->
+            <div>
+                <div class="ques_btn my-3">
+                    <a id="reset_button" class="btn d-none" href="javascript:void(0)" role="button">Reset all filters</a>
+               
+                    <a id="apply_button" class="btn d-none" href="javascript:void(0)" role="button">Apply all filters</a>
+                </div>
+            </div>
+            <!-- Reset filter and apply filter button end here ! -->
           </div>
 
           <div class="tab_wrapper">
@@ -37,15 +47,16 @@
               <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="publication_content">
                   <div class="leftside_rang">
-                    <form>
+                    <form id="filterform">
+                        @csrf
                       <div class="form-group">
                         <label for="publication_name">Publication name</label>
-                        <input type="text" class="form-control" id="publication_name" name="publication_name">
+                        <input type="text" class="form-control " id="publication_name" name="publicationname" >
                       </div>
                       <div class="form-group">
                         <div class="form-group asc_wrapper">
                         <label for="sorted_filter">Sort by</label>
-                          <select class="form-control" id="sorted_filter">
+                          <select class="form-control" id="sorted_filter" name="sortedval">
                             <option value="asc">Price (Asc)</option>
                             <option value="dsc">Price (Dsc)</option>
                             <option value="tatasc">TAT (Asc)</option>
@@ -72,13 +83,13 @@
                         <div>
                           <input type="hidden" id="maxValue" value="{{ $priceRange ?? ''}}" data-max="{{ $priceRange ?? ''}}">
                           <input type="hidden" id="minValue" value="1" data-min="1">
-                          <input type="hidden" name="min-value" value="">
-                          <input type="hidden" name="max-value" value="">
+                          <input type="hidden" name="minprice" value="1" class="min_value form-control">
+                          <input type="hidden" name="maxprice" value="{{ $priceRange ?? ''}}" class="max_value form-control">
                         </div>
                       </div>
                       <div class="form-group wrapper">
-                        <label for="formGroupExampleInput">Select regions</label>
-                            <select multiple data-placeholder="Select regions" id="region_filter">
+                        <label for="region_filter">Select regions</label>
+                            <select multiple data-placeholder="Select regions" id="region_filter" name="region_id[]">
                                 @foreach($region_filter as $rf)  
                                 <option value="{{ $rf->id }}" >{{ $rf->country_name ?? '' }}</option>
                                 @endforeach
@@ -89,7 +100,7 @@
                         <div class="publication_list">
                         @foreach($genres_filter as $gf)
                           <label class="genrelabel" id="genere_label{{ $gf->id ?? '' }}" for="genere_filter{{ $gf->id ?? '' }}">{{ $gf->name ?? '' }}</label>
-                          <input type="checkbox" class="generesfilter" id="genere_filter{{ $gf->id ?? '' }}" name="genere_filter[]" value="{{ $gf->id ?? '' }}" style="display:none;">
+                          <input type="checkbox" class="generesfilter form-control" id="genere_filter{{ $gf->id ?? '' }}" name="genre_id[]" value="{{ $gf->id ?? '' }}" style="display:none;">
                         @endforeach
                         
                           
@@ -110,9 +121,9 @@
                         </div>
                       </div>
                       <hr>
-                      <div class="ques_btn">
+                      <!-- <div class="ques_btn">
                         <a id="reset_button" class="btn" href="javascript:void(0)" role="button">Reset all filters</a>
-                      </div>
+                      </div> -->
                     </form>
                   </div>
                   <div class="rightside_publication">
@@ -272,187 +283,45 @@
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- Search filter script here ! -->
+  <!-- New search filter start from here  -->
   <script>
-    $(document).ready(function(){
-      localStorage.clear();
-      $('#region_filter').on('change',function(){
-         regions = $(this).val();
-        localStorage.setItem('regions', regions);
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
-
-       
-
+    $('.form-control').change(function(){
+        $('#apply_button').removeClass('d-none');
+    });
+    $('input:checkbox').change(function(){
+        var id = $(this).val();
+        if($(this).is(":checked")) {
+            $('#genere_label'+id).addClass("selected");
+        } else {
+            $('#genere_label'+id).removeClass("selected");
+        }
+    });
+    $('#slider-range').on('click',function(){
+        $('#apply_button').removeClass('d-none');
+        var minprice = $('#slider-range-value1').html().replace('$','');
+        var maxprice = $('#slider-range-value2').html().replace('$','');
+        alert('change'+'maxprice'+maxprice+'minprice'+minprice);
+        $('.min_value').val(minprice);
+        $('.max_value').val(maxprice);
+    });
+    $('#apply_button').on('click', function(){
+        var formData = $('#filterform').serialize();
         $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': region_id,
-                'maxprice': maxprice,
-                'minprice': minprice,
-                'publicationname': publicationname,
-                'article_id': article_id,
-                'genre_id': genre_id,
-                'sortedval': sortedval,
-            },
-            dataType: 'json',
-            success: async function (data) {
-              
-              $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-
-      $('#slider-range').on('click',function(){
-       minprice = $('#slider-range-value1').html().replace('$','');
-       maxprice = $('#slider-range-value2').html().replace('$','');
-       console.log($('#minValue').val());
-       console.log($('#maxValue').val());
-       if(minprice == 0){
-        minprice = '1';
-       }
-      //  console.log(minprice);
-      //  console.log(maxprice);
-       min_price = minprice.replace(',','');
-       max_price = maxprice.replace(',','');
-        localStorage.setItem('minprice', min_price);
-        localStorage.setItem('maxprice', max_price);
-
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
- 
-            $.ajax({
-                method: 'post',
-                url: '{{ route('search-filter') }}',
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    'region_id': region_id,
-                    'maxprice': maxprice,
-                    'minprice': minprice,
-                    'publicationname': publicationname,
-                    'article_id': article_id,
-                    'genre_id': genre_id,
-                    'sortedval': sortedval,
-                },
-                dataType: 'json',
+            url: "{{ route('search-filter') }}",
+            type: "POST",
+            data: formData,
+            success: async function(data) {
                 
-                success: async function (data) {
-                    // console.warn(data.length);
-                    $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-      
-      $('#publication_name').on('keyup',function(){
-        publication_name = $(this).val();
-        localStorage.setItem('publicationname', publication_name);
-
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
-  
-        $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': region_id,
-                'maxprice': maxprice,
-                'minprice': minprice,
-                'publicationname': publicationname,
-                'article_id': article_id,
-                'genre_id': genre_id,
-                'sortedval': sortedval,
-            },
-            
-
-            dataType: 'json',
-            success: async function (data) {
+                console.log(data);
               $('.showtotal').html(data.length);
+                $('#reset_button').removeClass('d-none');
                 divdata = [];
                 for (let key in data) {
                     let value = data[key];
@@ -463,19 +332,16 @@
                     });
                     try {
                         var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
                         var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
                         if(genreNames.length == 1){
                         html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
                         }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
                         var genresList = genreNames.map(function(genre) {
                             return '<li>'+genre+'</li>';
                             }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
+                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
                        
                         }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
                         divdata.push(html);
                         } catch (error) {
                         console.error(error);
@@ -483,323 +349,33 @@
                     }
               $('tbody').html(divdata);
               $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-      $('#sorted_filter').on('change',function(){
-        sorted_val = $(this).val();
-        // console.log(sorted_val);
-        localStorage.setItem('sortedval', sorted_val);
-
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
-
-        $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': region_id,
-                'maxprice': maxprice,
-                'minprice': minprice,
-                'publicationname': publicationname,
-                'article_id': article_id,
-                'genre_id': genre_id,
-                'sortedval': sortedval,
             },
-            dataType: 'json',
-            success: async function (data) {
-             
-              $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
+            error: function(jqXHR, textStatus, errorThrown) {
+                setTimeout(function() {
+                    $('.spinner-container').hide();
+                }, 1000);
+                var errors = jqXHR.responseJSON.errors;
+                for (var fieldName in errors) {
+                    if (errors.hasOwnProperty(fieldName)) {
+                        var errorMessages = errors[fieldName];
+
+                        errorMessages.forEach(function(errorMessage) {
+                            console.log(errorMessage);
+                            NioApp.Toast(errorMessage, 'error', {
+                                position: 'top-right'
+                            });
+                        });
                     }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
+                }
             }
-      });
-      });
-
-      $('.articlefilter').change(function() {
-        $('.article_lable').removeClass('selected');
-        var article_filter = [];
-        $('.articlefilter:checked').each(function(i) {
-          var id = $(this).val();
-        //   console.log(id);
-          var ischecked = $(this).is(':checked');
-        //   console.log(ischecked);
-          
-          if(ischecked == true){
-            $('.articleFilter'+id).addClass(' selected ');
-          }
-          
-          article_filter[i] = $(this).val();
-          console.warn(article_filter);
         });
-        // $('.articlefilter:checked').each(function(i){
-        //   article_filter[i] = $(this).val();
-        // });
-        localStorage.setItem('articlefilter', article_filter);
-
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
-
-
-        $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': region_id,
-                'maxprice': maxprice,
-                'minprice': minprice,
-                'publicationname': publicationname,
-                'article_id': article_id,
-                'genre_id': genre_id,
-                'sortedval': sortedval,
-            },
-            dataType: 'json',
-            success: async function (data) {
-              
-              $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-
-      $('.generesfilter').change(function(){
-        $('.genrelabel').removeClass('selected');
-        var genere_filter = [];
-        $('.generesfilter:checked').each(function(i){
-          id = $(this).val();
-        //   console.log(id);
-          var ischecked= $(this).is(':checked');
-        //   console.log(ischecked);
-          
-          if(ischecked == true){
-            $('#genere_label'+id).addClass('selected');
-          }
-          genere_filter[i] = $(this).val();
-
-        });
-       
-        localStorage.setItem('generefilter', genere_filter);
-
-        region_id = localStorage.getItem('regions');
-        maxprice = localStorage.getItem('maxprice');
-        minprice = localStorage.getItem('minprice');
-        publicationname = localStorage.getItem('publicationname');
-        article_id = localStorage.getItem('articlefilter');
-        genre_id = localStorage.getItem('generefilter');
-        sortedval = localStorage.getItem('sortedval');
-
-        $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': region_id,
-                'maxprice': maxprice,
-                'minprice': minprice,
-                'publicationname': publicationname,
-                'article_id': article_id,
-                'genre_id': genre_id,
-                'sortedval': sortedval,
-            },
-            dataType: 'json',
-            success: async function (data) {
-           
-              $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-
-      $('#reset_button').click(function(){
-        localStorage.clear();
-        location.reload();
-        $('.search-choice-close').click();
-        $('#publication_name').val('');
-        // $(".slider-range").load(location.href + " .slider-range");
-        // console.warn($('.noUi-connect').css(style));
-        // var leftValue = $('.noUi-origin.noUi-connect').css('left');
-        // console.log(leftValue);
-        // $('.noUi-origin.noUi-connect').removeAttr('style');
-        // $('.noUi-origin.noUi-connect').css('left', '0%');
-
-            // Initialize the slider
-            // $('.slider-range-value1').val('1');
-                      $('.noUi-origin.noUi-connect').css({'left': '0%'});
-                      $('.noUi-origin.noUi-connect').css({'left': '0%'});
-                      $('.noUi-origin.noUi-background').css({'left': '100%'});
-                      $('.noUi-origin.noUi-background').css({'left': '100%'});
-                      var Min = $('#minValue').attr('data-min');
-                      var Max = $('#maxValue').attr('data-max');
-                      $('#slider-range-value1').html('$ '+Min).val(Min);
-                      $('#minValue').val(Min);
-                      $('#maxValue').val(Max);
-                      $('#slider-range-value2').html('$ '+Max).val(Max);
-                      document.getElementsByName("min-value").value = Min; 
-                      document.getElementsByName("max-value").value = Max;
-
-        // document.getElementById("slider-range-value1") = '0';
-        // console.log($('#minValue').attr('data-min'));
-        // document.getElementById("slider-range-value2") = '40000';
-        // console.log($('#maxValue').attr('data-max'));
-        $('.article_lable').removeClass('selected');
-        $('.genrelabel').removeClass('selected');
-
-        $.ajax({
-            method: 'post',
-            url: '{{ route('search-filter') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'region_id': "",
-                'maxprice': "",
-                'minprice': "",
-                'publicationname': "",
-                'article_id': "",
-                'genre_id': "",
-                'sortedval': "",
-            },
-            dataType: 'json',
-            success: async function (data) {
-              $('.showtotal').html(data.length);
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        // console.log(genreNames.length);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+ genreNames.join(", ") +'</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td><td>genreName.length genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext"><li>'+genreNames.join(", ")+'</li></ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td> Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                            // html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.genre+' Genre</td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        divdata.push(html);
-                        } catch (error) {
-                        console.error(error);
-                        }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
-
-            }
-      });
-      });
-    
+        
     });
 
-    // Get gerne name according to data
+    $('#reset_button').on('click', function() {
+        location.reload();
+    });
+     // Get gerne name according to data
     function retrieveGenreNames(items) {
         return new Promise(function (resolve, reject) {
             $.ajax({
@@ -824,13 +400,7 @@
             });
         });
         }
-
-        // var rangeSlider = document.getElementById("slider-range");
-        // rangeSlider.noUiSlider.on("update", function (values, handle) {
-
-        //   console.log('done');
-        // })
-  </script>
+</script>
 
   @endsection
 
