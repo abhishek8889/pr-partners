@@ -297,7 +297,11 @@
                 $('select').on('change', function(e) {
                     var optionSelected = $("option:selected", this);
                     valueSelected = this.value;
-                    formControlFunction(); // Call the formControlFunction
+                    if(valueSelected < 1){
+                        formControlFunction(); // Call the formControlFunction
+                    }else{
+                        $('#apply_button').removeClass('d-none');
+                    }
                 });
 
                 $('.form-control').change(formControlFunction); // Call the formControlFunction
@@ -320,10 +324,10 @@
                     countChecked();
 
                     $("input[type=checkbox]").on("click", countChecked);
-                    if (publicationname == '' && min_value == minValue && max_value == maxValue && sorted_filter == 'asc' && generesfilter == 0 && valueSelected == '') {
-                    $('#apply_button').addClass('d-none');
+                    if (publicationname == '' && min_value == minValue && max_value == maxValue && sorted_filter == 'asc' && generesfilter == 0) {
+                        $('#apply_button').addClass('d-none');
                     } else {
-                    $('#apply_button').removeClass('d-none');
+                        $('#apply_button').removeClass('d-none');
                     }
                 }
                 });
