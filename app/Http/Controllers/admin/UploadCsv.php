@@ -35,6 +35,7 @@ class UploadCsv extends Controller
          $file = fopen($filepath,"r");
          $line1 = fgetcsv($file);
          $count = count($line1);
+        
        $data = array();
          while (($line = fgetcsv($file)) !== false) {
             foreach ($line as $cell) {
@@ -48,12 +49,13 @@ class UploadCsv extends Controller
     fclose($file);
     $isfirst = true;
     foreach($data1 as $d){
-      if($isfirst == true){
-         $isfirst = false;
-         continue;
-      }
+      // if($isfirst == true){
+      //    $isfirst = false;
+      //    continue;
+      // }
             $url = $d[0];
             $title = $d[1];
+            // $img_url = $d[8];
             //getprice
             $result_list_price = str_replace(',', '', $d[2]);
             $result_list_price_update = str_replace('ASK', '0', $result_list_price);
@@ -110,6 +112,7 @@ class UploadCsv extends Controller
 
          $publication_add =  new Publication();
          $publication_add->url = $url;
+         // $publication_add->img_url =  $img_url;
          $publication_add->title = $title;
          $publication_add->price = $price;
          $publication_add->domain_authority = $domain_authority;

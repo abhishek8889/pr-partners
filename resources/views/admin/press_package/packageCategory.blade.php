@@ -5,8 +5,11 @@
         <div class="nk-block-head">
             <div class="nk-block-head-content">
                 <h4 class="title nk-block-title">Package Category</h4>
-                <div class="nk-block-des">
+                <div class="nk-block-des d-flex justify-content-between">
                     <p>You can alow display form in column as example below.</p>
+                    <div class="nk-block-des text-soft">
+                    {{ Breadcrumbs::render('Package-category') }}
+                    </div>
                 </div>
             </div>
         </div>

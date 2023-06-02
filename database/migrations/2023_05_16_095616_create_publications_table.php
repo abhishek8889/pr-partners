@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('domain_authority');
             $table->string('tat');
             $table->string('genre');
-            $table->bigIncrements('article_type');
-            $table->bigIncrements('region');
+            $table->integer('article_type');
+            $table->integer('region');
             $table->timestamps();
         });
     }

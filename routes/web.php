@@ -40,61 +40,61 @@ Route::post('/genre-name',[UserDashboard::class,'genreName'])->name('genre-name'
 
 //Admin routes
 Route ::group(['middleware' =>['is_admin']],function(){
-    Route::get('/admin-dashboard',[AdminDashboardController::class,'index']);
+    Route::get('/admin-dashboard',[AdminDashboardController::class,'index'])->name('admin-dashboard');
 
     //Genre
-    Route::get('/admin-dashboard/genre',[GenreController::class, 'index']);
+    Route::get('/admin-dashboard/genre',[GenreController::class, 'index'])->name('genres');
     Route::any('/genre-add',[GenreController::class,'genreAdd']);
 
     //Publication 
-    Route::get('/admin-dashboard/publications',[PublicationController::class,'index']);
-    Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert']);
+    Route::get('/admin-dashboard/publications',[PublicationController::class,'index'])->name('publications');
+    Route::get('/admin-dashboard/insert-publications',[PublicationController::class,'publicationInsert'])->name('inset-publication');
     Route::post('/addPublication',[PublicationController::class,'addPublication']);
     Route::post('/publication-remove',[PublicationController::class,'removePublication']);
-    Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication']);
+    Route::get('/admin-dashboard/update-publications/{id}',[PublicationController::class,'updatePublication'])->name('update-publication');
     Route::post('/updatePublication',[PublicationController::class,'publicationUpdate']);
 
     //article
-    Route::get('/admin-dashboard/article',[ArticleController::class,'index']);
+    Route::get('/admin-dashboard/article',[ArticleController::class,'index'])->name('articles');
     Route::post('/admin-dashboard/article/add',[ArticleController::class,'articleAdd'])->name('article-add');
     Route::post('/admin-dashboard/article/action',[ArticleController::class,'action'])->name('article-action');
 
     //regioncontroller
-    Route::get('/admin-dashboard/regions',[RegionController::class,'index']);
+    Route::get('/admin-dashboard/regions',[RegionController::class,'index'])->name('regions');
     Route::post('/admin-dashboard/regions/add',[RegionController::class,'addProc'])->name('region-add');
     Route::post('/admin-dashboard/regions/action',[RegionController::class,'action'])->name('region-action');
 
     //Routes for press package
-    Route::get('/admin-dashboard/press-package',[PressPackageController::class,'index']);
+    Route::get('/admin-dashboard/press-package',[PressPackageController::class,'index'])->name('press-package');
     Route::post('/addPackageBundle',[PressPackageController::class,'addPackageBundle']);
-    Route::get('/admin-dashboard/package-category',[PressPackageController::class,'packageCategory']);
+    Route::get('/admin-dashboard/package-category',[PressPackageController::class,'packageCategory'])->name('package-category');
     Route::post('/packagecategory-add',[PressPackageController::class,'addPackageCategory']);
 
-    Route::get('/admin-dashboard/package-list',[PressPackageController::class,'packageList']);
-    Route::get('/admin-dashboard/press-package-update/{id}',[PressPackageController::class,'updatepressPackage']);
+    Route::get('/admin-dashboard/package-list',[PressPackageController::class,'packageList'])->name('package-list');
+    Route::get('/admin-dashboard/press-package-update/{id}',[PressPackageController::class,'updatepressPackage'])->name('update-package');
     Route::post('/updatePackageBundle',[PressPackageController::class,'updatePackageBundle']);
     Route::post('/remove-PackageBundle',[PressPackageController::class,'remove']);
 
     // Other Services
-    Route::get('/admin-dashboard/services-list',[ServiceController::class,'index']);
-    Route::get('/admin-dashboard/services-insert/',[ServiceController::class,'insertService']);
+    Route::get('/admin-dashboard/services-list',[ServiceController::class,'index'])->name('serice-list');
+    Route::get('/admin-dashboard/services-insert/',[ServiceController::class,'insertService'])->name('insert-serices-list');
     Route::post('/addService',[ServiceController::class,'addService']);
-    Route::get('/admin-dashboard/services-update/{id}',[ServiceController::class,'updateService']);
+    Route::get('/admin-dashboard/services-update/{id}',[ServiceController::class,'updateService'])->name('update-service');
     Route::post('/updateService',[ServiceController::class,'ServiceUpdate']);
     Route::post('/remove-service',[ServiceController::class,'remove']);
 
     //Press_release
-    Route::get('/admin-dashboard/press-release',[PressReleaseController::class, 'index']);
+    Route::get('/admin-dashboard/press-release',[PressReleaseController::class, 'index'])->name('press-release');
     Route::post('/addPressRelease',[PressReleaseController::class ,'addPressRelease']);
     Route::post('/update-release',[PressReleaseController::class, 'updatePressRelease']);
     Route::post('/remove-release',[PressReleaseController::class, 'remove']);
     
     // User password
-    Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index']);
+    Route::get('admin-dashboard/update-token',[UserAccessToken::class,'index'])->name('Update-token');
     Route::post('update-token-procc',[UserAccessToken::class,'creatproc'])->name('update-token-procc');
 
     //upload csv
-    Route::get('admin-dashboard/upload-csv',[UploadCsv::class,'index']);
+    Route::get('admin-dashboard/upload-csv',[UploadCsv::class,'index'])->name('upload-csv');
     Route::post('upload-csv-procc',[UploadCsv::class,'uploadproc'])->name('upload-csv-procc');
 
 });

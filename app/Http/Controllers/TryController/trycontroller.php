@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\Genre;
 use App\Models\TryTable;
 use App\Models\Publication;
+use DB;
 
 class trycontroller extends Controller
 {
     public function index(){
-        $genre = Genre::all();
-        return view('Trycode.trycode',compact('genre'));
+        $publication_try = DB::table('publications_try')->get();
+        dd($publication_try);
+        foreach($publication_try as $pt){
+            
+        }
+        // return view('Trycode.trycode',compact('genre'));
      }
     
      public function adddata(Request $request)

@@ -1,7 +1,15 @@
 @extends('admin_layout/master')
 @section('content')
+<div class="nk-block-head d-flex justify-content-between">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Update access token</h4>
+        </div>
+        <div class="nk-block-des text-soft">
+                {{ Breadcrumbs::render('Update-token') }}
+         </div>
+    </div>
 <div class="code-block">
-                 <h6 class="overline-title title">Update access token</h6>
+                 <h6 class="overline-title title"></h6>
                  <form id="token_form" action="{{ route('update-token-procc') }}" method="POST">
                     @csrf
                      <div class="form-group">

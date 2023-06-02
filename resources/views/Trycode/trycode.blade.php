@@ -1,6 +1,6 @@
 @extends('admin_layout.master')
 @section('content')
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet" href="resources/sheet.css">
 <style type="text/css">
     .ritz .waffle a {
@@ -7766,7 +7766,7 @@
                 <td class="s7">Genre</td>
                 <td class="s7" dir="ltr">Article type</td>
                 <td class="s7" dir="ltr">Country / Region</td>
-            </tr> -->
+            </tr> 
         </tbody>
     </table>
 </div>
@@ -7776,265 +7776,265 @@
         @csrf
         <input type="submit"  value="submit"/>
     </form>
-</div>
+</div>-->
 <script>
-$(document).ready(function() {
-  // Select all tbody elements
-//   var tbodyElements = $('tbody');
+// $(document).ready(function() {
+//   // Select all tbody elements
+// //   var tbodyElements = $('tbody');
   
-//   // Initialize an array to store the tbody data
-//   var tbodyDataArray = [];
+// //   // Initialize an array to store the tbody data
+// //   var tbodyDataArray = [];
   
-//   // Loop through each tbody element
-//   tbodyElements.each(function() {
-//     // Access the data within the current tbody element
-//     var tbodyData = $(this).find('tr').map(function() {
-//       var rowData = {};
-//       $(this).find('td').each(function(index) {
-//         var header = $(this).closest('table').find('th').eq(index).text();
-//         rowData[header] = $(this).text();
-//       });
-//       return rowData;
-//     }).get();
+// //   // Loop through each tbody element
+// //   tbodyElements.each(function() {
+// //     // Access the data within the current tbody element
+// //     var tbodyData = $(this).find('tr').map(function() {
+// //       var rowData = {};
+// //       $(this).find('td').each(function(index) {
+// //         var header = $(this).closest('table').find('th').eq(index).text();
+// //         rowData[header] = $(this).text();
+// //       });
+// //       return rowData;
+// //     }).get();
     
-//     // Push the tbody data to the array
-//     tbodyDataArray.push(tbodyData);
-//   });
+// //     // Push the tbody data to the array
+// //     tbodyDataArray.push(tbodyData);
+// //   });
   
-//   // Print the array data
-//   console.log(tbodyDataArray);
-//   console.log(tbodyDataArray[0]);
+// //   // Print the array data
+// //   console.log(tbodyDataArray);
+// //   console.log(tbodyDataArray[0]);
 
-//   $('.data').val(tbodyDataArray[0]);
-//   $('.form-page').submit();
+// //   $('.data').val(tbodyDataArray[0]);
+// //   $('.form-page').submit();
 
-// Break data with space in this
-                            // $("tbody tr").each(function() {
-                            //     var secondTdHref = $(this).find(".s0:eq(1) a").attr("href");
-                            //     $(this).find(".s0:first").html('<a href="' + secondTdHref + '">' + $(this).find(".s0:first").html() + '</a>');
-                            // });
+// // Break data with space in this
+//                             // $("tbody tr").each(function() {
+//                             //     var secondTdHref = $(this).find(".s0:eq(1) a").attr("href");
+//                             //     $(this).find(".s0:first").html('<a href="' + secondTdHref + '">' + $(this).find(".s0:first").html() + '</a>');
+//                             // });
 
-                            // var myTableArray = [];
+//                             // var myTableArray = [];
 
-                            // $("tbody tr").each(function() {
-                            //     var arrayOfThisRow = [];
-                            //     var tableData = $(this).find('td');
-                            //     if (tableData.length > 0) {
-                            //         tableData.each(function(index) {
-                            //             var cellValue = $(this).text();
-                            //             if (index === 0 && $(this).children('a').length > 0) {
-                            //                 var link = $(this).children('a');
-                            //                 arrayOfThisRow.push(link.attr('href'));
-                            //             }
-                            //             arrayOfThisRow.push(cellValue);
-                            //         });
-                            //         myTableArray.push(arrayOfThisRow);
-                            //     }
-                            // });
+//                             // $("tbody tr").each(function() {
+//                             //     var arrayOfThisRow = [];
+//                             //     var tableData = $(this).find('td');
+//                             //     if (tableData.length > 0) {
+//                             //         tableData.each(function(index) {
+//                             //             var cellValue = $(this).text();
+//                             //             if (index === 0 && $(this).children('a').length > 0) {
+//                             //                 var link = $(this).children('a');
+//                             //                 arrayOfThisRow.push(link.attr('href'));
+//                             //             }
+//                             //             arrayOfThisRow.push(cellValue);
+//                             //         });
+//                             //         myTableArray.push(arrayOfThisRow);
+//                             //     }
+//                             // });
 
-                            // console.log(myTableArray);
+//                             // console.log(myTableArray);
 
-// $('.data').val(JSON.stringify(myTableArray));
-// $('.form-page').submit();
+// // $('.data').val(JSON.stringify(myTableArray));
+// // $('.form-page').submit();
 
-// $('.data').val(JSON.stringify(myTableArray));
+// // $('.data').val(JSON.stringify(myTableArray));
 
-// $('.form-page').submit();
-
-
-// console.log(myTableArray);
-// console.log(myTableArray);
-// Get all the <tr> elements in the <tbody>
-const tbody = document.querySelector('tbody');
-const trElements = tbody.querySelectorAll('tr');
-
-// Create an empty array to store the data
-const data = [];
-
-// Loop through each <tr> element and extract the values from <td> elements
-trElements.forEach((tr) => {
-  const tdElements = tr.querySelectorAll('td');
-
-  // Extract the values from <td> elements
-  const url = tdElements[1].querySelector('a').href;
-  const publication = tdElements[1].querySelector('a').textContent;
-  const prices = tdElements[2].textContent;
-  const sanitizedPrice = prices.replace("$", "");
-    let price;
-
-    if (sanitizedPrice === "ASK") {
-    price = 0;
-    } else {
-    price = parseFloat(sanitizedPrice.replace(/,/g, ""));
-    }
-
-console.log(sanitizedPrice);
-// You can now use the sanitizedPrice variable further in your code
-
-  const domainAuthority = tdElements[3].textContent;
-  const tats = tdElements[4].textContent;
-  const tat = tats.replace(/\D/g, "");
-  var array = [
-    {id: 1, name: 'Entertainment'},
-    {id: 2, name: 'Movies & TV'},
-    {id: 3, name: 'Lifestyle'},
-    {id: 4, name: 'Music'},
-    {id: 5, name: 'Business'},
-    {id: 6, name: 'News'},
-    {id: 7, name: 'Sports'},
-    {id: 8, name: 'Tech'},
-    {id: 9, name: 'Health'},
-    {id: 10, name: 'Science'},
-    {id: 11, name: 'Magazine'},
-    {id: 12, name: 'Real Estate'},
-    {id: 13, name: 'Stock Market'},
-    {id: 14, name: 'Enterpreneurs'},
-    {id: 15, name: 'Economy'},
-    {id: 16, name: 'E-Commerce'},
-    {id: 17, name: 'Fashion'},
-    {id: 18, name: 'Travel'},
-    {id: 19, name: 'Crypto'},
-    {id: 20, name: 'Entertainment'},
-    {id: 21, name: 'Movie & TV'},
-    {id: 22, name: 'Travel'},
-    {id: 23, name: 'TV'},
-    {id: 24, name: 'Lifestyle'},
-    {id: 25, name: 'Lifestyle'},
-    {id: 26, name: 'Real State'},
-    {id: 27, name: 'New'},
-    {id: 28, name: 'Luxury'},
-    {id: 29, name: 'CBD'},
-    {id: 30, name: 'Culture'},
-    {id: 31, name: 'Crypto'},
-    {id: 32, name: 'Science & Tech'},
-    {id: 33, name: 'Media'},
-    {id: 34, name: 'News Tech'},
-    {id: 35, name: 'Sports News'},
-    {id: 36, name: 'Sports'},
-    {id: 37, name: 'Entertainment'},
-    {id: 38, name: 'Entertainment'},
-    {id: 39, name: 'Magazines'},
-    {id: 40, name: 'Film News'},
-    {id: 41, name: 'Media & News'},
-];
-
-        const genre = tdElements[5].textContent;
-        // console.log(typeof genre);
-        if (genre != '') {
-            var elements = genre.split(" / ")
-                .map(function(element) {
-                    return element.trim(); // Remove leading/trailing spaces
-                })
-                .filter(function(element) {
-                    return element !== "" && element !== "/" && element !== " /" && element !== "/ " && element !== " /  ";
-                });
+// // $('.form-page').submit();
 
 
-        for (var i = 0; i < elements.length; i++) {
-            // console.log(elements[i]);
-            for (var j = 0; j < array.length; j++) {
-            if (elements[i] == array[j].name) {
-                elements[i] = array[j].id.toString();
-                // console.warn(elements[i]);
-                // break; // Exit the inner loop once a match is found
-            }
-            }
-        }
-        }
-        // console.warn(elements);
-        // console.info(genre);
-//   const articleType = tdElements[6].textContent;
-  var articleArray = [
-    {id: 1, name: 'Organic Placement'},
-    {id: 2, name: 'Sponsored article'},
-    {id: 3, name: 'Organic with small disclaimer'},
-    {id: 4, name: 'Sponsored'},
-    {id: 5, name: 'Feature'},
-];
-// console.warn(articleType);
-// for (var t = 0; t < articleArray.length; t++) {
-//             if (articleType == articleArray[t].name) {
-//                 articleType = articleArray[t].id.toString();
-//                 console.warn(articleType);
+// // console.log(myTableArray);
+// // console.log(myTableArray);
+// // Get all the <tr> elements in the <tbody>
+// const tbody = document.querySelector('tbody');
+// const trElements = tbody.querySelectorAll('tr');
+
+// // Create an empty array to store the data
+// const data = [];
+
+// // Loop through each <tr> element and extract the values from <td> elements
+// trElements.forEach((tr) => {
+//   const tdElements = tr.querySelectorAll('td');
+
+//   // Extract the values from <td> elements
+//   const url = tdElements[1].querySelector('a').href;
+//   const publication = tdElements[1].querySelector('a').textContent;
+//   const prices = tdElements[2].textContent;
+//   const sanitizedPrice = prices.replace("$", "");
+//     let price;
+
+//     if (sanitizedPrice === "ASK") {
+//     price = 0;
+//     } else {
+//     price = parseFloat(sanitizedPrice.replace(/,/g, ""));
+//     }
+
+// console.log(sanitizedPrice);
+// // You can now use the sanitizedPrice variable further in your code
+
+//   const domainAuthority = tdElements[3].textContent;
+//   const tats = tdElements[4].textContent;
+//   const tat = tats.replace(/\D/g, "");
+//   var array = [
+//     {id: 1, name: 'Entertainment'},
+//     {id: 2, name: 'Movies & TV'},
+//     {id: 3, name: 'Lifestyle'},
+//     {id: 4, name: 'Music'},
+//     {id: 5, name: 'Business'},
+//     {id: 6, name: 'News'},
+//     {id: 7, name: 'Sports'},
+//     {id: 8, name: 'Tech'},
+//     {id: 9, name: 'Health'},
+//     {id: 10, name: 'Science'},
+//     {id: 11, name: 'Magazine'},
+//     {id: 12, name: 'Real Estate'},
+//     {id: 13, name: 'Stock Market'},
+//     {id: 14, name: 'Enterpreneurs'},
+//     {id: 15, name: 'Economy'},
+//     {id: 16, name: 'E-Commerce'},
+//     {id: 17, name: 'Fashion'},
+//     {id: 18, name: 'Travel'},
+//     {id: 19, name: 'Crypto'},
+//     {id: 20, name: 'Entertainment'},
+//     {id: 21, name: 'Movie & TV'},
+//     {id: 22, name: 'Travel'},
+//     {id: 23, name: 'TV'},
+//     {id: 24, name: 'Lifestyle'},
+//     {id: 25, name: 'Lifestyle'},
+//     {id: 26, name: 'Real State'},
+//     {id: 27, name: 'New'},
+//     {id: 28, name: 'Luxury'},
+//     {id: 29, name: 'CBD'},
+//     {id: 30, name: 'Culture'},
+//     {id: 31, name: 'Crypto'},
+//     {id: 32, name: 'Science & Tech'},
+//     {id: 33, name: 'Media'},
+//     {id: 34, name: 'News Tech'},
+//     {id: 35, name: 'Sports News'},
+//     {id: 36, name: 'Sports'},
+//     {id: 37, name: 'Entertainment'},
+//     {id: 38, name: 'Entertainment'},
+//     {id: 39, name: 'Magazines'},
+//     {id: 40, name: 'Film News'},
+//     {id: 41, name: 'Media & News'},
+// ];
+
+//         const genre = tdElements[5].textContent;
+//         // console.log(typeof genre);
+//         if (genre != '') {
+//             var elements = genre.split(" / ")
+//                 .map(function(element) {
+//                     return element.trim(); // Remove leading/trailing spaces
+//                 })
+//                 .filter(function(element) {
+//                     return element !== "" && element !== "/" && element !== " /" && element !== "/ " && element !== " /  ";
+//                 });
+
+
+//         for (var i = 0; i < elements.length; i++) {
+//             // console.log(elements[i]);
+//             for (var j = 0; j < array.length; j++) {
+//             if (elements[i] == array[j].name) {
+//                 elements[i] = array[j].id.toString();
+//                 // console.warn(elements[i]);
 //                 // break; // Exit the inner loop once a match is found
 //             }
+//             }
 //         }
-        const articleType = articleArray.find(article => article.name === tdElements[6].textContent)?.id.toString();
-        // console.warn(articleType);
+//         }
+//         // console.warn(elements);
+//         // console.info(genre);
+// //   const articleType = tdElements[6].textContent;
+//   var articleArray = [
+//     {id: 1, name: 'Organic Placement'},
+//     {id: 2, name: 'Sponsored article'},
+//     {id: 3, name: 'Organic with small disclaimer'},
+//     {id: 4, name: 'Sponsored'},
+//     {id: 5, name: 'Feature'},
+// ];
+// // console.warn(articleType);
+// // for (var t = 0; t < articleArray.length; t++) {
+// //             if (articleType == articleArray[t].name) {
+// //                 articleType = articleArray[t].id.toString();
+// //                 console.warn(articleType);
+// //                 // break; // Exit the inner loop once a match is found
+// //             }
+// //         }
+//         const articleType = articleArray.find(article => article.name === tdElements[6].textContent)?.id.toString();
+//         // console.warn(articleType);
 
-// if(art)
-var regionArray = [
-  {id: 1, name: 'Global'},
-  {id: 2, name: 'India'},
-  {id: 3, name: 'Nigeria'},
-  {id: 4, name: 'US'},
-  {id: 5, name: 'West Africa'},
-  {id: 6, name: 'UK'},
-  {id: 7, name: 'Ghana'},
-  {id: 8, name: 'Spain'},
-  {id: 9, name: 'Singapore'},
-  {id: 10, name: 'Thailand'},
-  {id: 11, name: 'Australia'},
-  {id: 12, name: 'Bolivia'},
-  {id: 13, name: 'Mexico'},
-  {id: 14, name: 'Canada'},
-  {id: 15, name: 'Venezuela'},
-  {id: 16, name: 'Argentina'},
-  {id: 17, name: 'Middle East'},
-  {id: 18, name: 'South Africa'},
-  {id: 19, name: 'Colombia'},
-  {id: 20, name: 'Israel'},
-  {id: 21, name: 'Africa'},
-  {id: 22, name: 'Philippines'},
-  {id: 23, name: 'International'},
-  {id: 24, name: 'Netherlands'},
-  {id: 25, name: 'Ireland'},
-  {id: 26, name: 'Asia Pacific'},
-  {id: 27, name: 'Global/ US'},
-  {id: 28, name: 'Brunei'},
-  {id: 29, name: 'France'},
-  {id: 30, name: 'Italy'}
-];
+// // if(art)
+// var regionArray = [
+//   {id: 1, name: 'Global'},
+//   {id: 2, name: 'India'},
+//   {id: 3, name: 'Nigeria'},
+//   {id: 4, name: 'US'},
+//   {id: 5, name: 'West Africa'},
+//   {id: 6, name: 'UK'},
+//   {id: 7, name: 'Ghana'},
+//   {id: 8, name: 'Spain'},
+//   {id: 9, name: 'Singapore'},
+//   {id: 10, name: 'Thailand'},
+//   {id: 11, name: 'Australia'},
+//   {id: 12, name: 'Bolivia'},
+//   {id: 13, name: 'Mexico'},
+//   {id: 14, name: 'Canada'},
+//   {id: 15, name: 'Venezuela'},
+//   {id: 16, name: 'Argentina'},
+//   {id: 17, name: 'Middle East'},
+//   {id: 18, name: 'South Africa'},
+//   {id: 19, name: 'Colombia'},
+//   {id: 20, name: 'Israel'},
+//   {id: 21, name: 'Africa'},
+//   {id: 22, name: 'Philippines'},
+//   {id: 23, name: 'International'},
+//   {id: 24, name: 'Netherlands'},
+//   {id: 25, name: 'Ireland'},
+//   {id: 26, name: 'Asia Pacific'},
+//   {id: 27, name: 'Global/ US'},
+//   {id: 28, name: 'Brunei'},
+//   {id: 29, name: 'France'},
+//   {id: 30, name: 'Italy'}
+// ];
 
-const countryRegion = tdElements[7].textContent;
-let countryRegionId = null;
+// const countryRegion = tdElements[7].textContent;
+// let countryRegionId = null;
 
-for (var i = 0; i < regionArray.length; i++) {
-  if (countryRegion === regionArray[i].name) {
-    countryRegionId = regionArray[i].id.toString();
-    break; // Exit the loop once a match is found
-  }
-}
+// for (var i = 0; i < regionArray.length; i++) {
+//   if (countryRegion === regionArray[i].name) {
+//     countryRegionId = regionArray[i].id.toString();
+//     break; // Exit the loop once a match is found
+//   }
+// }
 
-// console.warn(countryRegionId);
+// // console.warn(countryRegionId);
 
-  // Create an object with the extracted values and add it to the data array
-  data.push({
-    url,
-    publication,
-    price,
-    domainAuthority,
-    tat,
-    elements,
-    articleType,
-    countryRegionId
-  });
-});
+//   // Create an object with the extracted values and add it to the data array
+//   data.push({
+//     url,
+//     publication,
+//     price,
+//     domainAuthority,
+//     tat,
+//     elements,
+//     articleType,
+//     countryRegionId
+//   });
+// });
 
-// Pass the data array to a function or use it as needed
-console.log(data);
-$('.data').val(JSON.stringify(data));
-$('.form-page').submit();
-// $('.data').val(data);
+// // Pass the data array to a function or use it as needed
+// console.log(data);
+// $('.data').val(JSON.stringify(data));
 // $('.form-page').submit();
+// // $('.data').val(data);
+// // $('.form-page').submit();
 
 
-// console.log(myTableArray);
+// // console.log(myTableArray);
 
-//   $('.data').val(myTableArray);
-//   $('.form-page').submit();
-});
+// //   $('.data').val(myTableArray);
+// //   $('.form-page').submit();
+// });
 
 
-</script>
+</script> 
 @endsection

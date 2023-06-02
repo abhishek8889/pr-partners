@@ -4,8 +4,11 @@
     <div class="nk-block-head">
         <div class="nk-block-head-content">
             <h4 class="title nk-block-title">Insert Publications</h4>
-            <div class="nk-block-des">
+            <div class="nk-block-des d-flex justify-content-between">
                 <p>You can insert your publications here.</p>
+                <div class="nk-block-des text-soft">
+                {{ Breadcrumbs::render('Insert-publications') }}
+                 </div>
             </div>
         </div>
     </div>

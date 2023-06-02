@@ -2,12 +2,15 @@
 @section('content')
 <div class="nk-content ">
     <div class="nk-block nk-block-lg">
-            <div class="nk-block-head">
+            <div class="nk-block-head d-flex justify-content-between">
                 <div class="nk-block-head-content">
                     <h4 class="title nk-block-title">Article Type Add</h4>
                     <div class="nk-block-des">
                         <!-- <p>You can alow display form in column as example below.</p> -->
                     </div>
+                </div>
+                <div class="nk-block-des text-soft">
+                        {{ Breadcrumbs::render('Articles') }}
                 </div>
             </div>
             <div class="card card-bordered">

@@ -11,6 +11,9 @@
                             <div class="nk-block-des text-soft">
                                 <p>Welcome to admin dashboard</p>
                             </div>
+                        </div>
+                        <div class="nk-block-des text-soft">
+                        {{ Breadcrumbs::render('admin-dashboard') }}
                         </div><!-- .nk-block-head-content -->
                         <!-- <div class="nk-block-head-content">
                             <div class="toggle-wrap nk-block-tools-toggle">

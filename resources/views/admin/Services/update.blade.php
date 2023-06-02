@@ -1,13 +1,16 @@
 @extends('admin_layout/master')
 @section('content')
 <div class="nk-block nk-block-lg">
-    <div class="nk-block-head">
+    <div class="nk-block-head d-flex justify-content-between">
         <div class="nk-block-head-content">
             <h4 class="title nk-block-title">Update-Other Services</h4>
             <div class="nk-block-des">
                 <p>You can insert your Services here.</p>
             </div>
         </div>
+        <div class="nk-block-des text-soft">
+                {{ Breadcrumbs::render('Service-update') }}
+         </div>
     </div>
     <div class="card card-bordered">
         <div class="card-inner">
