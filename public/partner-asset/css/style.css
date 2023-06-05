@@ -679,9 +679,10 @@ body.bg_color {
  select#region_filter {
     display: none;
 }
-.genre-wrap {
+.genre-wrap span{
     background-color: #925C03;
     color: #fff !important;
+	padding: 6px;
 }
 .rightside_publication table tr th.d-flex {
     border: 0;
