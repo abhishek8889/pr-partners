@@ -181,7 +181,7 @@
                                 $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
                             ?>
                             @if (count($genre) == 1)
-                             <td><span class="genre-wrap">{{ $genreNames[0] ?? ''}}</span></td>
+                             <td>{{ $genreNames[0] ?? ''}}</td>
                             @else
                             <td>{{ count($genre)  ?? ''}} genres
                               <div class="tooltip tooltip_data" data-id="{{ $pd['id'] ?? '' }}"><i class="fa-regular fa-circle-question"></i>
@@ -396,13 +396,7 @@
             url: "{{ route('search-filter') }}",
             type: "POST",
             data: formData,
-            beforeSend: function() {
-                $('.spinner_wreap').removeClass('d-none');
-            },
             success: function(data) {
-              setTimeout(function() {
-                $('.spinner_wreap').addClass('d-none');;
-                }, 1000);
                 console.log(data);
                 $('.showtotal').html(data.length);
                 $('#reset_button').removeClass('d-none');
@@ -413,21 +407,6 @@
                   var genreIds = value.genre.split(",");
                   var items = genreIds.map(function(item) {
                     return JSON.parse(item.replace(/[\[\]"]/g, ''));
-<<<<<<< HEAD
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td class="genre-wrap"><span>'+ genreNames.join(", ") +'</span></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-=======
                   });
 
                   var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
@@ -444,9 +423,8 @@
                       dataType: 'json',
                       async: false, // Make the AJAX request synchronous for simpler code
                       success: function(res) {
-                        // console.warn(value.region.country_name);
+                        console.warn(res[0]);
                         html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td class="td' + value.title + '">' + res[0] + '</td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
->>>>>>> 9faa950a0bc77dc8f32d981fdb3d8e57ae29256c
                         divdata.push(html);
                       },
                       error: function(error) {
@@ -455,7 +433,7 @@
                     });
 
                   } else {
-                    html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td>' + items.length + ' genres<div class="tooltip tooltip_data" data-id="' + value.id + '"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext ul' + value.id + '">' + '<li>Genre......</li>' + '</ul></div> </td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
+                    html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td>' + items.length + ' genres<div class="tooltip tooltip_data" data-id="' + value.id + '"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext ul' + value.id + '">' + 'no data' + '</ul></div> </td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
                     divdata.push(html);
                   }
                 }
@@ -466,7 +444,7 @@
 
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {
-                  $('.spinner_wreap').addClass('d-none');
+                    $('.spinner-container').hide();
                 }, 1000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
@@ -489,38 +467,6 @@
     $('#reset_button').on('click', function() {
         location.reload();
     });
-<<<<<<< HEAD
-     // Get gerne name according to data
-    function retrieveGenreNames(items) {
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-            method: 'post',
-            url: '{{ route('genre-name') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "items": items,
-            },
-            dataType: 'json',
-            beforeSend: function() {
-                $('.spinner_wreap').removeClass('d-none');
-                },
-            success: function (data) {
-                $('.spinner_wreap').addClass('d-none');
-                resolve(data); // Resolve the promise with the genre name data
-            },
-            error: function (error) {
-                $('.spinner_wreap').addClass('d-none');
-                reject(error); // Reject the promise with the error information
-            }
-            });
-        });
-        }
-$('.tooltip').hover(function(){
-  console.log('done');
-});
-
-=======
->>>>>>> 9faa950a0bc77dc8f32d981fdb3d8e57ae29256c
 </script>
 
   @endsection

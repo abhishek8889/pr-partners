@@ -32,8 +32,12 @@ class UserDashboard extends Controller
         return view('users.all_publication',compact('priceRange','publication_data','press_packages','press_release','genres_filter','article_filter','region_filter','other_services'));
     }
     public function genreName(Request $request){
-        $genreName = Genre::whereIn('id', $request->items)->pluck('name')->toArray();
-        return response()->json($genreName);
+        $Publication = Publication::where('id',$request->id)->first();
+         $genre = json_decode($Publication->genre); 
+            $genreNames = Genre::whereIn('id', $genre)->pluck('name')->toArray();
+             return response()->json($genreNames);
+        // $genreName = Genre::whereIn('id', $request->items)->pluck('name')->toArray();
+        // return response()->json($genreName);
     }
 
     public function filterData(Request $request){

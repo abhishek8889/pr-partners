@@ -70,3 +70,7 @@ Breadcrumbs::for('Csv-upload', function (BreadcrumbTrail $trail): void {
     $trail->parent('admin-dashboard');
     $trail->push('CSV-upload', route('upload-csv'));
 });
+Breadcrumbs::for('Update-access', function (BreadcrumbTrail $trail): void {
+    $trail->parent('admin-dashboard');
+    $trail->push('Update-access', route('update-access'));
+});

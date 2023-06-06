@@ -102,6 +102,7 @@ class PublicationController extends Controller
         $publication->region = $req->country_name;
         $publication->update();
         return response()->json('Publication data updated successfully');
+        // return response()->json($publication);
     }
 
     public function removePublication(Request $req){

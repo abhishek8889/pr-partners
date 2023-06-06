@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\PressPackageController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\PressReleaseController;
 use App\Http\Controllers\admin\UploadCsv;
+use App\Http\Controllers\admin\AdminAccess;
 use App\Http\Middleware\UserCheck;
 use App\Http\Controllers\TryController\trycontroller;
 
@@ -96,6 +97,10 @@ Route ::group(['middleware' =>['is_admin']],function(){
     //upload csv
     Route::get('admin-dashboard/upload-csv',[UploadCsv::class,'index'])->name('upload-csv');
     Route::post('upload-csv-procc',[UploadCsv::class,'uploadproc'])->name('upload-csv-procc');
+
+    // Admin Details Update
+    Route::get('admin-dashboard/update-access',[AdminAccess::class,'index'])->name('update-access');
+    Route::post('updateAdminDeatils',[AdminAccess::class,'update'])->name('updateAdminDeatils');
 
 });
 
