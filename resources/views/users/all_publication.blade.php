@@ -413,21 +413,6 @@
                   var genreIds = value.genre.split(",");
                   var items = genreIds.map(function(item) {
                     return JSON.parse(item.replace(/[\[\]"]/g, ''));
-<<<<<<< HEAD
-                    });
-                    try {
-                        var genreNames = await retrieveGenreNames(items);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td class="genre-wrap"><span>'+ genreNames.join(", ") +'</span></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-=======
                   });
 
                   var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
@@ -446,7 +431,6 @@
                       success: function(res) {
                         // console.warn(value.region.country_name);
                         html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td class="td' + value.title + '">' + res[0] + '</td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
->>>>>>> 9faa950a0bc77dc8f32d981fdb3d8e57ae29256c
                         divdata.push(html);
                       },
                       error: function(error) {
