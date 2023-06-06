@@ -10,12 +10,13 @@
     </div>
 <div class="code-block">
                  <h6 class="overline-title title"></h6>
-                 <form id="admin_form" action="{{ route('update-token-procc') }}" method="POST">
+                 <form id="admin_form" action="" method="POST">
                     @csrf
                     <div class="form-group">
                          <label class="form-label" for="full-name">Email</label>
                          <div class="form-control-wrap">
-                             <input type="email" class="form-control" id="old-email" name="oldemail" disabled value="{{ $AdminDetails->email ?? ''}}">
+                         <span class="form-control">{{ $AdminDetails->email ?? ''}}</span>
+                        <input type="hidden" class="form-control" id="old-email" name="oldemail" value="{{ $AdminDetails->email ?? ''}}">
                          </div>
                      </div>
                     <div class="form-group">
@@ -42,18 +43,37 @@
                  </form>
 </div>
 <script>
-    $('.updateDeatils').click(function (){
-        var form = $('#admin_form').serialize();
-        console.log(form);
+    $('.updateDeatils').click(function (e){
+        e.preventDefault();
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var confirm = $('#password_confirmation').val();
+        if (password != '' || confirm != '') {
+            if (password !== confirm) {
+                NioApp.Toast('Password and confirm do not match', 'error', { position: 'top-right' });
+                return false;
+            }
+        }
+            if (password === '' && email === '') {
+                NioApp.Toast('Must one fields is required', 'error', { position: 'top-right' });
+                return false;
+            }
+        var formData = $('#admin_form').serialize();
+
+        // console.log(formData);
         $.ajax({
             url: 'updateAdminDeatils',
             type: 'POST',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'form': form,
+            data: formData,
+            beforeSend: function() {
+                $('.spinner-container').show();
             },
             success: function(data) {
-                console.log(data);
+                setTimeout(function() {
+                    $('.spinner-container').hide();
+                    NioApp.Toast(data, 'success', { position: 'top-right' });
+                    location.reload();
+                }, 1000);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {
