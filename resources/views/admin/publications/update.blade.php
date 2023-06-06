@@ -19,7 +19,7 @@
             </div>
             <form action="" id="publication_form" method="post"class="gy-3">
                 @csrf
-                <input type="hidden" value="{{ $publication['region']['id'] ?? ''}}" name="id">
+                <input type="hidden" value="{{ $publication['id'] ?? ''}}" name="id">
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">

@@ -396,13 +396,7 @@
             url: "{{ route('search-filter') }}",
             type: "POST",
             data: formData,
-            beforeSend: function() {
-                $('.spinner_wreap').removeClass('d-none');
-            },
             success: function(data) {
-              setTimeout(function() {
-                $('.spinner_wreap').addClass('d-none');;
-                }, 1000);
                 console.log(data);
                 $('.showtotal').html(data.length);
                 $('#reset_button').removeClass('d-none');
@@ -429,7 +423,7 @@
                       dataType: 'json',
                       async: false, // Make the AJAX request synchronous for simpler code
                       success: function(res) {
-                        // console.warn(value.region.country_name);
+                        console.warn(res[0]);
                         html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td class="td' + value.title + '">' + res[0] + '</td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
                         divdata.push(html);
                       },
@@ -439,7 +433,7 @@
                     });
 
                   } else {
-                    html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td>' + items.length + ' genres<div class="tooltip tooltip_data" data-id="' + value.id + '"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext ul' + value.id + '">' + '<li>Genre......</li>' + '</ul></div> </td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
+                    html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td>' + items.length + ' genres<div class="tooltip tooltip_data" data-id="' + value.id + '"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext ul' + value.id + '">' + 'no data' + '</ul></div> </td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
                     divdata.push(html);
                   }
                 }
@@ -450,7 +444,7 @@
 
             error: function(jqXHR, textStatus, errorThrown) {
                 setTimeout(function() {
-                  $('.spinner_wreap').addClass('d-none');
+                    $('.spinner-container').hide();
                 }, 1000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
