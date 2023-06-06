@@ -320,8 +320,10 @@ class UserDashboard extends Controller
         // return response()->json($request->all());
         $query = Publication::with('article_type', 'region');
 
-                                // Filter by region
+                 
+                 // Filter by region
                                 $regionId = $request->input('region_id');
+
                                     if ($regionId !== null) {
                                         // $query->whereHas('region', function ($regionQuery) use ($regionId) {
                                         //     $regionQuery->whereIn('id', explode(',', $regionId));
@@ -330,6 +332,7 @@ class UserDashboard extends Controller
                                             $regionQuery->whereIn('id', $regionId);
                                         });
                                     }
+                                    
                                 // $regionId = $request->input('region_id');
                                 // if ($regionId !== null) {
                                 //     $query->whereHas('region', function ($regionQuery) use ($regionId) {
@@ -351,6 +354,7 @@ class UserDashboard extends Controller
                                 $genreId = $request->input('genre_id');
                                 if ($genreId !== null) {
                                     $genreIds = $request->input('genre_id');
+                                    return $genreIDs;
                                     foreach ($genreIds as $genreI_d) {
                                         $query->where(function ($query) use ($genreI_d) {
                                             $query->whereJsonContains('genre', $genreI_d);
@@ -417,7 +421,6 @@ class UserDashboard extends Controller
                                     $query->orderBy('domain_authority', 'desc');
 
                                 }
-
                                 $results = $query->get();
                                 return response()->json($results);
                                 // $data = array('results' => $results, 'request' => $request->all());

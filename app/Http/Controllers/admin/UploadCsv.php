@@ -35,6 +35,9 @@ class UploadCsv extends Controller
          $file = fopen($filepath,"r");
          $line1 = fgetcsv($file);
          $count = count($line1);
+         if($count != 8){
+            return response()->json(['error'=>'unable to upload data']);
+         }
         
        $data = array();
          while (($line = fgetcsv($file)) !== false) {

@@ -62,7 +62,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1 ?>
+                        
+                        <?php
+                        $i = 1 ?>
                         @foreach($regions as $r)
                         <tr class="tb-odr-item" id="tr{{$r->id}}">
                             <td class="nk-tb-col">

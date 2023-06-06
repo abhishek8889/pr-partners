@@ -181,7 +181,7 @@
                                 $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
                             ?>
                             @if (count($genre) == 1)
-                             <td class="genre-wrap"><span>{{ $genreNames[0] ?? ''}}</span></td>
+                             <td><span class="genre-wrap">{{ $genreNames[0] ?? ''}}</span></td>
                             @else
                             <td>{{ count($genre)  ?? ''}} genres
                               <div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i>
@@ -444,7 +444,9 @@
             });
         });
         }
-
+$('.tooltip').hover(function(){
+  console.log('done');
+});
 
 </script>
 

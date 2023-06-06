@@ -19,7 +19,7 @@
             </div>
             <form action="" id="publication_form" method="post"class="gy-3">
                 @csrf
-                <input type="hidden" value="{{ $publication['region']['id'] ?? ''}}" name="id">
+                <input type="hidden" value="{{ $publication['id'] ?? ''}}" name="id">
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
                         <div class="form-group">
@@ -169,7 +169,7 @@
                     <div class="col-lg-5">
                         <div class="form-group">
                             <label class="form-label">Country/Region</label>
-                            <span class="form-note">Please select the countryor region for your publication.</span>
+                            <span class="form-note">Please select the country or region for your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
