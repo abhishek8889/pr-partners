@@ -17,7 +17,7 @@
             <div class="card-head">
                 <h5 class="card-title">Publication Form</h5>
             </div>
-            <form action="" id="publication_form" methos="post"class="gy-3">
+            <form action="" id="publication_form" method="post" class="gy-3" enctype="multipart/form-data">
                 @csrf
                 <div class="row g-3 align-center">
                     <div class="col-lg-5">
@@ -155,7 +155,7 @@
                     <div class="col-lg-5">
                         <div class="form-group">
                             <label class="form-label">Country/Region</label>
-                            <span class="form-note">Please select the countryor region for your publication.</span>
+                            <span class="form-note">Please select the country or region for your publication.</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -178,6 +178,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row g-3 align-center">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Upload Image</label>
+                            <span class="form-note">Please Upload image for your publication.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-gorup">
+                            <div class="form-control-wrap">
+                                <div class="form-file">
+                                    <input type="file" class="form-file-input" id="customFile" name="img">
+                                    <label class="form-file-label" id="imglabel" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <div class="row g-3">
                     <div class="col-lg-7 offset-lg-5">
@@ -195,6 +213,8 @@
         $('#publication_form').on('submit',function(e){
             e.preventDefault();
             formdata = new FormData(this);
+            // console.log(formdata);
+    
                 $.ajax({
                 method: 'post',
                 url: 'addPublication',
@@ -206,11 +226,13 @@
                 $('.spinner-container').show();
                 },
                 success: function (data) {
-                    console.warn(data);
+                    // console.warn(data);
                     setTimeout(function() {
                         $('.spinner-container').hide();
                     }, 1000);
                     $('.form-data').val('');
+                    $('#customFile').val('');
+                    $('#imglabel').html('Choose File');
                     $('.custom-control-input').prop('checked', false);
                   
                     NioApp.Toast(data, 'success', { position: 'top-right' });

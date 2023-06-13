@@ -31,6 +31,7 @@
                                 <label class="custom-control-label" for="page-0"></label>
                             </div>
                         </th>
+                        <th class="nk-tb-col"><span class="sub-text">Image</span></th>
                         <th class="nk-tb-col"><span class="sub-text">Publication</span></th>
                         <th class="nk-tb-col tb-col-mb"><span class="sub-text">Price</span></th>
                         <th class="nk-tb-col tb-col-md"><span class="sub-text">Domain Authority</span></th>
@@ -48,10 +49,16 @@
                 @for ($i = 0; $i < count($publications); $i++)
                       
                     <tr class="nk-tb-item tr{{ $publications[$i]['id'] ?? ''}}">
+                  
                         <td class="nk-tb-col nk-tb-col-check">
                             <div class="custom-control custom-control-sm custom-checkbox notext">
                                 <input type="checkbox" class="custom-control-input checkbox" id="{{ $publications[$i]['id'] ?? ''}}" data-id="{{ $publications[$i]['id'] ?? ''}}">
                                 <label class="custom-control-label" for="{{ $publications[$i]['id'] ?? ''}}"></label>
+                            </div>
+                        </td> 
+                         <td class="nk-tb-col nk-tb-col-check">
+                            <div class="custom-control custom-control-sm custom-checkbox notext">
+                                <img src="{{ url('public/publication_images') }}/{{ $publications[$i]['img_url'] ?? 'company_logo1.png'}}" alt="">
                             </div>
                         </td>
                         <!-- <td class="nk-tb-col ">
@@ -128,7 +135,7 @@
                                 </li>
                             </ul>
                         </td>
-                    </tr><!-- .nk-tb-item  --> 
+                    </tr>
                     @endfor
                 </tbody>
             </table>
@@ -269,9 +276,6 @@ $(document).ready(function() {
                         }
                     }
                 }
-
-
-
             });
 
         });

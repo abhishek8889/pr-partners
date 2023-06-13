@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Genre;
+use App\Models\Publication;
 use Carbon\Carbon;
 use DB;
 
@@ -13,6 +14,8 @@ class GenreController extends Controller
 {
     //
     public function index(){
+     
+       
         // $genre = Genre::all();
         $genres = Genre::orderBy('created_at','desc')->get();
         return view('admin.Genre.index',compact('genres'));
@@ -42,6 +45,21 @@ class GenreController extends Controller
             }
             
             if ($request->has('remove_id')) {
+                $publication = Publication::whereJsonContains('genre',$request->remove_id)->get();
+                foreach($publication as $p){
+                    $genre = json_decode($p->genre);
+                    $data = array();
+                    foreach($genre as $g){
+                        if($g == $request->remove_id){
+                            continue;
+                        }
+                        array_push($data,$g);
+                    }
+                    $real_genre = json_encode($data);
+                    $publication_update = Publication::find($p->id);
+                    $publication_update->genre = $real_genre;
+                    $publication_update->update();
+                }
                 Genre::where('id', $request->remove_id)->delete();
                 return response()->json('Genre deleted successfully');
             }

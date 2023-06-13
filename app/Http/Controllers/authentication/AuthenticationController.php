@@ -10,6 +10,7 @@ use Auth;
 class AuthenticationController extends Controller
 {
     public function index(){
+       
         return view('authentication.login');
     }
     public function userLoginProc(Request $request){

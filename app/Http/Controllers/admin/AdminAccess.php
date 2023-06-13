@@ -32,4 +32,5 @@ class AdminAccess extends Controller
         return response()->json('Admin details has been updated');
     }
 
+
 }

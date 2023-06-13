@@ -9,7 +9,7 @@
         font-size: 16px;
     }
     header.header_wrapper {
-        padding: 30px 0 20px;
+        padding: 30px 0px;
     }
     .login_content {
         border-radius: 20px;
@@ -24,9 +24,14 @@
     .login_content form .form-control {
         padding: 16px;
     }
-    .login_content form a.btn {
+    .login_content form .btn {
         font-size: 18px;
         padding: 12px 0;
+    }
+    .rightside_publication table tbody tr td .cpy_logo .cpy_logo_img img {
+        width: 40px;
+        height: 40px;
+        max-width: 40px;
     }
 }
 
@@ -34,6 +39,23 @@
     .login_content {
         padding: 50px;
     }
+    .publication_content .leftside_rang form .form-control,
+    .rightside_publication table tbody tr td,
+    .rightside_publication table tr th {
+        padding: 10px;
+    }
+    .publication_content {
+        display: block;
+    }
+    .publication_content .leftside_rang {
+        width: 100%;
+        padding: 0;
+    }
+    .publication_content .rightside_publication {
+        width: 100%;
+        margin-top: 30px;
+    }
+
 }
 
 @media only screen and (max-width: 991px) {
@@ -51,7 +73,7 @@
         line-height: 1.2;
         padding: 16px;
     }
-    .login_content form a.btn {
+    .login_content form .btn {
         font-size: 17px;
         line-height: 1.2;
     }
@@ -66,17 +88,6 @@
     .login_content .login_img {
         max-width: 130px;
         margin: 0 auto;
-    }
-    .publication_content {
-        display: block;
-    }
-    .publication_content .leftside_rang {
-        width: 100%;
-        padding: 0;
-    }
-    .publication_content .rightside_publication {
-        width: 100%;
-        margin-top: 30px;
     }
     .ques_btn a.btn {
         font-size: 16px;
@@ -108,6 +119,13 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .rightside_publication table tbody tr td .cpy_logo .cpy_logo_img img {
+        width: 35px;
+        height: 35px;
+	    max-width: 35px;
+
+        border-radius: 100px;
+    }
     .publication_wrapper .pricing_content {
         display: block;
     }
@@ -146,8 +164,17 @@
     .publication_content .overview_company {
         overflow-x: scroll;
     }
-    .rightside_publication table tbody tr td .cpy_logo {
-        width: 150px;
+    .rightside_publication table tbody tr td .cpy_logo .cpy_logo_img {
+        width: 32px;
+        padding: 0;
+    }
+    .rightside_publication table tbody tr td .cpy_logo span {
+        width: 100px;
+        padding-left: 5px;
+    }
+    .rightside_publication table tbody tr td .cpy_logo .cpy_logo_img img {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -173,7 +200,7 @@
     .login_content form .form-control {
         padding: 14px;
     }
-    .login_content form a.btn {
+    .login_content form .btn {
         font-size: 16px;
     }
     .p-100 {
@@ -223,9 +250,6 @@
     }
     .publication_content .leftside_rang form .form-control {
         padding: 10px;
-    }
-    .rightside_publication table tbody tr td .cpy_logo {
-        width: 130px;
     }
     #slider-range .noUi-handle {
         width: 18px;

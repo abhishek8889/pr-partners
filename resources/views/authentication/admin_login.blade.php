@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{{ asset('favicon/favicon.png') }}">
-    <!-- Page Title  -->
-    <title>Admin-Login | Logomax</title>
+    <title>PR PARTNERS - Admin-Login</title>
+    <link rel="shortcut icon" href="{{ asset('partner-asset/img/pr-partners-favicon.png') }}">
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}">

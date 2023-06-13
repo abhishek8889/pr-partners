@@ -181,11 +181,11 @@
                                 $genreNames = App\Models\Genre::whereIn('id', $items)->pluck('name')->toArray();
                             ?>
                             @if (count($genre) == 1)
-                             <td><span class="genre-wrap">{{ $genreNames[0] ?? ''}}</span></td>
+                             <td class="genre-wrap"><span>{{ $genreNames[0] ?? ''}}</span></td>
                             @else
                             <td>{{ count($genre)  ?? ''}} genres
-                              <div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i>
-                                <ul class="tooltiptext">
+                              <div class="tooltip tooltip_data" data-id="{{ $pd['id'] ?? '' }}"><i class="fa-regular fa-circle-question"></i>
+                                <ul class="tooltiptext ul{{ $pd['id'] ?? '' }}">
                                     @for ($g = 0; $g < count($genreNames); $g++)    
                                         <li>{{$genreNames[$g] ?? ''}}</li>
                                     @endfor
@@ -290,6 +290,34 @@
       </div>
     </div>
   </section>
+  <script>
+    // $(".tooltip_data").on("mouseover", function () {
+      $("body").delegate(".tooltip_data", "mouseover", function() {
+      id = $(this).attr("data-id");
+      $.ajax({
+            method: 'post',
+            url: '{{ route('genre-name') }}',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "id": id,
+            },
+            dataType: 'json',
+            success: function (data) {
+              $(".ul"+id).html('');
+              // $("ul").append("<li>"+data+"</li>");
+              $.each(data, function(key, value) {
+                  //For example
+                  $(".ul"+id).append("<li>"+value+"</li>");
+                  // console.log(value)
+              })
+                // console.log(data); 
+            },
+            error: function (error) {
+              //  console.log(error);
+            }
+            });
+    });
+  </script>
   <!-- New search filter start from here  -->
     <script>
         $(document).ready(function() {
@@ -328,6 +356,13 @@
                         $('#apply_button').addClass('d-none');
                     } else {
                         $('#apply_button').removeClass('d-none');
+
+                        // console.log('workings');
+                        // console.log('min_value' + min_value);
+                        // console.log('max_value' + max_value);
+                        // console.log('maxValue' + maxValue);
+                        // console.log('minValue' + minValue);
+
                     }
                 }
                 });
@@ -336,6 +371,7 @@
 
 
   <script>
+
     // $('.form-control').change(function(){
     //     $('#apply_button').removeClass('d-none');
     // });
@@ -356,56 +392,77 @@
         $('.max_value').val(maxprice);
     });
     $('#apply_button').on('click', function(){
-        var formData = $('#filterform').serialize();
-        // console.log(formData);
+        var minprice = $('#slider-range-value1').html().replace('$','').replace(',','');
+        var maxprice = $('#slider-range-value2').html().replace('$','').replace(',','');
+        var formData = $('#filterform').serialize()+'&minp='+minprice+'&maxp='+maxprice;
+       
         $.ajax({
             url: "{{ route('search-filter') }}",
             type: "POST",
             data: formData,
-            success: async function(data) {
-                
-                console.log(data);
-              $('.showtotal').html(data.length);
-                $('#reset_button').removeClass('d-none');
-                divdata = [];
-                for (let key in data) {
-                    let value = data[key];
-                    genre = JSON.parse(value.genre).length;
-                    var genreIds = value.genre.split(",");
-                    var items = genreIds.map(function (item) {
-                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
-                    });
-                    // try {
-                        var genreNames = await retrieveGenreNames(items);
-                        var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
-                        if(genreNames.length == 1){
-                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td ><span class="genre-wrap">'+ genreNames.join(", ") +'</span></td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                        }else{
-                        var genresList = genreNames.map(function(genre) {
-                            return '<li>'+genre+'</li>';
-                            }).join('');
-                            html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="'+image+'" class="img-fluid" alt=""></div><span><a href="'+value.url+'">'+value.title+'</a></span></div></td><td>'+genreNames.length+' genres<div class="tooltip tooltip_data"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext">'+genresList+'</ul></div> </td><td>$'+value.price+'</td><td>'+value.domain_authority+'</td><td>'+value.tat+' Week</td><td>'+value.article_type.type+'</td><td>'+value.region.country_name+'</td></tr>';
-                       
-                        }
-                        divdata.push(html);
-                        // } catch (error) {
-                        // console.error(error);
-                        // }
-                    }
-              $('tbody').html(divdata);
-              $('#publication_length').html(divdata.length);
+            beforeSend: function() {
+                $('.spinner_wreap').removeClass('d-none');
             },
+            success: function(data) {
+              setTimeout(function() {
+                $('.spinner_wreap').addClass('d-none');
+                }, 3000);
+                // console.log(data);
+                $('.showtotal').html(data.length);
+                $('#reset_button').removeClass('d-none');
+                var divdata = [];
+
+                for (let key in data) {
+                  let value = data[key];
+                  var genreIds = value.genre.split(",");
+                  var items = genreIds.map(function(item) {
+                    return JSON.parse(item.replace(/[\[\]"]/g, ''));
+                  });
+
+                  var image = "{{ asset('partner-asset/img/company_logo1.png') }}";
+                  var html = '';
+
+                  if (items.length === 1) {
+                    $.ajax({
+                      method: 'post',
+                      url: '{{ route('genre-name') }}',
+                      data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": value.id,
+                      },
+                      dataType: 'json',
+                      async: false, // Make the AJAX request synchronous for simpler code
+                      success: function(res) {
+                        // console.warn(value.region.country_name);
+                        html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td class="genre-wrap td' + value.title + '"><span>' + res[0] + '</span></td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
+                        divdata.push(html);
+                      },
+                      error: function(error) {
+                        // console.log(error);
+                      }
+                    });
+
+                  } else {
+                    html = '<tr><td class="cpy_content"><div class="cpy_logo"><div class="cpy_logo_img"><img src="' + image + '" class="img-fluid" alt=""></div><span><a href="' + value.url + '">' + value.title + '</a></span></div></td><td>' + items.length + ' genres<div class="tooltip tooltip_data" data-id="' + value.id + '"><i class="fa-regular fa-circle-question"></i><ul class="tooltiptext ul' + value.id + '">' + '<li>Genre......</li>' + '</ul></div> </td><td>$' + value.price + '</td><td>' + value.domain_authority + '</td><td>' + value.tat + ' Week</td><td>' + value.article_type.type + '</td><td>' + value.region.country_name + '</td></tr>';
+                    divdata.push(html);
+                  }
+                }
+
+                $('tbody').html(divdata);
+                $('#publication_length').html(divdata.length);
+              },
+
             error: function(jqXHR, textStatus, errorThrown) {
-                setTimeout(function() {
-                    $('.spinner-container').hide();
-                }, 1000);
+              setTimeout(function() {
+                $('.spinner_wreap').addClass('d-none');;
+                }, 3000);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
                     if (errors.hasOwnProperty(fieldName)) {
                         var errorMessages = errors[fieldName];
 
                         errorMessages.forEach(function(errorMessage) {
-                            console.log(errorMessage);
+                            // console.log(errorMessage);
                             NioApp.Toast(errorMessage, 'error', {
                                 position: 'top-right'
                             });
@@ -420,33 +477,6 @@
     $('#reset_button').on('click', function() {
         location.reload();
     });
-     // Get gerne name according to data
-    function retrieveGenreNames(items) {
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-            method: 'post',
-            url: '{{ route('genre-name') }}',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "items": items,
-            },
-            dataType: 'json',
-            beforeSend: function() {
-                $('.spinner_wreap').removeClass('d-none');
-                },
-            success: function (data) {
-                $('.spinner_wreap').addClass('d-none');
-                resolve(data); // Resolve the promise with the genre name data
-            },
-            error: function (error) {
-                $('.spinner_wreap').addClass('d-none');
-                reject(error); // Reject the promise with the error information
-            }
-            });
-        });
-        }
-
-
 </script>
 
   @endsection

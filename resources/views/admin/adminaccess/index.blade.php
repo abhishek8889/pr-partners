@@ -79,6 +79,7 @@
                 setTimeout(function() {
                     $('.spinner-container').hide();
                 }, 1000);
+                console.log(jqXHR, textStatus, errorThrown);
                 var errors = jqXHR.responseJSON.errors;
                 for (var fieldName in errors) {
                     if (errors.hasOwnProperty(fieldName)) {

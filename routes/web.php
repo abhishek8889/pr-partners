@@ -29,12 +29,14 @@ use App\Http\Controllers\TryController\trycontroller;
 */
 
 Route::get('/',[AuthenticationController::class,'index']);
-Route::post('loginprocc',[AuthenticationController::class,'userLoginProc'])->name('login-proc');
+Route::any('loginprocc',[AuthenticationController::class,'userLoginProc'])->name('login-proc');
 Route::get('/admin-login',[AuthenticationController::class,'adminLogin']);
 Route::post('/admin-loginproc',[AuthenticationController::class,'adminLoginProc'])->name('admin-login');
 Route::get('/logout',[AuthenticationController::class,'logout']);
 Route::get('/userlogout',[AuthenticationController::class,'userlogout']);
 Route::get('/user-dashboard',[UserDashboard::class,'index'])->Middleware(UserCheck::class);
+Route::get('/download-questionnaire',[UserDashboard::class, 'downloadQuestionnaire'])->name('downloadQuestionnaire');
+
 Route::post('/search-filter',[UserDashboard::class,'filterData'])->name('search-filter');
 Route::post('/genre-name',[UserDashboard::class,'genreName'])->name('genre-name');
 
@@ -102,9 +104,21 @@ Route ::group(['middleware' =>['is_admin']],function(){
     Route::get('admin-dashboard/update-access',[AdminAccess::class,'index'])->name('update-access');
     Route::post('updateAdminDeatils',[AdminAccess::class,'update'])->name('updateAdminDeatils');
 
+
 });
 
 
 
 Route::get('/trycode',[trycontroller::class,'index']);
 // Route::any('/trycodes',[trycontroller::class,'adddata']);
+
+Route::get('/clear', function() {
+
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+ 
+    return "Cleared!";
+ 
+ });

@@ -169,7 +169,7 @@
                     <div class="col-lg-5">
                         <div class="form-group">
                             <label class="form-label">Country/Region</label>
-                            <span class="form-note">Please select the countryor region for your publication.</span>
+                            <span class="form-note">Please select the countryor region for your publication....</span>
                         </div>
                     </div>
                     <div class="col-lg-7">
@@ -181,9 +181,10 @@
                                 <li>
                                     <div class="custom-control custom-control-sm custom-radio">
                                         <input type="radio" class="custom-control-input" id="{{ $region['country_name'] }}" name="country_name" value="{{ $region['id'] }}"
-                                        @if ($region['id'] == $publication['region']['id'])
-                                            checked
-                                        @endif
+                                        
+                                            @if ($region['id'] == $publication['region']['id'])
+                                                checked
+                                            @endif
                                         />
                                         <label class="custom-control-label" for="{{ $region['country_name'] }}">{{ $region['country_name'] }}</label>
                                     </div>
@@ -191,8 +192,25 @@
                                
                                 @endforeach
                                 @endif
-                              
                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 align-center">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Upload Image</label>
+                            <span class="form-note">Please Upload image for your publication.</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="form-gorup">
+                            <div class="form-control-wrap">
+                                <div class="form-file">
+                                    <input type="file" class="form-file-input" id="customFile" name="img">
+                                    <label class="form-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

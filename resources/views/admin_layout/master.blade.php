@@ -6,16 +6,22 @@
     <meta charset="utf-8">
     <meta name="author" content="Softnio">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="{{ asset('favicon/favicon.png') }}">
-    <title>Admin Dashbaord</title>
+    <title>PR PARTNERS - Admin Dashboard</title>
+    <link rel="shortcut icon" href="{{ asset('partner-asset/img/pr-partners-favicon.png') }}">
     <!-- add coustam css file here -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/coustam.css')}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset('css/coustam.css?=notworking')}}" >
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('admin-theme/assets/css/dashlite.css?ver=3.1.2') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin-theme/assets/css/theme.css?ver=3.1.2') }}"> 
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
-
+<style>
+    .custom-control.custom-control-sm.custom-checkbox.notext img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+</style>
 <body class="nk-body bg-lighter npc-general has-sidebar ">
 <div class="spinner-container">
   <div class="spinner"></div>
@@ -32,8 +38,8 @@
                     </div>
                     <div class="nk-sidebar-brand">
                         <a href="{{ url('admin-dashboard') ?? ''}}" class="logo-link nk-sidebar-logo">
-                            <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
-                            <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+                            <img class="logo-light logo-img" src="{{ asset('partner-asset/img/Logo.png') }}" srcset="{{ asset('partner-asset/img/Logo.png') }}" alt="logo">
+                            <img class="logo-dark logo-img" src="{{ asset('partner-asset/img/Logo.png') }}" srcset="{{ asset('partner-asset/img/Logo.png') }}" alt="logo-dark">
                         </a>
                     </div>
                 </div><!-- .nk-sidebar-element -->
@@ -72,7 +78,7 @@
                                     </ul>
                                 </li> -->
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/genre')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="fas fa-network-wired"></i></span>
                                         <span class="nk-menu-text">Genre</span>
                                     </a>
@@ -84,7 +90,7 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/regions')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="fas fa-globe-asia"></i></span>
                                         <span class="nk-menu-text">Country / Region</span>
                                     </a>
@@ -95,7 +101,7 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/article')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="fas fa-newspaper"></i></span>
                                         <span class="nk-menu-text">Article</span>
                                     </a>
@@ -106,7 +112,7 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/publications')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="bi bi-signpost-fill"></i></span>
                                         <span class="nk-menu-text">Publications</span>
                                     </a>
@@ -118,36 +124,26 @@
                                             <a href="{{ url('/admin-dashboard/insert-publications') }}" class="nk-menu-link"><span class="nk-menu-text">Insert Publication</span></a>
                                         </li>
                                     </ul>
-                                    <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><i class="fas fa-user-shield"></i></span>
-                                        <span class="nk-menu-text">User Access</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="{{ url('admin-dashboard/update-token') }}" class="nk-menu-link"><span class="nk-menu-text">Update token</span></a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                   
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="fas fa-box"></i></span>
                                         <span class="nk-menu-text">Press Package</span>
                                     </a>
                                     <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel List</span></a>
+                                        </li>
                                         <li class="nk-menu-item">
                                             <a href="{{url('/admin-dashboard/press-package')}}" class="nk-menu-link"><span class="nk-menu-text">Package Bundel</span></a>
                                         </li>
                                         <li class="nk-menu-item">
                                             <a href="{{ url('/admin-dashboard/package-category') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel category</span></a>
                                         </li>
-                                        <li class="nk-menu-item">
-                                            <a href="{{ url('/admin-dashboard/package-list') }}" class="nk-menu-link"><span class="nk-menu-text">Bundel List</span></a>
-                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/services-list')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="bi bi-file-earmark-plus-fill"></i></span>
                                         <span class="nk-menu-text">Other Services</span>
                                     </a>
@@ -161,7 +157,7 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{url('/admin-dashboard/press-release')}}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="bi bi-newspaper"></i></span>
                                         <span class="nk-menu-text">Press Release</span>
                                     </a>
@@ -172,7 +168,7 @@
                                     </ul>
                                 </li>
                                 <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                    <a href="{{ url('admin-dashboard/upload-csv') }}" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><i class="bi bi-file-earmark-plus-fill"></i></span>
                                         <span class="nk-menu-text">Upload CSV</span>
                                     </a>
@@ -192,7 +188,18 @@
                                             <a href="{{url('/admin-dashboard/update-access')}}" class="nk-menu-link"><span class="nk-menu-text">Admin Details Update</span></a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> 
+                                <li class="nk-menu-item has-sub">
+                                        <a href="{{ url('admin-dashboard/update-token') }}" class="nk-menu-link nk-menu-toggle">
+                                            <span class="nk-menu-icon"><i class="fas fa-user-shield"></i></span>
+                                            <span class="nk-menu-text">User Access</span>
+                                        </a>
+                                        <ul class="nk-menu-sub">
+                                            <li class="nk-menu-item">
+                                                <a href="{{ url('admin-dashboard/update-token') }}" class="nk-menu-link"><span class="nk-menu-text">Update token</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
                             </ul>
                         </div>
                     </div>
@@ -209,8 +216,8 @@
                             </div>
                             <div class="nk-header-brand d-xl-none">
                                 <a href="{{url('admin-dashboard') ?? ''}}" class="logo-link">
-                                    <img class="logo-light logo-img" src="{{ asset('admin-theme/images/logo.png') }}" srcset="{{ asset('admin-theme/images/logo2x.png 2x') }}" alt="logo">
-                                    <img class="logo-dark logo-img" src="{{ asset('admin-theme/images/logo-dark.png') }}" srcset="{{ asset('admin-theme/images/logo-dark2x.png 2x') }}" alt="logo-dark">
+                                    <img class="logo-light logo-img" src="{{ asset('partner-asset/img/Logo.png') }}" srcset="{{ asset('partner-asset/img/Logo.png') }}" alt="logo">
+                                    <img class="logo-dark logo-img" src="{{ asset('partner-asset/img/Logo.png') }}" srcset="{{ asset('partner-asset/img/Logo.png') }}" alt="logo-dark">
                                 </a>
                             </div>
                             <div class="nk-header-tools">

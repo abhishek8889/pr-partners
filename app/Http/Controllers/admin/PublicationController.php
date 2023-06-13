@@ -32,16 +32,24 @@ class PublicationController extends Controller
     }
 
     public function addPublication(Request $req){
-        $req->validate([
-            'country_name' => 'required',
-            'article_type' => 'required',
-            'genre_list' => 'required',
-            'title' => 'required',
-            'url' => 'required',
-            'price' => 'required',
-            'domain_authority' => 'required',
-            'turn_around_time' => 'required',
-        ]);
+        // $req->validate([
+        //     'country_name' => 'required',
+        //     'article_type' => 'required',
+        //     'genre_list' => 'required',
+        //     'title' => 'required',
+        //     'url' => 'required',
+        //     'price' => 'required',
+        //     'domain_authority' => 'required',
+        //     'turn_around_time' => 'required',
+        // ]);
+        if($req->hasfile('img')){
+           $destination = public_path().'/publication_images';
+           $file = $req->file('img');
+           $name = time().rand(1,1000).'.'.$file->extension();
+            $file->move($destination.'/',$name);
+        }else{
+            $name = 'company_logo1.png';
+        }
         $publication = new Publication;
         $publication->title = $req->title;
         $publication->url = $req->url;
@@ -51,6 +59,7 @@ class PublicationController extends Controller
         $publication->genre = json_encode($req->genre_list);
         $publication->article_type = $req->article_type;
         $publication->region = $req->country_name;
+        $publication->img_url = $name;
         $publication->save();
         return response()->json('Publication has been added');
     }
@@ -65,6 +74,7 @@ class PublicationController extends Controller
                 $article_types = ArticleType::all();
                 $genre_list = Genre::all();
                 $region_list = Region::all();
+               
                 return view('admin.publications.update',compact('article_types','genre_list','region_list','publication'));
             
             } catch (\Exception $e) {
@@ -92,8 +102,21 @@ class PublicationController extends Controller
             'turn_around_time' => 'required',
         ]);
         $publication = Publication::find($req->id);
+        if($req->hasfile('img')){
+            $destination = public_path().'/publication_images';
+            $file = $req->file('img');
+            $name = time().rand(1,1000).'.'.$file->extension();
+             $file->move($destination.'/',$name);
+         }else{
+            if($publication->img_url){
+             $name = $publication->img_url;
+            }else{
+             $name = 'company_logo1.png';
+            }
+         }
         $publication->title = $req->title;
         $publication->url = $req->url;
+        $publication->img_url = $name;
         $publication->price = $req->price;
         $publication->domain_authority = $req->domain_authority;
         $publication->tat = $req->turn_around_time;
@@ -102,7 +125,6 @@ class PublicationController extends Controller
         $publication->region = $req->country_name;
         $publication->update();
         return response()->json('Publication data updated successfully');
-        // return response()->json($publication);
     }
 
     public function removePublication(Request $req){

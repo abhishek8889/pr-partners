@@ -2,6 +2,7 @@
 @import url(../admin-theme/assets/css/libs/fontawesome-icons.css);
 @import url(../admin-theme/assets/css/libs/themify-icons.css);
 @import url(../admin-theme/assets/css/libs/bootstrap-icons.css);
+
 .user-card .user-info span:hover {
   color: rgb(7, 200, 248);
   text-decoration: underline;

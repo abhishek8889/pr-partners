@@ -56,7 +56,7 @@
                                 <span class="tb-odr-id">Country code</span>
                             </th>
                             <th class="nk-tb-col">
-                                <span class="tb-odr-total">Article Type</span>
+                                <span class="tb-odr-total">Country/Region Name</span>
                             </th>
                             <th class="nk-tb-col">Action</th>
                         </tr>
